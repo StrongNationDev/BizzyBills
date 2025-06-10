@@ -520,16 +520,7 @@
   align-items: flex-start;
   flex-direction: column;
 }
- 
-/* .home-text10 {
-  transition: 0.3s;
-  margin-bottom: var(--dl-layout-space-halfunit);
-}
- 
-.home-text10:hover {
-  color: var(--dl-color-turquoise-default);
-}
-  */
+
 
 
   @media (max-width: 768px) {
