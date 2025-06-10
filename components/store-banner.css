@@ -1,0 +1,17 @@
+.store-banner-store-banner {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+}
+ 
+.store-banner-image1 {
+  width: 135px;
+  object-fit: cover;
+}
+ 
+.store-banner-image2 {
+  width: 135px;
+  object-fit: cover;
+  margin-left: var(--dl-layout-space-halfunit);
+}

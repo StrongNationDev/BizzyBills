@@ -1,0 +1,23 @@
+.feature-card-container {
+  width: 320px;
+  margin: var(--dl-layout-space-halfunit);
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.feature-card-image {
+  width: var(--dl-layout-size-doubleunit);
+  height: var(--dl-layout-size-doubleunit);
+  object-fit: cover;
+}
+ 
+.feature-card-text1 {
+  margin-top: var(--dl-layout-space-unit);
+  margin-bottom: var(--dl-layout-space-unit);
+}
+ 
+.feature-card-text2 {
+  text-align: center;
+}
