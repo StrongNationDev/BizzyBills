@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BizzyBills Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      color: #fff;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo span {
+      background: linear-gradient(90deg, #9C27B0, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-left: 8px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      color: #C8C8C8;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #8E2DE2, #E040FB);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .login-link {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #eee;
+    }
+
+    .login-link a {
+      color: #f06292;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html">
+    <img src="images/bgimage.png" alt="Background" class="background-img">
+  </a>
+
+
+  <div class="container">
+    <div class="logo">
+      <img src="images/logo.png" alt="logo" style="width: 150px; margin-right: 8px;">
+      <!-- <span>BizzyBills</span> -->
+    </div>
+    <h1>You're new here, Register an Account</h1>
+    <form id="registerForm">
+        <input type="email" id="email" placeholder="Enter Email" required>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Register Now</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Log In</a>
+    </div>
+  </div>
+
+  <!-- scripts for account creation -->
+   <!-- Supabase JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+
+<script>
+  const SUPABASE_URL = 'https://xhuyzhlutarpffhdwbni.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhodXl6aGx1dGFycGZmaGR3Ym5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MDM0NDYsImV4cCI6MjA2NTE3OTQ0Nn0.upEAFWSU9GD5-qLwHtuV2eb9yHKEFs_JTaN-quymXaM';
+
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    // Check if email already exists
+    const { data: existingUser, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (existingUser) {
+      alert("User already exists. Please log in.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    // Insert new user
+    const { error } = await supabase
+      .from('users')
+      .insert([
+        { email, username, phone, password }
+      ]);
+
+    if (error) {
+      alert("Registration failed: " + error.message);
+    } else {
+      alert("Registration successful! You can now log in.");
+      window.location.href = "login.html";
+    }
+  });
+</script>
+
+
+</body>
+</html>
