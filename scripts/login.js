@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    // Check if user exists in Supabase
     const { data, error } = await supabase
       .from('users')
       .select('*')
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(error);
     } else {
       alert('Login successful!');
-      window.location.href = 'dashboard.html';
+      window.location.href = '../BizzyBills/home.html';
     }
   });
 });

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Data Subscription</title>
+  <link rel="stylesheet" href="data.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <div class="top-section">
+      <a href="home.html"><button class="back-btn">← Back</button></a>
+      <img src="image/topbg.png" alt="Top Background" class="top-bg" />
+      <h2 class="page-title">Buy Data Subscription</h2>
+    </div>
+
+    
+    <form class="form">
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" placeholder="Enter phone number" />
+
+      <p class="section-title">Network</p>
+      <div class="networks">
+        <label>
+          <input type="radio" name="network" />
+          <img src="icons/airtel.png" alt="Airtel" />
+        </label>
+        <label>
+          <input type="radio" name="network" />
+          <img src="icons/mtn.png" alt="MTN" />
+        </label>
+        <label>
+          <input type="radio" name="network" />
+          <img src="icons/glo.png" alt="Glo" />
+        </label>
+      </div>
+
+      <p class="section-title">Select Plan</p>
+      <div class="dropdown">
+        <select>
+          <option>1GB - 450 / 30 days</option>
+          <option>2GB - 900 / 30 days</option>
+          <option>2.5GB - 1250 / 30 days</option>
+          <option>5GB - 2000 / 30 days</option>
+        </select>
+      </div>
+
+      <!-- <div class="plans">
+        <label>
+          <input type="radio" name="plan" checked />
+          <span>1GB – 450 / 30 days</span>
+        </label>
+        <label>
+          <input type="radio" name="plan" />
+          <span>2GB – 900 / 30 days</span>
+        </label>
+        <label>
+          <input type="radio" name="plan" />
+          <span>2.5GB – 1250 / 30 days</span>
+        </label>
+        <label>
+          <input type="radio" name="plan" />
+          <span>5GB – 2000 / 30 days</span>
+        </label>
+      </div> -->
+
+      <a href="confirm.html"><button type="submit" class="pay-button">Pay</button></a>
+    </form>
+  </div>
+</body>
+</html>

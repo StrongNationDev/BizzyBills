@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+.dashboard {
+  width: 90%;
+  margin: auto;
+  background-color: aliceblue;
+  position: relative;
+}
+
+.top-section {
+  position: relative;
+  height: 200px;
+}
+
+.top-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-bottom: 125px;
+}
+
+.profile {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.welcome-text p {
+  color: white;
+  font-size: 13px;
+}
+
+.welcome-text strong {
+  font-size: 14px;
+  color: white;
+}
+
+.bell-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.balance-section {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  right: 15px;
+  color: white;
+  padding-bottom: 25px;
+}
+
+.balance-title {
+  font-size: 13px;
+  color: rgb(187, 187, 187);
+  font-weight: 500;
+}
+
+.balance-amount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.balance-amount h1 {
+  font-size: 60px;
+}
+
+.wallet-icon {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  width: 24px;
+  padding-bottom: 30px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 10px 10px;
+}
+
+.add-money,
+.contact-us {
+  flex: 1;
+  margin: 0 10px;
+  padding: 12px;
+  background: linear-gradient(90deg, #8400ff, #24e0ff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  height: 55px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.contact-us {
+  background: linear-gradient(90deg, #24e0ff, #a95aff);
+}
+
+.add-money:hover,
+.contact-us:hover{
+  transform: scale(1.09);
+}
+
+/* Animation for exiting */
+body.page-exit {
+  animation: slideFadeOut 0.6s ease-out forwards;
+}
+
+@keyframes slideFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
+
+
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 15px 10px;
+  color: #333;
+}
+
+.service-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px 15px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 12px;
+  width: 90px;
+  height: 95px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.service-card img {
+  width: 30px;
+  margin-bottom: 5px;
+}
+
+.service-card p {
+  font-size: 12px;
+  color: #9a00f4;
+}
+
+.service-card {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.3);
+}
+
+a {
+  text-decoration: none;
+}
+
+a p {
+  text-decoration: none;
+  color: #9a00f4;
+}
+
+
+
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  margin-top: 20px;
+}
+
+.view-all {
+  font-size: 13px;
+  color: #a600f4;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.transaction-card {
+  background: #fff;
+  border-radius: 12px;
+  margin: 10px 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tx-icon {
+  width: 55px;
+  height: 55px;
+}
+
+.tx-details {
+  flex-grow: 1;
+}
+
+.tx-details strong {
+  font-size: 15px;
+  display: block;
+  color: #333;
+}
+
+.tx-details p {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.receipt-btn {
+  font-size: 11px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.receipt-btn.yellow {
+  background: #f4c000;
+}
+
+.receipt-btn.red {
+  background: #ff1a1a;
+}
+
+.receipt-btn.green {
+  background: #00cc66;
+}
+
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid #ddd;
+  z-index: 10;
+}
+
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #9a00f4;
+}
+
+.nav-item img {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 5px;
+}
+
+
+
+
+

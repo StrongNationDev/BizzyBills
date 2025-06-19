@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #e2e2e2;
+}
+
+.virtual-account-body {
+  padding: 0;
+}
+
+/* === Top Section === */
+.top-section {
+  position: relative;
+  text-align: center;
+}
+
+.top-img {
+  width: 100%;
+  display: block;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.top-title {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.back-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+  padding: 5px 10px;
+  background: white;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* === Virtual Account Content === */
+.va-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+}
+
+/* === Account Card === */
+.account-card {
+  width: 90%;
+  max-width: 340px;
+  background: linear-gradient(120deg, #22c1c3 0%, #fdbb2d 100%);
+  border-radius: 15px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  padding: 30px 25px 22px 25px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bank-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bank-logo {
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+  object-fit: cover;
+  box-shadow: 0 1px 4px #0001;
+}
+
+.bank-name {
+  color: #fff;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.card-chip {
+  width: 38px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.account-details {
+  margin-top: 16px;
+}
+
+.account-name {
+  display: block;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.account-number {
+  display: block;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1A1A1A;
+  letter-spacing: 2px;
+}
+
+/* === Copy Button === */
+.copy-btn {
+  padding: 13px 30px;
+  border-radius: 10px;
+  border: 1.5px solid #999;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-top: 10px;
+  outline: none;
+}
+
+.copy-btn:active {
+  background: #e2e2e2;
+  color: #111;
+}
+
+@media (max-width: 400px) {
+  .account-card {
+    width: 98%;
+    padding: 20px 8px 15px 13px;
+  }
+}

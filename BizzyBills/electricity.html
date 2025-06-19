@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Electricity</title>
+  <link rel="stylesheet" href="electricity.css">
+</head>
+<body class="electricity-body">
+  <div class="top-section">
+    <a href="home.html"><button class="back-btn">← Back</button></a>
+    <img src="./image/topbg.png" alt="top background" class="top-img">
+    <h2 class="top-title">Buy Electricity Recharging</h2>
+  </div>
+
+  <div class="form-section">
+    <label for="provider-dropdown">Service Provider</label>
+    <div class="dropdown" id="provider-dropdown" tabindex="0">
+      <span id="selected-provider">Choose a Provider</span>
+      <span class="arrow">▾</span>
+    </div>
+    <input type="text" placeholder="Enter amount" class="amount-input" id="amount-input">
+    <button class="pay-btn">Pay</button>
+  </div>
+
+  <!-- Provider List Modal -->
+  <div class="provider-list" id="provider-list-modal" style="display:none;">
+    <div class="list-header">
+      <button class="back-icon" id="close-provider-list">←</button>
+      <span>Choose a Provider</span>
+    </div>
+    <input type="text" placeholder="Search" class="search-box" id="provider-search">
+    <ul class="providers" id="provider-items">
+      <!-- Providers will be generated here by JS -->
+    </ul>
+  </div>
+
+  <script src="./animation/electricity.js"></script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Electricity</title>
+  <link rel="stylesheet" href="electricity.css">
+</head>
+<body class="electricity-body">
+
+  <div class="top-section">
+    <a href="home.html"><button class="back-btn">← Back</button></a>
+    <img src="./image/topbg.png" alt="top background" class="top-img">
+    <h2 class="top-title">Buy Electricity Recharging</h2>
+  </div>
+
+  <div class="form-section">
+    <label>Service Provider</label>
+    <div class="dropdown">
+      <span>Choose a Provider</span>
+      <span class="arrow">▾</span>
+    </div>
+
+    <input type="text" placeholder="Enter amount" class="amount-input">
+
+    <button class="pay-btn">Pay</button>
+  </div>
+
+  <div class="provider-list">
+    <div class="list-header">
+      <button class="back-icon">←</button>
+      <span>Choose a Provider</span>
+    </div>
+
+    <input type="text" placeholder="Search" class="search-box">
+
+    <ul class="providers">
+      <li>
+        <img src="icons/ikedc.png" alt="IKEDC">
+        <span>IKEDC</span>
+        <span class="radio selected"></span>
+      </li>
+      <li>
+        <img src="icons/ibedc.png" alt="IBEDC">
+        <span>IBEDC</span>
+        <span class="radio"></span>
+      </li>
+      <li>
+        <img src="icons/eedc.png" alt="EEDC">
+        <span>EEDC</span>
+        <span class="radio"></span>
+      </li>
+      <li>
+        <img src="icons/ekedc.png" alt="EKEDC">
+        <span>EKEDC</span>
+        <span class="radio"></span>
+      </li>
+      <li>
+        <img src="icons/bedc.png" alt="BEDC">
+        <span>BEDC</span>
+        <span class="radio"></span>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html> -->

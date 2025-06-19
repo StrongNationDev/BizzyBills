@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Virtual Account</title>
+  <link rel="stylesheet" href="virtual-account.css">
+</head>
+<body class="virtual-account-body">
+
+  <div class="top-section">
+    <a href="home.html"><button class="back-btn">← Back</button></a>
+    <img src="./image/topbg.png" alt="top background" class="top-img">
+    <h2 class="top-title">My Virtual Account</h2>
+  </div>
+
+  <div class="va-content">
+    <div class="account-card">
+      <div class="card-header">
+        <div class="bank-info">
+          <img src="icons/moniepoint.png" alt="Moniepoint" class="bank-logo">
+          <span class="bank-name">Moniepoint</span>
+        </div>
+        <img src="icons/card-chip.png" alt="Card chip" class="card-chip">
+      </div>
+      <div class="account-details">
+        <span class="account-name">Adewale Ojo</span>
+        <span class="account-number">8072975168</span>
+      </div>
+    </div>
+
+    <button class="copy-btn" id="copyDetailBtn">Copy Detail</button>
+  </div>
+
+  <script>
+    // "Copy Detail" button copies account name and number
+    document.getElementById('copyDetailBtn').onclick = function() {
+      const name = document.querySelector('.account-name').textContent;
+      const number = document.querySelector('.account-number').textContent;
+      const full = `${name}\n${number}`;
+      navigator.clipboard.writeText(full);
+      this.textContent = "Copied!";
+      setTimeout(() => { this.textContent = "Copy Detail"; }, 1600);
+    };
+  </script>
+
+</body>
+</html>

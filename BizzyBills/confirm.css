@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #e2e2e2;
+}
+
+.confirm-body .top-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.top-text {
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.top-text p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.top-text h2 {
+  margin: 5px 0 0 0;
+  font-size: 28px;
+}
+
+.payment-details {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 0 0 5px #ccc;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.detail .icon {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.confirm-btn {
+  background: linear-gradient(to right, #00c6ff, #7b2ff7);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 70%;
+}
