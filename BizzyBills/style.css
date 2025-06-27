@@ -87,6 +87,12 @@ body {
   font-size: 60px;
 }
 
+.blurred {
+  filter: blur(6px);
+  transition: filter 0.3s ease;
+}
+
+
 .wallet-icon {
   position: absolute;
   right: 0;
@@ -306,3 +312,40 @@ a p {
 
 
 
+
+
+
+/* updating app */
+@media (max-width: 600px) {
+  .service-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+  }
+
+  .service-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-list {
+    scrollbar-width: none;
+  }
+
+  .service-card {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+
+  .balance-amount h1 {
+    font-size: 32px;
+  }
+
+  .balance-amount h2 {
+    font-size: 20px;
+  }
+
+  .wallet-icon {
+    width: 20px;
+  }
+}

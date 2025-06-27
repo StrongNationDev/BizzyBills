@@ -761,7 +761,7 @@
 }
  
 .home-image12 {
-  width: 256px;
+  width: auto;
   height: 555px;
   object-fit: cover;
 }

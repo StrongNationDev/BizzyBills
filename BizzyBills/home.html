@@ -21,9 +21,16 @@
       <div class="balance-section">
         <p class="balance-title">Available Balance</p>
         <div class="balance-amount">
-          <h1>#10,000</h1>
-          <img src="icons/eye.png" alt="View" class="icon" />
+          <h2>₦</h2>
+          <h1 id="balance-amount">10,000</h1>
+          <img src="icons/eye.png" alt="View" class="icon" id="toggle-visibility" />
         </div>
+
+        <!-- <div class="balance-amount">
+          <h2>₦</h2>
+          <h1>10,000</h1>
+          <img src="icons/eye.png" alt="View" class="icon" />
+        </div> -->
         <img src="icons/wallet.png" alt="Wallet" class="wallet-icon" />
       </div>
     </div><div class="action-buttons">
@@ -129,31 +136,8 @@
       <img src="icons/price.png" alt="Pricing" />
       <p>Pricing</p>
     </div>
-
   </div>
-
   </div>
-
-
-
-  <script>
-    document.querySelectorAll('.add-money, .contact-us, .service-card').forEach(el => {
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetUrl = this.closest('a').getAttribute('data-target');
-
-        // Trigger exit animation
-        document.body.classList.add('page-exit');
-
-        // Delay navigation until after animation
-        setTimeout(() => {
-          window.location.href = targetUrl;
-        }, 600);
-      });
-    });
-  </script>
-
-
+  <script src="./animation/home.js"></script>
 </body>
 </html>

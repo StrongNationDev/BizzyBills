@@ -1,34 +1,45 @@
-// login.js
+// scripts/login.js
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-// Supabase credentials
-const SUPABASE_URL = 'https://xhuyzhlutarpffhdwbni.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhodXl6aGx1dGFycGZmaGR3Ym5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MDM0NDYsImV4cCI6MjA2NTE3OTQ0Nn0.upEAFWSU9GD5-qLwHtuV2eb9yHKEFs_JTaN-quymXaM'; // Your full key here
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseUrl = 'https://xhuyzhlutarpffhdwbni.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhodXl6aGx1dGFycGZmaGR3Ym5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MDM0NDYsImV4cCI6MjA2NTE3OTQ0Nn0.upEAFWSU9GD5-qLwHtuV2eb9yHKEFs_JTaN-quymXaM';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// When DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('loginForm');
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const emailOrUsername = document.getElementById('emailOrUsername').value;
+  const password = document.getElementById('password').value;
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+  let emailToUse = emailOrUsername;
 
-    const { data, error } = await supabase
+  // If it's not an email, treat as username and resolve
+  if (!emailOrUsername.includes('@')) {
+    const { data: userData, error } = await supabase
       .from('users')
-      .select('*')
-      .eq('email', email)
-      .eq('password', password)
+      .select('email')
+      .eq('username', emailOrUsername)
       .single();
 
-    if (error || !data) {
-      alert('No user found, please sign up.');
-      console.error(error);
-    } else {
-      alert('Login successful!');
-      window.location.href = '../BizzyBills/home.html';
+    if (error || !userData) {
+      alert('Username not found.');
+      return;
     }
+
+    emailToUse = userData.email;
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: emailToUse,
+    password
   });
+
+  if (error) {
+    alert('Login failed: ' + error.message);
+    return;
+  }
+
+  // Optional: redirect to dashboard or homepage
+  alert('Login successful!');
+  window.location.href = '../BizzyBills/home.html';
 });
