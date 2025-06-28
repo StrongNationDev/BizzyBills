@@ -88,10 +88,16 @@ body {
 }
 
 .blurred {
-  filter: blur(6px);
+  filter: blur(15px);
   transition: filter 0.3s ease;
 }
 
+.eyeicon{
+  bottom: 10px;
+  width: 24px;
+  padding-bottom: 10px;
+  margin-left: 55px;
+}
 
 .wallet-icon {
   position: absolute;
@@ -307,10 +313,6 @@ a p {
   height: 22px;
   margin-bottom: 5px;
 }
-
-
-
-
 
 
 
