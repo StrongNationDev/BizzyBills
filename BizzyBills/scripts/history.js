@@ -94,3 +94,21 @@ function formatDate(date) {
     month: 'long'
   });
 }
+
+
+
+
+
+
+// screen loader
+window.addEventListener('DOMContentLoaded', async () => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert('You are not logged in or your profile is missing.');
+    window.location.href = 'login.html';
+    return;
+  }
+
+  document.getElementById('loading-overlay').classList.add('fade-out');
+});

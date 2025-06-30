@@ -17,3 +17,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   nameElement.textContent = user.full_name || 'Your Name';
   numberElement.textContent = user.account_number || '0000000000';
 });
+
+
+
+// screen loader
+window.addEventListener('DOMContentLoaded', async () => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert('You are not logged in or your profile is missing.');
+    window.location.href = 'login.html';
+    return;
+  }
+
+  document.getElementById('loading-overlay').classList.add('fade-out');
+});

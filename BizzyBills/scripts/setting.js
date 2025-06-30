@@ -75,3 +75,30 @@ window.addEventListener('DOMContentLoaded', async () => {
     input.click();
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+// screen loader
+window.addEventListener('DOMContentLoaded', async () => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert('You are not logged in or your profile is missing.');
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Continue updating DOM with user data...
+
+  // ✅ Hide the loader when everything is done
+  // document.getElementById('loading-overlay').style.display = 'none';
+  document.getElementById('loading-overlay').classList.add('fade-out');
+});
