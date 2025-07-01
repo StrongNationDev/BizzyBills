@@ -32,3 +32,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('loading-overlay').classList.add('fade-out');
 });
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert('You are not logged in or your profile is missing.');
+    window.location.href = 'login.html';
+    return;
+  }
+document.getElementById('loading-overlay').classList.add('fade-out');
+});
