@@ -7,12 +7,12 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const full_name = document.getElementById('fullname').value;
-  const email = document.getElementById('email').value;
-  const username = document.getElementById('username').value;
-  const location = document.getElementById('location').value;
-  const phone = document.getElementById('phone').value;
-  const pin = document.getElementById('pin').value;
+  const full_name = document.getElementById('fullname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const username = document.getElementById('username').value.trim();
+  const location = document.getElementById('location').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const pin = document.getElementById('pin').value.trim();
   const password = document.getElementById('password').value;
 
   if (!/^\d{4}$/.test(pin)) {
@@ -20,14 +20,14 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     return;
   }
 
-  // updated part
-    // 1.5 Check if username or phone already exists in the 'users' table
+  // 1. Check if username or phone already exists
   const { data: existingUsers, error: existingError } = await supabase
     .from('users')
     .select('id')
     .or(`username.eq.${username},phone.eq.${phone}`);
 
   if (existingError) {
+    console.error("User check failed:", existingError.message);
     alert('Something went wrong while checking existing users.');
     return;
   }
@@ -37,46 +37,58 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     return;
   }
 
-
-  // 1. Create user in Supabase Auth
+  // 2. Create Supabase Auth account with email confirmation redirect
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
-    password
+    password,
+    options: {
+      emailRedirectTo: 'https://www.bizzybillsng.store/verified.html' // change to your domain
+    }
   });
 
   if (authError) {
+    console.error("Auth sign-up error:", authError);
     alert('Signup failed: ' + authError.message);
     return;
   }
 
-  const userId = authData.user.id;
+  const userId = authData?.user?.id;
 
-  // 2. Insert user into your custom 'public.users' table
+  if (!userId) {
+    alert('Signup failed: User ID missing.');
+    return;
+  }
+
+  // 3. Insert user record into custom 'users' table
   const { error: dbError } = await supabase
     .from('users')
-    .insert([
-      {
-        id: userId, // match the UUID from auth
-        full_name,
-        pin,
-        email,
-        password,
-        phone,
-        location,
-        username,
-        wallet_balance: 0,
-        account_number: '',
-        account_type: 'regular',
-        history: []
-      }
-    ]);
+    .insert([{
+      id: userId,
+      full_name,
+      pin,
+      email,
+      password,
+      phone,
+      location,
+      username,
+      wallet_balance: 0,
+      account_number: '',     // will be updated after Opay/Kuda succeeds
+      account_type: 'regular',
+      history: [],
+      notifications: []
+    }]);
 
   if (dbError) {
+    console.error("DB Insert error:", dbError.message);
     alert('Signup failed at DB level: ' + dbError.message);
     return;
   }
 
   alert('Signup successful! Please verify your email before logging in.');
+
+  // ✅ OPTIONAL: Trigger account number creation (Opay/Kuda) here
+  // await createDedicatedAccount(userId, full_name, phone);
+
 });
 
 
