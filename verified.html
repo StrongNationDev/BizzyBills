@@ -2,70 +2,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Email Verified</title>
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      color: #333;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Card Container */
+    .container {
+      background-color: #fff;
+      padding: 3rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Header */
+    h1 {
+      font-size: 2rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    /* Body Text */
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    /* CTA Button Link */
+    a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    /* Emoji Styling */
+    .emoji {
+      font-size: 2rem;
+    }
+  </style>
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* styles.css */
-
-        /* Reset and base styles */
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
-
-        body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f5f7fa;
-        color: #333;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        }
-
-        /* Container for the message */
-        .container {
-        background-color: #ffffff;
-        padding: 40px 30px;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        }
-
-        /* Header */
-        h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        color: #28a745;
-        }
-
-        /* Paragraph and link */
-        p {
-        font-size: 1.1rem;
-        color: #555;
-        }
-
-        a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
-        }
-
-        a:hover {
-        text-decoration: underline;
-        }
-
-    </style>
 <body>
   <div class="container">
-    <h1>✅ Email Verified!</h1>
-    <p>Your account has been successfully verified. You can now <a href="login.html">log in</a>.</p>
+    <div class="emoji">✅</div>
+    <h1>Email Verified!</h1>
+    <p>Your account has been successfully verified. You can now log in and start using our services.</p>
+    <a href="login.html">Log In</a>
   </div>
+  <script type="module" src="./scripts/verify.js"></script>
 </body>
 </html>
