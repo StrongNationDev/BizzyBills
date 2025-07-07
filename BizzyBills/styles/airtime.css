@@ -91,6 +91,11 @@ body {
   object-fit: contain;
 }
 
+.network-icon.selected-network {
+  background-color: black;
+  border: 2px solid #fff;
+}
+
 .amount-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -119,6 +124,7 @@ body {
   border-radius: 30px;
   cursor: pointer;
 }
+
 
 
 

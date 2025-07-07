@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buy Airtime Recharge</title>
-  <link rel="stylesheet" href="airtime.css"/>
+  <link rel="stylesheet" href="./styles/airtime.css"/>
   <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
 </head>
 <body>
@@ -18,17 +18,17 @@
 
     <form class="recharge-form">
       <label for="phone" class="label">Phone Number</label>
-      <input type="tel" id="phone" placeholder="Enter phone number" class="input" />
+      <input type="tel" id="DestinationNumber" placeholder="Enter phone number" class="input" />
 
       <label class="label">Network</label>
       <div class="network-options">
-        <img src="icons/airtel.png" alt="Airtel" class="network-icon" />
-        <img src="icons/mtn.png" alt="MTN" class="network-icon" />
-        <img src="icons/glo.png" alt="Glo" class="network-icon" />
+        <img src="icons/mtn.png" network="1" alt="MTN" class="network-icon" />
+        <img src="icons/glo.png" network="2" alt="Glo" class="network-icon" />
+        <img src="icons/airtel.png" network="3" alt="Airtel" class="network-icon" />
       </div>
 
       <label class="label">Enter or Select Amount</label>
-      <input type="number" placeholder="Enter phone number" class="input" />
+      <input type="number" placeholder="Enter phone number" id="AmountToCharge" class="input" />
 
       <div class="amount-options">
         <button type="button" class="amount-btn">₦100</button>
@@ -42,6 +42,6 @@
       <a href="confirm.html"><button type="submit" class="pay-btn">Pay</button></a>
     </form>
   </div>
-
+  <script type="module" src="./scripts/airtime.js" ></script>
 </body>
 </html>

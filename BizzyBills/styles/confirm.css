@@ -12,6 +12,31 @@ body {
   border-bottom-right-radius: 20px;
 }
 
+
+.top-section {
+  position: relative;
+  text-align: center;
+  background-color: #e2e2e200;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+  height: 50px;
+  margin-bottom: -20px;
+}
+
+
+.back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .top-text {
   position: absolute;
   top: 25px;
@@ -59,7 +84,7 @@ body {
 }
 
 .confirm-btn {
-  background: linear-gradient(to right, #00c6ff, #7b2ff7);
+  background: linear-gradient(to right, #00c6ff, #EC1BD0);
   color: white;
   border: none;
   padding: 15px 40px;
