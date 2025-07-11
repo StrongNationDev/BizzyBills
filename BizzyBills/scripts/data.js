@@ -93,6 +93,6 @@ let selectedPlanLabel = null;
     };
 
     localStorage.setItem('pendingTransaction', JSON.stringify(payload));
-    window.location.href = 'confirm.html?type=data';
+    window.location.href = 'dataconfirm.html?type=data';
   });
 })();
