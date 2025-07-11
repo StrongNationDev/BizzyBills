@@ -19,10 +19,10 @@
   </div>
 
   <div class="pin-boxes">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div class="pin-digit"></div>
+    <div class="pin-digit"></div>
+    <div class="pin-digit"></div>
+    <div class="pin-digit"></div>
   </div>
 
   <p class="forgot-text">Did you forget PIN</p>
@@ -49,10 +49,23 @@
       <button class="enter">Enter</button>
     </div>
   </div>
+
+  <!-- Modal HTML -->
+<div class="modal" id="forgotModal">
+  <div class="modal-content">
+    <p>So sorry to see that you have forgotten your PIN. You will have to contact support to request the PIN in your email or change it.</p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
 <!-- <div id="loading-overlay">
   <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
 </div> -->
+
   <script src="./animation/pin.js"></script>
   <script type="module" src="./scripts/pin.js"></script>
+  <script type="module" src="./scripts/datapin.js"></script>
 </body>
 </html>
+
+

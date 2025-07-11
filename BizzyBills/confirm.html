@@ -9,7 +9,7 @@
 <body class="confirm-body">
 
     <div class="top-section">
-      <a href="airtime.html"><button class="back-btn">← Back</button></a>
+      <a href="home.html"><button class="back-btn">← Back</button></a>
       <h2 class="page-title"></h2>
     </div>
 
@@ -17,7 +17,7 @@
     <img src="./image/transactbg.png" alt="Top Background">
     <div class="top-text">
       <p>Confirm Payment</p>
-      <h2 id="AmountToCharge" >Loading</h2>
+      <h2 class="amount-display" id="AmountToCharge" >Loading</h2>
     </div>
   </div>
 
@@ -28,11 +28,11 @@
     </div>
     <div class="detail">
       <span>Product</span>
-      <span>Airtime Recharge</span>
+      <span class="product-type">Airtime Recharge</span>
     </div>
     <div class="detail">
       <span>Amount</span>
-      <span id="AmountToCharge" >Loading</span>
+      <span class="amount-display" id="AmountToCharge" >Loading</span>
     </div>
     <div class="detail">
       <span>Destination</span>
@@ -44,5 +44,6 @@
     <a href="pin.html"><button class="confirm-btn" id="paynow">Confirm Payment</button></a>
   </div>
 <script type="module" src="./scripts/confirm.js"></script>
+<script type="module" src="./scripts/dataconfirm.js"></script>
 </body>
 </html>

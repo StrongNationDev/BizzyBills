@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #e2e2e2;
+  background-color: #e2e2e201;
 }
 
 .confirm-body .top-banner img {
@@ -21,7 +21,7 @@ body {
   border-bottom-right-radius: 20px;
   overflow: hidden;
   height: 50px;
-  margin-bottom: -20px;
+  margin-bottom: -55px;
 }
 
 
@@ -42,7 +42,8 @@ body {
   top: 25px;
   width: 100%;
   text-align: center;
-  color: white;
+  color: rgb(61, 61, 61);
+  margin-top: 100px;
 }
 
 .top-text p {

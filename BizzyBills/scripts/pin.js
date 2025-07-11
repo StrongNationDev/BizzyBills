@@ -120,3 +120,60 @@ async function verifyAndTransact() {
     console.error(err);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const forgotText = document.querySelector('.forgot-text');
+  const modal = document.getElementById('forgotModal');
+
+  forgotText.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  window.closeModal = function () {
+    modal.style.display = 'none';
+  }
+
+  window.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+});

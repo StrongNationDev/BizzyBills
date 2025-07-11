@@ -18,10 +18,10 @@
     
     <form class="form">
       <label for="phone">Phone Number</label>
-      <input type="text" id="phone" placeholder="Enter phone number" />
+      <input type="text" id="DestinationNumber" placeholder="Enter phone number" />
 
       <p class="section-title">Network</p>
-      <div class="networks">
+      <div class="networks" id="network_ids">
         <label>
           <input type="radio" name="network" />
           <img src="icons/airtel.png" alt="Airtel" />
@@ -37,7 +37,7 @@
       </div>
 
       <p class="section-title">Select Plan</p>
-      <div class="dropdown">
+      <div class="dropdown" id="plans">
         <select>
           <option>1GB - 450 / 30 days</option>
           <option>2GB - 900 / 30 days</option>
@@ -45,28 +45,12 @@
           <option>5GB - 2000 / 30 days</option>
         </select>
       </div>
+      
+      <button type="submit" class="pay-button">Pay</button>
 
-      <!-- <div class="plans">
-        <label>
-          <input type="radio" name="plan" checked />
-          <span>1GB – 450 / 30 days</span>
-        </label>
-        <label>
-          <input type="radio" name="plan" />
-          <span>2GB – 900 / 30 days</span>
-        </label>
-        <label>
-          <input type="radio" name="plan" />
-          <span>2.5GB – 1250 / 30 days</span>
-        </label>
-        <label>
-          <input type="radio" name="plan" />
-          <span>5GB – 2000 / 30 days</span>
-        </label>
-      </div> -->
-
-      <a href="confirm.html"><button type="submit" class="pay-button">Pay</button></a>
+      <!-- <a href="confirm.html"><button type="submit" class="pay-button">Pay</button></a> -->
     </form>
   </div>
+  <script type="module" src="./scripts/data.js"></script>
 </body>
 </html>
