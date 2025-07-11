@@ -39,44 +39,8 @@
 //   }
 // })();
 
-// // scripts/dataconfirm.js
-// import { getCurrentUser } from './user.js';
 
-// (async () => {
-//   const user = await getCurrentUser();
-//   if (!user) {
-//     alert("User not logged in");
-//     window.location.href = "login.html";
-//     return;
-//   }
 
-//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
-//   if (!payload || payload.type !== 'data') {
-//     alert("No pending data transaction found.");
-//     window.location.href = "data.html";
-//     return;
-//   }
-
-//   // Update UI with plan info
-//   const amountDisplay = `₦${payload.amount.toLocaleString()} - ${payload.plan_label}`;
-//   const destination = payload.phone;
-//   const networkName = payload.network;
-//   const networkIcon = payload.network_icon;
-
-//   // Fill confirmation page
-//   const amountElements = document.querySelectorAll('#AmountToCharge');
-//   amountElements.forEach(el => el.textContent = amountDisplay);
-
-//   document.getElementById('DestinationNumber').textContent = destination;
-
-//   const productSpan = document.querySelector('.payment-details .detail:nth-child(2) span:last-child');
-//   if (productSpan) productSpan.textContent = "Data Subscription";
-
-//   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
-//   if (networkSpan) {
-//     networkSpan.innerHTML = `<img src="${networkIcon}" alt="${networkName}" class="icon" /> ${networkName}`;
-//   }
-// })();
 
 
 
@@ -92,41 +56,82 @@ import { getCurrentUser } from './user.js';
   }
 
   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
-  if (!payload) {
-    alert("No pending transaction found.");
-    window.location.href = "home.html";
+  if (!payload || payload.type !== 'data') {
+    alert("No pending data transaction found.");
+    window.location.href = "data.html";
     return;
   }
 
-  // Prepare dynamic values
-  let amountDisplay = `₦${payload.amount.toLocaleString()}`;
-  if (payload.plan_label) {
-    amountDisplay += ` - ${payload.plan_label}`;
-  }
+  // Update UI with plan info
+  const amountDisplay = `₦${payload.amount.toLocaleString()} - ${payload.plan_label}`;
+  const destination = payload.phone;
+  const networkName = payload.network;
+  const networkIcon = payload.network_icon;
 
-  const productName = payload.type === 'airtime'
-    ? 'Airtime Recharge'
-    : payload.type === 'data'
-    ? 'Data Subscription'
-    : 'Unknown Product';
+  // Fill confirmation page
+  const amountElements = document.querySelectorAll('#AmountToCharge');
+  amountElements.forEach(el => el.textContent = amountDisplay);
 
-  // Update all .amount-display elements
-  const amountEls = document.querySelectorAll('.amount-display');
-  amountEls.forEach(el => el.textContent = amountDisplay);
+  document.getElementById('DestinationNumber').textContent = destination;
 
-  // Update destination
-  document.getElementById('DestinationNumber').textContent = payload.phone;
+  const productSpan = document.querySelector('.payment-details .detail:nth-child(2) span:last-child');
+  if (productSpan) productSpan.textContent = "Data Subscription";
 
-  // Update product type
-  const productEl = document.querySelector('.product-type');
-  if (productEl) productEl.textContent = productName;
-
-  // Update network with icon
   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
-  if (networkSpan && payload.network_icon && payload.network) {
-    networkSpan.innerHTML = `<img src="${payload.network_icon}" alt="${payload.network}" class="icon" /> ${payload.network}`;
+  if (networkSpan) {
+    networkSpan.innerHTML = `<img src="${networkIcon}" alt="${networkName}" class="icon" /> ${networkName}`;
   }
 })();
+
+
+
+// // scripts/dataconfirm.js
+// import { getCurrentUser } from './user.js';
+
+// (async () => {
+//   const user = await getCurrentUser();
+//   if (!user) {
+//     alert("User not logged in");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
+//   if (!payload) {
+//     alert("No pending transaction found.");
+//     window.location.href = "home.html";
+//     return;
+//   }
+
+//   // Prepare dynamic values
+//   let amountDisplay = `₦${payload.amount.toLocaleString()}`;
+//   if (payload.plan_label) {
+//     amountDisplay += ` - ${payload.plan_label}`;
+//   }
+
+//   const productName = payload.type === 'airtime'
+//     ? 'Airtime Recharge'
+//     : payload.type === 'data'
+//     ? 'Data Subscription'
+//     : 'Unknown Product';
+
+//   // Update all .amount-display elements
+//   const amountEls = document.querySelectorAll('.amount-display');
+//   amountEls.forEach(el => el.textContent = amountDisplay);
+
+//   // Update destination
+//   document.getElementById('DestinationNumber').textContent = payload.phone;
+
+//   // Update product type
+//   const productEl = document.querySelector('.product-type');
+//   if (productEl) productEl.textContent = productName;
+
+//   // Update network with icon
+//   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
+//   if (networkSpan && payload.network_icon && payload.network) {
+//     networkSpan.innerHTML = `<img src="${payload.network_icon}" alt="${payload.network}" class="icon" /> ${payload.network}`;
+//   }
+// })();
 
 
 
