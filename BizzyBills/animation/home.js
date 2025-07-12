@@ -4,10 +4,8 @@ document.querySelectorAll('.add-money, .contact-us, .service-card').forEach(el =
 
         const targetUrl = this.closest('a').getAttribute('data-target');
 
-        // Trigger exit animation
         document.body.classList.add('page-exit');
 
-        // Delay navigation until after animation
         setTimeout(() => {
           window.location.href = targetUrl;
         }, 600);

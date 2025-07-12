@@ -1,10 +1,8 @@
-// scripts/pin.js
 import { getCurrentUser, supabase } from './user.js';
 
 const API_URL = "https://www.husmodata.com/api/topup/";
 const API_KEY = "8f00fa816b1e3b485baca8f44ae5d361ef803311";
 
-// Handle PIN Input
 const pinBoxes = document.querySelectorAll('.pin-boxes div');
 let pin = '';
 
@@ -57,13 +55,11 @@ async function verifyAndTransact() {
     return;
   }
 
-  // Check balance
   if (user.wallet_balance < payload.amount) {
     alert("Insufficient balance");
     return;
   }
 
-  // Step 1: Make the transaction via Husmodata API
   try {
     const res = await fetch(API_URL, {
       method: 'POST',
@@ -87,7 +83,6 @@ async function verifyAndTransact() {
       return;
     }
 
-    // Step 2: Deduct balance and update history
     const newBalance = user.wallet_balance - payload.amount;
     const newHistory = user.history || [];
     newHistory.push({

@@ -1,52 +1,3 @@
-// // scripts/dataconfirm.js
-// import { getCurrentUser } from './user.js';
-
-// (async () => {
-//   const user = await getCurrentUser();
-//   if (!user) {
-//     alert("User not logged in");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
-//   if (!payload || payload.type !== 'data') {
-//     alert("No pending data transaction found.");
-//     window.location.href = "data.html";
-//     return;
-//   }
-
-//   // Update UI
-//   const amountDisplay = `₦${payload.amount.toLocaleString()} - ${payload.plan_label}`;
-
-//   // const amountDisplay = `₦${payload.amount.toLocaleString()}`;
-//   const destination = payload.phone;
-//   const networkName = payload.network;
-//   const networkIcon = payload.network_icon;
-
-//   // Fill confirmation page
-//   const amountElements = document.querySelectorAll('#AmountToCharge');
-//   amountElements.forEach(el => el.textContent = amountDisplay);
-
-//   document.getElementById('DestinationNumber').textContent = destination;
-
-//   const productSpan = document.querySelector('.payment-details .detail:nth-child(2) span:last-child');
-//   if (productSpan) productSpan.textContent = "Data Subscription";
-
-//   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
-//   if (networkSpan) {
-//     networkSpan.innerHTML = `<img src="${networkIcon}" alt="${networkName}" class="icon" /> ${networkName}`;
-//   }
-// })();
-
-
-
-
-
-
-
-
-// scripts/dataconfirm.js
 import { getCurrentUser } from './user.js';
 
 (async () => {
@@ -66,33 +17,26 @@ import { getCurrentUser } from './user.js';
 
   const { amount, phone, network, network_icon, plan_label } = payload;
 
-  // ✅ Extract data quality and period from plan_label
-  // Example plan_label = "10GB - ₦2790 (30 days)"
   const qualityMatch = plan_label.match(/^(.+?)\s*-\s*₦/); // e.g. "10GB"
   const periodMatch = plan_label.match(/\((.*?)\)$/);      // e.g. "30 days"
 
   const dataQuality = qualityMatch ? qualityMatch[1] : '';
   const dataPeriod = periodMatch ? periodMatch[1] : '';
 
-  // ✅ Update Amount (with plan label)
   const amountDisplay = `₦${amount.toLocaleString()} - ${plan_label}`;
   const amountElements = document.querySelectorAll('#AmountToCharge');
   amountElements.forEach(el => el.textContent = amountDisplay);
 
-  // ✅ Update Destination Number
   document.getElementById('DestinationNumber').textContent = phone;
 
-  // ✅ Update Network Name and Icon
   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
   if (networkSpan) {
     networkSpan.innerHTML = `<img src="${network_icon}" alt="${network}" class="icon"> ${network}`;
   }
 
-  // ✅ Set Product Type
   const productSpan = document.querySelector('.payment-details .detail:nth-child(2) span:last-child');
   if (productSpan) productSpan.textContent = "Data Subscription";
 
-  // ✅ Set Data Quality and Period
   const qualityEl = document.getElementById('DataQuality');
   if (qualityEl) qualityEl.textContent = dataQuality;
 
@@ -100,11 +44,6 @@ import { getCurrentUser } from './user.js';
   if (periodEl) periodEl.textContent = dataPeriod;
 })();
 
-
-
-
-// scripts/datapin.js
-// import { getCurrentUser, supabase } from './user.js';
 
 const keypadButtons = document.querySelectorAll('.keypad button');
 let pinInput = '';
@@ -151,13 +90,11 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  // Wallet check
   if (user.wallet_balance < payload.amount) {
     alert("Insufficient balance");
     return;
   }
 
-  // Trigger API
   const response = await fetch('https://www.husmodata.com/api/data/', {
     method: 'POST',
     headers: {
@@ -178,7 +115,6 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  // Deduct wallet & log history
   const newBalance = user.wallet_balance - payload.amount;
   const newHistory = user.history || [];
   newHistory.push({
@@ -203,63 +139,3 @@ async function validateAndProcess(pin) {
   localStorage.removeItem('pendingTransaction');
   window.location.href = 'success.html';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // scripts/dataconfirm.js
-// import { getCurrentUser } from './user.js';
-
-// (async () => {
-//   const user = await getCurrentUser();
-//   if (!user) {
-//     alert("User not logged in");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
-//   if (!payload || payload.type !== 'data') {
-//     alert("No pending data transaction found.");
-//     window.location.href = "data.html";
-//     return;
-//   }
-
-//   // Update UI with plan info
-//   const amountDisplay = `₦${payload.amount.toLocaleString()} - ${payload.plan_label}`;
-//   const destination = payload.phone;
-//   const networkName = payload.network;
-//   const networkIcon = payload.network_icon;
-
-//   // Fill confirmation page
-//   const amountElements = document.querySelectorAll('#AmountToCharge');
-//   amountElements.forEach(el => el.textContent = amountDisplay);
-
-//   document.getElementById('DestinationNumber').textContent = destination;
-
-//   const productSpan = document.querySelector('.payment-details .detail:nth-child(2) span:last-child');
-//   if (productSpan) productSpan.textContent = "Data Subscription";
-
-//   const networkSpan = document.querySelector('.payment-details .detail:nth-child(1) span:last-child');
-//   if (networkSpan) {
-//     networkSpan.innerHTML = `<img src="${networkIcon}" alt="${networkName}" class="icon" /> ${networkName}`;
-//   }
-// })();
-

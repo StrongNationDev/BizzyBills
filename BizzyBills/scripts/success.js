@@ -1,4 +1,3 @@
-// scripts/success.js
 import { getCurrentUser } from './user.js';
 
 (async () => {
@@ -16,7 +15,6 @@ import { getCurrentUser } from './user.js';
     return;
   }
 
-  // Populate transaction info
   document.querySelector(".status-message").textContent = 
     `Successfully purchased data subscription worth ₦${payload.amount}/${payload.plan_name} to ${payload.phone}`;
 
@@ -32,7 +30,6 @@ import { getCurrentUser } from './user.js';
   document.querySelector(".transaction-box .detail:nth-child(6) span:last-child").textContent = `₦${payload.amount}`;
   document.querySelector(".transaction-box .detail:nth-child(7) span:last-child").textContent = `${payload.plan_name}`;
 
-  // Optional: clear the last transaction to avoid duplicate display
   localStorage.removeItem('lastTransaction');
 })();
 

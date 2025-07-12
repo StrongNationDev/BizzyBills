@@ -1,9 +1,10 @@
+// Providers data (update with actual icons as needed)
 const providers = [
-  { name: "IKEDC", icon: "icons/ikedc.png" },
-  { name: "IBEDC", icon: "icons/ibedc.png" },
-  { name: "EEDC", icon: "icons/eedc.png" },
-  { name: "EKEDC", icon: "icons/ekedc.png" },
-  { name: "BEDC", icon: "icons/bedc.png" }
+  { name: "SportyBet", icon: "icons/sportybet.jpg" },
+  { name: "1XBET", icon: "icons/1xbet.jpg" },
+  { name: "BETKING", icon: "icons/betking.jpg" },
+//   { name: "EKEDC", icon: "icons/ekedc.png" },
+//   { name: "BEDC", icon: "icons/bedc.png" }
 ];
 
 let selectedProviderIdx = 0; 
@@ -37,6 +38,7 @@ function renderProviders(filter = "") {
     providerItems.appendChild(li);
   });
 }
+
 providerDropdown.onclick = () => {
   providerModal.style.display = "block";
   searchBox.value = "";

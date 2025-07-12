@@ -1,9 +1,5 @@
-// scripts/airtime.js
 import { getCurrentUser, supabase } from './user.js';
 
-// =======================
-// 1. Make Network Selectable
-// =======================
 const networkIcons = document.querySelectorAll('.network-icon');
 let selectedNetworkId = null;
 let selectedNetworkName = '';
@@ -20,9 +16,6 @@ networkIcons.forEach((icon, index) => {
   });
 });
 
-// =======================
-// 2. Auto-fill Amount
-// =======================
 const amountInput = document.getElementById('AmountToCharge');
 const amountButtons = document.querySelectorAll('.amount-btn');
 
@@ -33,9 +26,6 @@ amountButtons.forEach(button => {
   });
 });
 
-// =======================
-// 3. Submit Handler
-// =======================
 document.querySelector('.recharge-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -54,7 +44,6 @@ document.querySelector('.recharge-form').addEventListener('submit', async (e) =>
     return;
   }
 
-  // Store in localStorage for now (cloud write will happen after transaction)
   const payload = {
     phone,
     amount,

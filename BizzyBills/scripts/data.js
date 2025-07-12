@@ -1,4 +1,3 @@
-// ✅ File: scripts/data.js
 import { getCurrentUser } from './user.js';
 
 const networkRadios = document.querySelectorAll('#network_ids input');
@@ -6,7 +5,6 @@ const planSelect = document.querySelector('#plans select');
 const destinationInput = document.getElementById('DestinationNumber');
 const payButton = document.querySelector('.pay-button');
 
-// Store selected values
 let selectedNetworkId = null;
 let selectedNetworkName = null;
 let selectedNetworkIcon = null;
@@ -39,7 +37,6 @@ let selectedPlanLabel = null;
     });
   });
 
-  // Dynamically populate plans by network
   function populatePlans(networkId) {
     const plans = {
       1: [ // MTN
@@ -69,7 +66,6 @@ let selectedPlanLabel = null;
     });
   }
 
-  // On Pay
   payButton.addEventListener('click', e => {
     e.preventDefault();
 

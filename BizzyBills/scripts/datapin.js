@@ -1,4 +1,3 @@
-// scripts/datapin.js
 import { getCurrentUser, supabase } from './user.js';
 
 const keypadButtons = document.querySelectorAll('.keypad button');
@@ -52,7 +51,6 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  // ✅ Send request to Husmodata
   const response = await fetch('https://www.husmodata.com/api/data/', {
     method: 'POST',
     headers: {
@@ -73,13 +71,11 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  // ✅ Deduct user wallet balance
   const newBalance = user.wallet_balance - payload.amount;
 
-  // ✅ Log transaction history
   const newHistory = user.history || [];
   const transactionRecord = {
-    id: Date.now(), // optional unique ID
+    id: Date.now(),
     type: 'data',
     network: payload.network,
     phone: payload.phone,
@@ -89,7 +85,6 @@ async function validateAndProcess(pin) {
   };
   newHistory.unshift(transactionRecord);
 
-  // ✅ Update Supabase
   const { error } = await supabase
     .from('users')
     .update({
@@ -103,7 +98,6 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  // ✅ Save to lastTransaction for success.html
   localStorage.setItem('lastTransaction', JSON.stringify({
     transaction_id: result.ref || `TX-${Date.now()}`,
     phone: payload.phone,
@@ -111,7 +105,6 @@ async function validateAndProcess(pin) {
     plan_name: payload.plan_label
   }));
 
-  // ✅ Clear pending transaction and redirect
   localStorage.removeItem('pendingTransaction');
   window.location.href = 'success.html';
 }

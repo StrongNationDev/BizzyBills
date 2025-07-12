@@ -1,4 +1,3 @@
-// scripts/history.js
 import { supabase, getCurrentUser } from './user.js';
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -12,7 +11,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   const history = user.history || [];
 
-  // ✅ Target only the container that holds transactions
   const container = document.querySelector('.transactions-body');
 
   if (!container) {
@@ -20,7 +18,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Clear only the transaction list (not the entire body)
   container.innerHTML = '';
 
   if (history.length === 0) {

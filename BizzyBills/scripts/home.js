@@ -1,4 +1,3 @@
-// scripts/home.js
 import { supabase, getCurrentUser } from './user.js';
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -37,7 +36,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         transactionsContainer.appendChild(messageBox);
 
-    // message.textContent = `Hey ${user.username}, it seems you are yet to start buying here. Do well by funding your account today and see the wonders we have prepared for you.`;
     message.style.padding = '1rem';
     transactionsContainer.appendChild(message);
   } else {

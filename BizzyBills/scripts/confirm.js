@@ -1,4 +1,3 @@
-// scripts/confirm.js
 import { getCurrentUser } from './user.js';
 
 (async () => {
@@ -26,11 +25,9 @@ import { getCurrentUser } from './user.js';
     networkSpan.innerHTML = `<img src="${payload.network_icon}" alt="${payload.network}" class="icon" /> ${payload.network}`;
   }
 
-  // Confirm Payment button handler
   const confirmBtn = document.getElementById('paynow');
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // You can re-save it if needed
     localStorage.setItem('pendingTransaction', JSON.stringify(payload));
     window.location.href = 'pin.html';
   });

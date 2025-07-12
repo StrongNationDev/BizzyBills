@@ -1,4 +1,3 @@
-// scripts/settings.js
 import { supabase, getCurrentUser } from './user.js';
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -10,7 +9,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // 1. Populate user info
   document.querySelector('.profile-card h3').textContent = user.full_name;
   document.querySelector('.wallet-amount strong').textContent = `₦${user.wallet_balance.toLocaleString()}`;
   document.querySelectorAll('.setting-row .value')[0].textContent = user.password || '********';
@@ -18,13 +16,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('.setting-row .value')[2].textContent = user.email;
   document.querySelectorAll('.setting-row .value')[3].textContent = user.username;
 
-  // 2. Display profile picture if available
   const profilePic = document.querySelector('.profile-pic');
   if (user.profile_picture) {
     profilePic.src = user.profile_picture;
   }
 
-  // 3. Handle profile picture click/upload
   profilePic.style.cursor = 'pointer';
 
   profilePic.addEventListener('click', () => {
@@ -38,7 +34,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       const fileName = `${user.id}_${Date.now()}.${file.name.split('.').pop()}`;
 
-      // Upload to Supabase Storage (bucket: avatars)
       const { data, error } = await supabase.storage
         .from('avatars')
         .upload(fileName, file, {
@@ -51,13 +46,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      // Get public URL
       const { data: publicURL } = supabase
         .storage
         .from('avatars')
         .getPublicUrl(fileName);
 
-      // Save to user profile
       const { error: updateError } = await supabase
         .from('users')
         .update({ profile_picture: publicURL.publicUrl })
@@ -95,10 +88,5 @@ window.addEventListener('DOMContentLoaded', async () => {
     window.location.href = 'login.html';
     return;
   }
-
-  // Continue updating DOM with user data...
-
-  // ✅ Hide the loader when everything is done
-  // document.getElementById('loading-overlay').style.display = 'none';
   document.getElementById('loading-overlay').classList.add('fade-out');
 });

@@ -1,4 +1,3 @@
-// scripts/account.js
 import { supabase, getCurrentUser } from './user.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Update the name and account number
   const nameElement = document.querySelector('.account-name');
   const numberElement = document.querySelector('.account-number');
 
@@ -18,9 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   numberElement.textContent = user.account_number || '0000000000';
 });
 
-
-
-// screen loader
 window.addEventListener('DOMContentLoaded', async () => {
   const user = await getCurrentUser();
 
@@ -32,10 +27,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('loading-overlay').classList.add('fade-out');
 });
-
-
-
-
 
 window.addEventListener('DOMContentLoaded', async () => {
   const user = await getCurrentUser();
