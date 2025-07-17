@@ -151,7 +151,7 @@ input[type="text"] {
 
 
 
-
+/* loading screen */
 #loading-overlay {
   position: fixed;
   top: 0;
@@ -168,13 +168,17 @@ input[type="text"] {
 .loader-logo {
   width: 70px;
   height: 70px;
-  animation: spin 1.2s linear infinite;
+  animation: zoomInOut 1.2s ease-in-out infinite;
   border-radius: 50%;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2.3);
+  }
 }
 
 #loading-overlay.fade-out {
@@ -182,3 +186,4 @@ input[type="text"] {
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
+
