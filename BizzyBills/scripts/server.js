@@ -4,6 +4,7 @@ const cors = require('cors');
 const axios = require('axios');
 const { createClient } = require('@supabase/supabase-js');
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -29,24 +30,18 @@ app.post('/api/createVirtualAccount', async (req, res) => {
   }
 
   try {
-    console.log("📥 Incoming ID:", id);
-    console.log("📥 Incoming Email:", email);
-
     const { data: foundUser, error: fetchError } = await supabase
       .from('users')
-      .select('*')
+      .select('id, account_number, history')
       .eq('id', id)
       .single();
 
     if (fetchError || !foundUser) {
-      console.error("❌ User fetch failed:", fetchError?.message || 'User not found');
       return res.status(404).json({
         status: 'error',
         message: 'No user found with provided ID'
       });
     }
-
-    console.log("✅ User found:", foundUser);
 
     const apiResponse = await axios.post(
       'https://api.paymentpoint.co/api/v1/createVirtualAccount',
@@ -79,46 +74,41 @@ app.post('/api/createVirtualAccount', async (req, res) => {
     const accountNumber = bankAccount.accountNumber;
     const bankName = bankAccount.bankName || 'PaymentPoint Bank';
 
+    // ✅ Prepare history object
+    const historyEntry = {
+      action: 'virtual_account_created',
+      account_number: accountNumber,
+      bank_name: bankName,
+      timestamp: new Date().toISOString()
+    };
+
+    // ✅ Merge new history entry into existing history array (or initialize)
+    const existingHistory = foundUser.history || [];
+    const updatedHistory = [...existingHistory, historyEntry];
+
+    // ✅ Update Supabase user
     const { data: updated, error: updateError } = await supabase
       .from('users')
       .update({
         account_number: accountNumber,
+        history: updatedHistory
       })
       .eq('id', id)
-      .select('id, account_number');
+      .select('id, account_number, history');
 
     if (updateError) {
-      console.error("❌ Supabase update failed:", updateError.message);
       return res.status(500).json({
         status: 'error',
-        message: 'Failed to update account number in Supabase',
+        message: 'Failed to update account number or history',
         supabaseError: updateError.message
       });
     }
-
-    if (!updated.length || !updated[0].account_number) {
-      console.warn('⚠️ Update ran, but account_number is still empty');
-      return res.status(500).json({
-        status: 'error',
-        message: 'Update completed but account_number is still missing.'
-      });
-    }
-
-    console.log("✅ Update success:", updated[0]);
-
-    const { data: verifyUser } = await supabase
-      .from('users')
-      .select('id, account_number')
-      .eq('id', id)
-      .single();
-
-    console.log("🔁 Verified updated user:", verifyUser);
 
     return res.status(200).json({
       status: 'success',
       message: 'Virtual account created and user updated',
       bankAccounts: result.bankAccounts,
-      updatedUser: verifyUser
+      updatedUser: updated[0]
     });
 
   } catch (err) {
@@ -135,4 +125,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
-

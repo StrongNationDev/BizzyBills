@@ -26,8 +26,12 @@ document.getElementById('getaccount').addEventListener('click', async () => {
     phoneNumber: user.phone
   };
 
+
   try {
-    const response = await fetch('http://localhost:5000/api/createVirtualAccount', {
+    // 'https://bizzybillsng-servers.onrender.com
+    // const response = await fetch('http://localhost:5000/api/createVirtualAccount', {
+    const response = await fetch('https://bizzybillsng-servers.onrender.com/api/createVirtualAccount', {
+    
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -56,7 +60,7 @@ document.getElementById('getaccount').addEventListener('click', async () => {
       return;
     }
 
-    alert("🎉 Virtual account created successfully!");
+    alert("🎉 Your Virtual account has been created successfully!");
 
     // ✅ Update UI
     btn.disabled = true;
