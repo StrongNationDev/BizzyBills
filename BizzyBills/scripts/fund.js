@@ -28,8 +28,6 @@ document.getElementById('getaccount').addEventListener('click', async () => {
 
 
   try {
-    // 'https://bizzybillsng-servers.onrender.com
-    // const response = await fetch('http://localhost:5000/api/createVirtualAccount', {
     const response = await fetch('https://bizzybillsng-servers.onrender.com/api/createVirtualAccount', {
     
       method: 'POST',
