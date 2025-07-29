@@ -22,6 +22,18 @@ body {
   position: relative;
 }
 
+.share {
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  width: fit-content;
+}
+
+
 .done-text {
   position: absolute;
   top: 10px;
@@ -80,7 +92,7 @@ body {
   color: #000;
 }
 
-.status-message {
+.status-message{
   font-size: 14px;
   color: #555;
   margin-top: 8px;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Subscription Receipt</title>
+  <link rel="stylesheet" href="./styles/receipt.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="done-text">Done</div> -->
+    <div class="status-icon">
+    <div class="checkmark">
+        <img src="icons/verified.png" alt="Verified" />
+    </div>
+
+    </div>
+    <h2 class="status-title">Airtime Purchase Successful</h2>
+    <p class="status-message">
+      You've successfully purchased airtime worth <pss id="AmountToCharge">₦300</pss> to <pss id="DestinationNumber">09078654537</pss>
+    </p>
+
+    <div class="transaction-box">
+      <h3 class="section-title">Transaction Details</h3>
+      <div class="detail">
+        <span>Transaction ID</span>
+        <span>252623434TGZS4WOAZMGS</span>
+      </div>
+      <div class="detail">
+        <span>Date</span>
+        <span>10:23AM, 26th, May 2025</span>
+      </div>
+      <div class="detail">
+        <span>Destination</span>
+        <span id="DestinationNumber">09087946352</span>
+      </div>
+      <div class="detail">
+        <span>Transaction Type</span>
+        <span>Airtime Purchase</span>
+      </div>
+      <div class="detail">
+        <span>Amount</span>
+        <span id="AmountToCharge">N1000</span>
+      </div>
+    </div>
+
+    <a href="home.html">
+      <button class="close-btn">Close</button>
+    </a>
+  </div>
+  <script type="module" src="./scripts/receipt.js"></script>
+</body>
+</html>

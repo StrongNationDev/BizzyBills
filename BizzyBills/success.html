@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data Subscription Receipt</title>
   <link rel="stylesheet" href="./styles/receipt.css" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="receipt-container">
     <!-- <div class="done-text">Done</div> -->
     <div class="status-icon">
     <div class="checkmark">
         <img src="icons/verified.png" alt="Verified" />
     </div>
+
+    <div class="share" id="share-btn"> Share Receipt</div>
 
     </div>
     <h2 class="status-title">Data Subscription Successful</h2>

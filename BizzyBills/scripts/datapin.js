@@ -51,60 +51,172 @@ async function validateAndProcess(pin) {
     return;
   }
 
-  const response = await fetch('https://www.husmodata.com/api/data/', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Token 8f00fa816b1e3b485baca8f44ae5d361ef803311',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      network: payload.network_id,
-      plan: payload.plan_id,
-      mobile_number: payload.phone,
-      Ported_number: true
-    })
-  });
+  try {
+    const response = await fetch('http://localhost:5000/api/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        network: payload.network_id,
+        plan: payload.plan_id,
+        mobile_number: payload.phone,
+        Ported_number: true,
+        amount: payload.amount,
+        plan_label: payload.plan_label
+      })
+    });
 
-  const result = await response.json();
-  if (!response.ok || !result.status || result.status !== "successful") {
-    alert("Transaction failed. Try again.");
-    return;
+    const result = await response.json();
+
+    if (!response.ok || result.status !== "successful") {
+      await logTransaction(user, payload, 'failed');
+      alert("Transaction failed. Try again.");
+      window.location.href = 'failed.html';
+      return;
+    }
+
+    const newBalance = user.wallet_balance - payload.amount;
+
+    const newHistory = user.history || [];
+    const transactionRecord = {
+      id: result.transaction_id,
+      type: 'data',
+      network: payload.network,
+      phone: payload.phone,
+      plan: payload.plan_label,
+      amount: payload.amount,
+      time: new Date().toISOString(),
+      status: 'successful'
+    };
+    newHistory.unshift(transactionRecord);
+
+    const { error } = await supabase
+      .from('users')
+      .update({
+        wallet_balance: newBalance,
+        history: newHistory
+      })
+      .eq('id', user.id);
+
+    if (error) {
+      alert("Data sent but wallet update failed. Contact admin.");
+      return;
+    }
+
+    localStorage.setItem('lastTransactionReceipt', JSON.stringify(transactionRecord));
+    localStorage.removeItem('pendingTransaction');
+
+    window.location.href = 'success.html';
+
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    alert("Something went wrong.");
+    window.location.href = 'failed.html';
   }
+}
 
-  const newBalance = user.wallet_balance - payload.amount;
-
-  const newHistory = user.history || [];
-  const transactionRecord = {
-    id: Date.now(),
+async function logTransaction(user, payload, status) {
+  const history = user.history || [];
+  history.unshift({
+    id: `TX-${Date.now()}`,
     type: 'data',
     network: payload.network,
     phone: payload.phone,
     plan: payload.plan_label,
     amount: payload.amount,
-    time: new Date().toISOString()
-  };
-  newHistory.unshift(transactionRecord);
+    time: new Date().toISOString(),
+    status
+  });
 
-  const { error } = await supabase
+  await supabase
     .from('users')
-    .update({
-      wallet_balance: newBalance,
-      history: newHistory
-    })
+    .update({ history })
     .eq('id', user.id);
-
-  if (error) {
-    alert("Data sent but failed to update wallet. Contact admin.");
-    return;
-  }
-
-  localStorage.setItem('lastTransaction', JSON.stringify({
-    transaction_id: result.ref || `TX-${Date.now()}`,
-    phone: payload.phone,
-    amount: payload.amount,
-    plan_name: payload.plan_label
-  }));
-
-  localStorage.removeItem('pendingTransaction');
-  window.location.href = 'success.html';
 }
+
+
+
+
+// async function validateAndProcess(pin) {
+//   const user = await getCurrentUser();
+//   if (!user) {
+//     alert("User not logged in");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   if (user.pin !== pin) {
+//     alert("Incorrect PIN");
+//     return;
+//   }
+
+//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
+//   if (!payload || payload.type !== 'data') {
+//     alert("No pending data transaction.");
+//     window.location.href = "data.html";
+//     return;
+//   }
+
+//   if (user.wallet_balance < payload.amount) {
+//     alert("Insufficient balance");
+//     return;
+//   }
+
+//   const response = await fetch('https://www.husmodata.com/api/data/', {
+//     method: 'POST',
+//     headers: {
+//       'Authorization': 'Token 108655f46b80a6e5b32116d0cd09f43043282fdd',
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       network: payload.network_id,
+//       plan: payload.plan_id,
+//       mobile_number: payload.phone,
+//       Ported_number: true
+//     })
+//   });
+
+//   const result = await response.json();
+//   if (!response.ok || !result.status || result.status !== "successful") {
+//     alert("Transaction failed. Try again.");
+//     return;
+//   }
+
+//   const newBalance = user.wallet_balance - payload.amount;
+
+//   const newHistory = user.history || [];
+//   const transactionRecord = {
+//     id: Date.now(),
+//     type: 'data',
+//     network: payload.network,
+//     phone: payload.phone,
+//     plan: payload.plan_label,
+//     amount: payload.amount,
+//     time: new Date().toISOString()
+//   };
+//   newHistory.unshift(transactionRecord);
+
+//   const { error } = await supabase
+//     .from('users')
+//     .update({
+//       wallet_balance: newBalance,
+//       history: newHistory
+//     })
+//     .eq('id', user.id);
+
+//   if (error) {
+//     alert("Data sent but failed to update wallet. Contact admin.");
+//     return;
+//   }
+
+//   localStorage.setItem('lastTransaction', JSON.stringify({
+//     transaction_id: result.ref || `TX-${Date.now()}`,
+//     phone: payload.phone,
+//     amount: payload.amount,
+//     plan_name: payload.plan_label
+//   }));
+
+//   localStorage.removeItem('pendingTransaction');
+//   window.location.href = 'success.html';
+// }

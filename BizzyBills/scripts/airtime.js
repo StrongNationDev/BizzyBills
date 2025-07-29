@@ -57,3 +57,4 @@ document.querySelector('.recharge-form').addEventListener('submit', async (e) =>
 
   window.location.href = "confirm.html";
 });
+
