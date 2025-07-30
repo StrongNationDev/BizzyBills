@@ -77,6 +77,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 
+document.getElementById('logoutSwitch').addEventListener('change', function() {
+  if (this.checked) {
+    // Optional: Add animation or confirmation
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 500); // Delay for UX
+  }
+});
+
+
+
+
 
 
 // screen loader
