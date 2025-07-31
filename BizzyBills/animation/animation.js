@@ -33,16 +33,16 @@
 
       switch (platform) {
         case 'whatsapp':
-          url = `https://wa.me/2347061839708?text=${message}`;
+          url = `https://wa.me/2349036370095?text=${message}`;
           break;
         case 'mail':
-          url = `mailto:admin@example.com?subject=Support Request&body=${message}`;
+          url = `mailto:bizzybillsupport@bizzybillsng.store?subject=Support Request&body=${message}`;
           break;
         case 'telegram':
           url = `https://t.me/YourUsernameHere`;
           break;
         case 'instagram':
-          url = `https://www.instagram.com/yourprofile/`;
+          url = `https://www.instagram.com/bizzy_bills_ng/`;
           break;
       }
 
