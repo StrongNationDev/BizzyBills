@@ -1,7 +1,8 @@
 // scripts/pin.js
 import { getCurrentUser, supabase } from './user.js';
 
-const API_URL = "http://localhost:5000/api/airtime";
+// const API_URL = "http://localhost:5000/api/airtime";
+const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
 
 const pinBoxes = document.querySelectorAll('.pin-boxes div');
 let pin = '';
