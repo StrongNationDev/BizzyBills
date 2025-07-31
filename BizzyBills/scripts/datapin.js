@@ -52,7 +52,7 @@ async function validateAndProcess(pin) {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/api/data', {
+    const response = await fetch('https://bizzybillsng-sambas-api.onrender.com/api/data', {
     // const response = await fetch('http://localhost:5000/api/data', {
       method: 'POST',
       headers: {

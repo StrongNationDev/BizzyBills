@@ -121,6 +121,7 @@ let selectedPlanAmount = null;
     return;
   }
 
+
   // Handle network radio button selections
   networkRadios.forEach((radio) => {
     const label = radio.closest('label');
