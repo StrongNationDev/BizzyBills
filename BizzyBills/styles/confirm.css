@@ -12,7 +12,6 @@ body {
   border-bottom-right-radius: 20px;
 }
 
-
 .top-section {
   position: relative;
   text-align: center;
@@ -23,7 +22,6 @@ body {
   height: 50px;
   margin-bottom: -55px;
 }
-
 
 .back-btn {
   position: absolute;
@@ -67,10 +65,11 @@ body {
 
 .detail {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   padding: 8px 0;
   font-size: 14px;
-  color: #333;
+  color: #3a3a3a;
 }
 
 .detail .icon {
@@ -78,7 +77,6 @@ body {
   vertical-align: middle;
   margin-right: 5px;
 }
-
 .btn-container {
   text-align: center;
   margin-top: 50px;
@@ -122,7 +120,7 @@ body {
 
   .detail {
     font-size: 13px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
@@ -170,8 +168,6 @@ body {
     font-size: 12px;
   }
 }
-
-
 
 
 

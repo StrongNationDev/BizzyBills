@@ -44,6 +44,27 @@ document.querySelector('.recharge-form').addEventListener('submit', async (e) =>
     return;
   }
 
+  const { data: profile, error } = await supabase
+  .from('users') // ← changed from 'profiles' to 'users'
+  .select('wallet_balance, username')
+  .eq('id', user.id)
+  .single();
+
+  if (error || !profile) {
+    alert("Error fetching wallet details.");
+    return;
+  }
+
+  const walletBalance = parseFloat(profile.wallet_balance);
+  const username = profile.username;
+
+  if (amount > walletBalance) {
+    // 🔔 Show a modal or fallback to alert
+    showModal(`Oh @${username}, your wallet balance (₦${walletBalance}) is not up to the value of the airtime (₦${amount}) you want to buy. Please fund your BizzyBills NG Wallet and try again.`);
+    return;
+  }
+
+  // ✅ All checks passed: proceed with transaction
   const payload = {
     phone,
     amount,
@@ -54,7 +75,32 @@ document.querySelector('.recharge-form').addEventListener('submit', async (e) =>
   };
 
   localStorage.setItem('pendingTransaction', JSON.stringify(payload));
-
   window.location.href = "confirm.html";
 });
 
+function showModal(message) {
+  let modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = '1000';
+
+  modal.innerHTML = `
+    <div style="background: white; padding: 30px; max-width: 400px; border-radius: 8px; text-align: center;">
+      <p style="margin-bottom: 20px;">${message}</p>
+      <button id="closeModalBtn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Close</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  document.getElementById('closeModalBtn').addEventListener('click', () => {
+    modal.remove();
+  });
+}

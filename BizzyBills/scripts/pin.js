@@ -1,10 +1,10 @@
-// scripts/pin.js
 import { getCurrentUser, supabase } from './user.js';
 
-// const API_URL = "http://localhost:5000/api/airtime";
-const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
+const API_URL = "http://localhost:5000/api/airtime";
 
+// const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
 const pinBoxes = document.querySelectorAll('.pin-boxes div');
+const modal = document.getElementById('forgotModal');
 let pin = '';
 
 function updatePinBoxes() {
@@ -13,25 +13,30 @@ function updatePinBoxes() {
   });
 }
 
+function openModal(message) {
+  modal.querySelector('p').textContent = message;
+  modal.style.display = 'block';
+}
+
+window.closeModal = function () {
+  modal.style.display = 'none';
+};
+
 document.querySelectorAll('.keypad button').forEach(btn => {
   btn.addEventListener('click', async () => {
     const val = btn.textContent;
 
     if (val === '←') {
       pin = pin.slice(0, -1);
-    } else if (val === 'Enter') {
-      if (pin.length !== 4) {
-        alert("Enter your 4-digit PIN");
-        return;
-      }
-      await verifyAndTransact();
-    } else {
-      if (pin.length < 4) {
-        pin += val;
-      }
+    } else if (!isNaN(val) && pin.length < 4) {
+      pin += val;
     }
 
     updatePinBoxes();
+
+    if (pin.length === 4) {
+      await verifyAndTransact();
+    }
   });
 });
 
@@ -44,9 +49,9 @@ async function verifyAndTransact() {
   }
 
   if (user.pin !== pin) {
-    alert("Incorrect PIN!");
     pin = '';
     updatePinBoxes();
+    openModal("You have input an incorrect transaction PIN. If you forget your PIN, go to your Profile to check it.");
     return;
   }
 
@@ -76,15 +81,16 @@ async function verifyAndTransact() {
       body: JSON.stringify(requestPayload)
     });
 
+
+
+
+
+
+
     const result = await response.json();
 
-    // Debug log
-    console.log("Server response:", result);
-
-    // ✅ Check with correct key
     if (!response.ok || result.Status !== 'successful') {
       await logTransaction(user, payload, 'failed');
-      alert("Airtime transaction failed.");
       window.location.href = 'failed.html';
       return;
     }
@@ -104,28 +110,38 @@ async function verifyAndTransact() {
 
     history.push(transaction);
 
-    const { error } = await supabase
-      .from('users')
-      .update({
-        wallet_balance: newBalance,
-        history
+    const walletUpdateRes = await fetch('http://localhost:5000/api/update-wallet', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        amount: payload.amount,
+        transaction
       })
-      .eq('id', user.id);
+    });
 
-    if (error) {
-      console.error("Supabase wallet update error:", error);
+    const walletUpdateResult = await walletUpdateRes.json();
+
+    if (!walletUpdateRes.ok || !walletUpdateResult.success) {
+      console.error("Wallet update error:", walletUpdateResult.error);
       alert("Airtime sent but wallet update failed. Contact admin.");
       return;
     }
 
-    // Save to show in receipt.html
+
+// Testting
+
+
+
+
     localStorage.setItem('lastTransactionReceipt', JSON.stringify(transaction));
     localStorage.removeItem('pendingTransaction');
-    window.location.href = 'receipt.html'; // ✅ Correct page
+    window.location.href = 'receipt.html';
 
   } catch (err) {
     console.error("Unexpected error:", err);
-    alert("Something went wrong. Please try again later.");
     window.location.href = 'failed.html';
   }
 }
@@ -169,6 +185,32 @@ async function logTransaction(user, payload, status) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const forgotText = document.querySelector('.forgot-text');
   const modal = document.getElementById('forgotModal');
@@ -187,172 +229,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-
-
-
-// // scripts/pin.js
-// import { getCurrentUser, supabase } from './user.js';
-
-// const API_URL = "http://localhost:5000/api/airtime";
-
-// const pinBoxes = document.querySelectorAll('.pin-boxes div');
-// let pin = '';
-
-// function updatePinBoxes() {
-//   pinBoxes.forEach((box, idx) => {
-//     box.textContent = pin[idx] || '';
-//   });
-// }
-
-// document.querySelectorAll('.keypad button').forEach(btn => {
-//   btn.addEventListener('click', async () => {
-//     const val = btn.textContent;
-
-//     if (val === '←') {
-//       pin = pin.slice(0, -1);
-//     } else if (val === 'Enter') {
-//       if (pin.length !== 4) {
-//         alert("Enter your 4-digit PIN");
-//         return;
-//       }
-//       await verifyAndTransact();
-//     } else {
-//       if (pin.length < 4) {
-//         pin += val;
-//       }
-//     }
-
-//     updatePinBoxes();
-//   });
-// });
-
-// async function verifyAndTransact() {
-//   const user = await getCurrentUser();
-//   if (!user) {
-//     alert("User not logged in");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   if (user.pin !== pin) {
-//     alert("Incorrect PIN!");
-//     pin = '';
-//     updatePinBoxes();
-//     return;
-//   }
-
-//   const payload = JSON.parse(localStorage.getItem('pendingTransaction'));
-//   if (!payload) {
-//     alert("No transaction data found.");
-//     return;
-//   }
-
-//   if (user.wallet_balance < payload.amount) {
-//     alert("Insufficient wallet balance.");
-//     return;
-//   }
-
-//   const requestPayload = {
-//     network: payload.network_id,
-//     amount: payload.amount,
-//     mobile_number: payload.phone,
-//     Ported_number: true,
-//     airtime_type: 'VTU'
-//   };
-
-
-//   // [Proceed with transaction logic...]
-//   try {
-//     const response = await fetch(API_URL, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(requestPayload)
-//     });
-
-//     const result = await response.json();
-
-//     if (!response.ok || result.status !== 'successful') {
-//       await logTransaction(user, payload, 'failed');
-//       alert("Airtime transaction failed.");
-//       window.location.href = 'failed.html';
-//       return;
-//     }
-
-//     const newBalance = user.wallet_balance - payload.amount;
-//     const history = user.history || [];
-
-//     const transaction = {
-//       type: 'airtime',
-//       phone: payload.phone,
-//       amount: payload.amount,
-//       network: payload.network,
-//       status: 'successful',
-//       time: new Date().toISOString(),
-//       id: result.ref || result.transaction_id || crypto.randomUUID()
-//     };
-
-//     history.push(transaction);
-
-//     const { error } = await supabase
-//       .from('users')
-//       .update({
-//         wallet_balance: newBalance,
-//         history
-//       })
-//       .eq('id', user.id);
-
-//     if (error) {
-//       alert("Airtime sent but wallet update failed. Contact admin.");
-//       return;
-//     }
-
-//     // Save to show in receipt.html
-//     localStorage.setItem('lastTransactionReceipt', JSON.stringify(transaction));
-
-//     // Done
-//     localStorage.removeItem('pendingTransaction');
-//     window.location.href = 'receipt.html';
-
-//   } catch (err) {
-//     console.error("Unexpected error:", err);
-//     alert("Something went wrong. Please try again later.");
-//     window.location.href = 'failed.html';
-//   }
-// }
-
-// async function logTransaction(user, payload, status) {
-//   const history = user.history || [];
-//   history.push({
-//     type: 'airtime',
-//     phone: payload.phone,
-//     amount: payload.amount,
-//     network: payload.network,
-//     status,
-//     time: new Date().toISOString()
-//   });
-
-//   await supabase
-//     .from('users')
-//     .update({ history })
-//     .eq('id', user.id);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

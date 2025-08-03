@@ -10,7 +10,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   const history = user.history || [];
-
   const container = document.querySelector('.transactions-body');
 
   if (!container) {
@@ -32,34 +31,45 @@ window.addEventListener('DOMContentLoaded', async () => {
     const card = document.createElement('div');
     card.className = 'transaction-card';
 
+    const type = (tx.type || '').toLowerCase();
+    const network = (tx.network || '').toLowerCase();
+    const details = (tx.details || '').toLowerCase();
+
+    // Determine icon and alt
     let icon = 'icons/fund.png';
+    let altText = 'Funding';
     let btnClass = 'blue';
+    let label = 'Account Funding';
 
-    const details = tx.details?.toLowerCase() || '';
-
-    if (details.includes('mtn')) {
-      icon = 'icons/mtn.png';
-      btnClass = 'yellow';
-    } else if (details.includes('airtel')) {
-      icon = 'icons/airtel.png';
-      btnClass = 'red';
-    } else if (details.includes('glo')) {
-      icon = 'icons/glo.png';
-      btnClass = 'green';
-    } else if (details.includes('9mobile')) {
-      icon = 'icons/9mobile.png';
-      btnClass = 'purple';
-    } else if (tx.type === 'wallet_funding') {
+    if (type === 'deposit' || type === 'wallet_funding') {
       icon = 'icons/fund.png';
+      altText = 'Funding';
+      label = 'Account Funding';
       btnClass = 'blue';
+    } else if (type === 'airtime') {
+      icon = getIcon(network || details);
+      altText = capitalize(network || getAltFromDetails(details));
+      label = 'Airtime Recharge Card';
+      btnClass = 'green';
+    } else if (type === 'data') {
+      icon = getIcon(network || details);
+      altText = capitalize(network || getAltFromDetails(details));
+      label = 'Data Subscription';
+      btnClass = 'red';
     }
 
+    // Choose date
+    const time = tx.time || tx.timestamp || tx.date || new Date().toISOString();
+    const formattedDate = formatDate(time);
+
+    const formattedAmount = Number(tx.amount || 0).toLocaleString();
+
     card.innerHTML = `
-      <div class="trans-icon"><img src="${icon}" alt="${tx.type}" /></div>
+      <div class="trans-icon"><img src="${icon}" alt="${altText}" /></div>
       <div class="trans-info">
-        <p class="trans-title">${formatTitle(tx.type)}</p>
-        <p class="trans-time">${formatDate(tx.date)}</p>
-        <p class="trans-cost">Cost: <strong>₦${Number(tx.amount).toLocaleString()}</strong></p>
+        <p class="trans-title">${label}</p>
+        <p class="trans-time">${formattedDate}</p>
+        <p class="trans-cost">Cost: <strong>₦${formattedAmount}</strong></p>
       </div>
       <div class="receipt-btn ${btnClass}" data-tx='${JSON.stringify(tx)}'>Open Receipt</div>
     `;
@@ -67,7 +77,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     container.appendChild(card);
   });
 
-  // Handle click on any receipt
   container.addEventListener('click', (e) => {
     if (e.target.classList.contains('receipt-btn')) {
       const txData = e.target.getAttribute('data-tx');
@@ -77,8 +86,27 @@ window.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-function formatTitle(type) {
-  return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+// Utility Functions
+
+function getIcon(source) {
+  source = source.toLowerCase();
+  if (source.includes('mtn')) return 'icons/mtn.png';
+  if (source.includes('airtel')) return 'icons/airtel.png';
+  if (source.includes('glo')) return 'icons/glo.png';
+  if (source.includes('9mobile') || source.includes('etisalat')) return 'icons/9mobile.png';
+  return 'icons/fund.png';
+}
+
+function getAltFromDetails(details) {
+  if (details.includes('mtn')) return 'MTN';
+  if (details.includes('glo')) return 'GLO';
+  if (details.includes('airtel')) return 'Airtel';
+  if (details.includes('9mobile')) return '9mobile';
+  return 'Funding';
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 function formatDate(date) {
@@ -91,9 +119,6 @@ function formatDate(date) {
     month: 'long'
   });
 }
-
-
-
 
 
 
