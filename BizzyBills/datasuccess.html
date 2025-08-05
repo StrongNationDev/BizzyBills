@@ -5,50 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data Subscription Receipt</title>
   <link rel="stylesheet" href="./styles/receipt.css" />
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-  <div class="container" id="receipt-container">
+  <div class="container">
     <div class="sharebox">
       <div class="share" id="share-btn"> Share Receipt</div>
     </div>
-    
+    <!-- <div class="done-text">Done</div> -->
     <div class="status-icon">
-      <div class="checkmark">
-          <img src="icons/verified.png" alt="Verified" />
-      </div>
+    <div class="checkmark">
+        <img src="icons/verified.png" alt="Verified" />
     </div>
 
-    <h2 class="status-title">Data Subscription Successful</h2>
+    </div>
+    <h2 class="status-title">Airtime Purchase Successful</h2>
     <p class="status-message">
-      Successfully purchase data subscription worth N450/1GB to 09078654537
+    You've successfully purchased Data Subscription worth <span id="AmountToCharge">₦300</span> to <span id="DestinationNumber">09078654537</span>
     </p>
+
 
     <div class="transaction-box">
       <h3 class="section-title">Transaction Details</h3>
       <div class="detail">
-        <span>Transaction ID</span>
-        <span>00034202526</span>
+        <span>Amount</span>
+        <span id="AmountToCharge">N1000</span>
+      </div>
+      <div class="detail">
+        <span>Destination</span>
+        <span id="DestinationNumber">09087946352</span>
+      </div>
+      <div class="detail">
+        <span>Transaction Type</span>
+        <p>Data Subscription Purchase</p>
       </div>
       <div class="detail">
         <span>Date</span>
         <span>10:23AM, 26th, May 2025</span>
-      </div>
-      <div class="detail">
-        <span>Destination</span>
-        <span>09087946352</span>
-      </div>
-      <div class="detail">
-        <span>Transaction Type</span>
-        <span>Data Subscription</span>
-      </div>
-      <div class="detail">
-        <span>Amount</span>
-        <span>N1000</span>
-      </div>
-      <div class="detail">
-        <span>Plan</span>
-        <span>1GB/30 days</span>
       </div>
     </div>
 
@@ -56,6 +48,7 @@
       <button class="close-btn">Close</button>
     </a>
   </div>
-  <script type="module" src="./scripts/success.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script type="module" src="./scripts/datasuccess.js"></script>
 </body>
 </html>

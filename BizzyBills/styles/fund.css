@@ -90,8 +90,8 @@ body {
   align-items: center;
   width: 100%;
   padding: 0 10px;
-  flex-grow: 1; /* Allow content to grow and fill space */
-  justify-content: center; /* Center vertically */
+  flex-grow: 1;
+  justify-content: center;
 }
 
 /* === Account Card === */
@@ -158,6 +158,26 @@ body {
   font-weight: 600;
   color: #1A1A1A;
   letter-spacing: 2px;
+}
+
+.charges {
+  font-size: 10px;
+  color: #fff;
+  margin-top: -18px;
+  margin-left: auto;
+  text-align: right;
+  align-self: flex-end;
+  opacity: 0.7;
+  position: absolute;
+  right: 18px;
+  top: 8px;
+  background: transparent;
+  padding: 0;
+}
+
+.account-details {
+  position: relative;
+  margin-top: 16px;
 }
 
 /* === Copy Button === */

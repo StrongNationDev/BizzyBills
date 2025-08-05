@@ -1,8 +1,8 @@
 import { getCurrentUser, supabase } from './user.js';
 
-const API_URL = "http://localhost:5000/api/airtime";
+// const API_URL = "http://localhost:5000/api/airtime";
 
-// const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
+const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
 const pinBoxes = document.querySelectorAll('.pin-boxes div');
 const modal = document.getElementById('forgotModal');
 let pin = '';
@@ -66,6 +66,9 @@ async function verifyAndTransact() {
     return;
   }
 
+  // ✅ Show the loading overlay
+  document.getElementById('loading-overlay').style.display = 'flex';
+
   const requestPayload = {
     network: payload.network_id,
     amount: payload.amount,
@@ -75,74 +78,84 @@ async function verifyAndTransact() {
   };
 
   try {
-    const response = await fetch(API_URL, {
+  // STEP 1: Pre-debit wallet
+  const debitRes = await fetch('http://localhost:5000/api/debit-user', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      userId: user.id,
+      amount: payload.amount
+    })
+  });
+
+  const debitResult = await debitRes.json();
+
+  if (!debitRes.ok || !debitResult.success) {
+    alert("Wallet debit failed. Transaction cancelled.");
+    return;
+  }
+
+  // STEP 2: Send airtime
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(requestPayload)
+  });
+
+  const result = await response.json();
+
+  if (!response.ok || result.Status !== 'successful') {
+    // Airtime failed — REFUND
+    await fetch('http://localhost:5000/api/refund-user', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestPayload)
-    });
-
-
-
-
-
-
-
-    const result = await response.json();
-
-    if (!response.ok || result.Status !== 'successful') {
-      await logTransaction(user, payload, 'failed');
-      window.location.href = 'failed.html';
-      return;
-    }
-
-    const newBalance = user.wallet_balance - payload.amount;
-    const history = user.history || [];
-
-    const transaction = {
-      type: 'airtime',
-      phone: payload.phone,
-      amount: payload.amount,
-      network: payload.network,
-      status: 'successful',
-      time: new Date().toISOString(),
-      id: result.id?.toString() || result.ident || crypto.randomUUID()
-    };
-
-    history.push(transaction);
-
-    const walletUpdateRes = await fetch('http://localhost:5000/api/update-wallet', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify({
         userId: user.id,
-        amount: payload.amount,
-        transaction
+        amount: payload.amount
       })
     });
 
-    const walletUpdateResult = await walletUpdateRes.json();
+    await logTransaction(user, payload, 'failed');
+    window.location.href = 'failed.html';
+    return;
+  }
 
-    if (!walletUpdateRes.ok || !walletUpdateResult.success) {
-      console.error("Wallet update error:", walletUpdateResult.error);
-      alert("Airtime sent but wallet update failed. Contact admin.");
-      return;
-    }
+  // STEP 3: Airtime successful — log history
+  const transaction = {
+    type: 'airtime',
+    phone: payload.phone,
+    amount: payload.amount,
+    network: payload.network,
+    status: 'successful',
+    time: new Date().toISOString(),
+    id: result.id?.toString() || result.ident || crypto.randomUUID()
+  };
 
+  const history = user.history || [];
+  history.push(transaction);
 
-// Testting
+  // Update user history in Supabase
+  const { error } = await supabase
+    .from('users')
+    .update({ history })
+    .eq('id', user.id);
 
+  if (error) {
+    console.error("Failed to update history:", error);
+  }
 
+  // Final cleanup and redirect
+  localStorage.setItem('lastTransactionReceipt', JSON.stringify(transaction));
+  localStorage.removeItem('pendingTransaction');
+  window.location.href = 'airtimesuccess.html';
 
-
-    localStorage.setItem('lastTransactionReceipt', JSON.stringify(transaction));
-    localStorage.removeItem('pendingTransaction');
-    window.location.href = 'receipt.html';
 
   } catch (err) {
     console.error("Unexpected error:", err);
     window.location.href = 'failed.html';
+  } finally {
+    // ✅ Always hide the overlay at the end (except on redirect, which ends execution anyway)
+    document.getElementById('loading-overlay').style.display = 'none';
   }
 }
 
@@ -168,49 +181,7 @@ async function logTransaction(user, payload, status) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// fogot pin modal functionality
 document.addEventListener("DOMContentLoaded", () => {
   const forgotText = document.querySelector('.forgot-text');
   const modal = document.getElementById('forgotModal');

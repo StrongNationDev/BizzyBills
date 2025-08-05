@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   `;
 
 const history = user.history || [];
-// const transactionsContainer = document.querySelector('.transactions-body');
 
   if (!transactionsContainer) {
     console.error("Container for transactions not found.");
