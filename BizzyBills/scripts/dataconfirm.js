@@ -14,11 +14,11 @@ import { getCurrentUser } from './user.js';
     window.location.href = "data.html";
     return;
   }
-
   const { amount, phone, network, network_icon, plan_label } = payload;
 
   const qualityMatch = plan_label.match(/^(.+?)\s*-\s*₦/); // e.g. "10GB"
-  const periodMatch = plan_label.match(/\((.*?)\)$/);      // e.g. "30 days"
+  const periodMatch = plan_label.match(/\(([^)]+)\)/);
+
 
   const dataQuality = qualityMatch ? qualityMatch[1] : '';
   const dataPeriod = periodMatch ? periodMatch[1] : '';
