@@ -52,27 +52,18 @@
         <option>Select Plan</option>
       </select>
     </div>
-
-      <!-- <p class="section-title">Select Network Offers</p>
-      <div class="dropdown" id="offers">
-        <select id="offerSelect">
-          <option value="">Select Offer</option>
-        </select>
-      </div>
-      
-      <p class="section-title">Select Plan</p>
-      <div class="dropdown" id="plans">
-        <select>
-          <option>1GB - 450 / 30 days</option>
-          <option>2GB - 900 / 30 days</option>
-          <option>2.5GB - 1250 / 30 days</option>
-          <option>5GB - 2000 / 30 days</option>
-        </select>
-      </div> -->
-
       <button type="submit" class="pay-button">Pay</button>
 
     </form>
+
+  <!-- Modal Overlay -->
+    <div id="insufficientModal">
+      <div class="modal-content">
+        <p id="modalMessage"></p>
+        <button onclick="document.getElementById('insufficientModal').style.display='none'">OK</button>
+      </div>
+    </div>
+
   </div>
   <script type="module" src="./scripts/data.js"></script>
 </body>
