@@ -79,7 +79,8 @@ async function verifyAndTransact() {
 
   try {
   // STEP 1: Pre-debit wallet
-  const debitRes = await fetch('http://localhost:5000/api/debit-user', {
+  // const debitRes = await fetch('http://localhost:5000/api/debit-user', {
+    const debitRes = await fetch('https://bizzybillsng-sambas-api.onrender.com/api/debit-user', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -106,7 +107,8 @@ async function verifyAndTransact() {
 
   if (!response.ok || result.Status !== 'successful') {
     // Airtime failed — REFUND
-    await fetch('http://localhost:5000/api/refund-user', {
+    await fetch('https://bizzybillsng-sambas-api.onrender.com/api/refund-user', {
+      // await fetch('http://localhost:5000/api/refund-user', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -79,7 +79,7 @@ async function validateAndProcess(pin) {
     if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
     // call server - server will check user balance again and perform provider call + wallet update
-    const resp = await fetch('http://localhost:5000/api/data', {
+    const resp = await fetch('https://bizzybillsng-sambas-api.onrender.com//api/data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

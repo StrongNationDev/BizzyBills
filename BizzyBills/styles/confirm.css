@@ -12,16 +12,18 @@ body {
   border-bottom-right-radius: 20px;
 }
 
+
 .top-section {
   position: relative;
   text-align: center;
-  background-color: #e2e2e200;
+  background-color: transparent;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  overflow: hidden;
-  height: 50px;
-  margin-bottom: -55px;
+  overflow: visible; /* allow button to show */
+  height: auto;      /* fit content */
+  margin-bottom: 10px; /* adjust if needed */
 }
+
 
 .back-btn {
   position: absolute;
@@ -37,11 +39,12 @@ body {
 
 .top-text {
   position: absolute;
-  top: 25px;
-  width: 100%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 0;
   text-align: center;
-  color: rgb(61, 61, 61);
-  margin-top: 100px;
+  width: 100%;
 }
 
 .top-text p {
@@ -136,47 +139,42 @@ body {
     margin-top: 30px;
   }
 
-  .confirm-btn {
-    width: 90%;
-    padding: 12px 30px;
-    font-size: 13px;
+.confirm-btn {
+  margin-top: 2rem;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  .top-section {
+    height: auto; /* Let content define height */
+    margin-bottom: 0;
   }
 
-  .back-btn {
-    padding: 5px 10px;
-    font-size: 13px;
+  .top-text {
+    top: 10%;
+    transform: translate(-50%, -50%);
+  }
+
+  .payment-details {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .confirm-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
   }
 }
 
-/* Phones (≤480px) */
 @media (max-width: 480px) {
   .top-text h2 {
-    font-size: 20px;
+    font-size: 18px;
   }
-
   .top-text p {
-    font-size: 11px;
-  }
-
-  .detail {
-    font-size: 12px;
-  }
-
-  .confirm-btn {
-    width: 95%;
-    padding: 10px 20px;
-    font-size: 12px;
-  }
-
-  .back-btn {
     font-size: 12px;
   }
 }
-
-
-
-
-
 
 
 /* loading screen */
@@ -215,3 +213,4 @@ body {
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
+}
