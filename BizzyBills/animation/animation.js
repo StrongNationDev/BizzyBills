@@ -33,7 +33,7 @@
 
       switch (platform) {
         case 'whatsapp':
-          url = `https://wa.me/2349036370095?text=${message}`;
+          url = `https://wa.me/2347051851398?text=${message}`;
           break;
         case 'mail':
           url = `mailto:bizzybillsupport@bizzybillsng.store?subject=Support Request&body=${message}`;
