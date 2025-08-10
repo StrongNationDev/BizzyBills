@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+header.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header .logout {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    padding: 20px;
+}
+
+.broadcast {
+    margin-bottom: 30px;
+}
+
+.broadcast h2 {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.broadcast input,
+.broadcast textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.broadcast textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.send-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.send-btn:hover {
+    background: #333;
+}
+
+.users-header {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr auto;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr auto;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    gap: 10px;
+}
+
+.user .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user .profile img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .users-header {
+        display: none;
+    }
+
+    .user {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: repeat(3, auto);
+        text-align: left;
+    }
+
+    .user span:nth-child(2),
+    .user span:nth-child(3) {
+        font-size: 0.9rem;
+        color: #555;
+    }
+}
+
+@media (max-width: 480px) {
+    header.header {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .send-btn {
+        font-size: 0.9rem;
+    }
+}
