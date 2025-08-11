@@ -38,3 +38,50 @@ document.addEventListener('DOMContentLoaded', () => {
   details[3].textContent = formatCurrency(amount); // Amount
   details[4].textContent = formatDate(dateVal); // Date
 });
+
+
+// the sahre button functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const shareBtn = document.getElementById('share-btn');
+
+  if (shareBtn) {
+  shareBtn.addEventListener('click', async () => {
+    try {
+      const canvas = await html2canvas(document.body, {
+        useCORS: true,
+        scale: 2
+      });
+
+      const dataUrl = canvas.toDataURL('image/png');
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], 'receipt.png', { type: 'image/png' });
+
+      // Check if sharing files is supported
+      const canShareFiles = navigator.share && navigator.canShare && navigator.canShare({ files: [file] });
+
+      if (canShareFiles) {
+        await navigator.share({
+          files: [file],
+          title: 'My Receipt',
+          text: 'Here is my receipt'
+        });
+      } else {
+        // Always fallback to download on desktop
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'receipt.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert('Receipt saved to your device.');
+      }
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        console.error('Share failed:', err);
+        alert('Could not share the receipt.');
+      }
+    }
+  });
+
+  }
+});
