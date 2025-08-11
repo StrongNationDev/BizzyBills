@@ -138,6 +138,11 @@ body {
   color: #333;
 }
 
+.mtnreceipt-btn{
+  background: #ffc107;
+  color: #333;
+}
+
 .receipt-btn.red {
   background: #dc3545;
 }
