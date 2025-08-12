@@ -17,25 +17,25 @@
     </header>
 
     <main class="container">
-        <section class="broadcast">
+        <section class="broadcast" id="broadcast">
             <h2>Send Broadcast</h2>
             <input type="text" placeholder="Message Title" class="message-title">
             <textarea placeholder="Write your message....!" class="message-body"></textarea>
             <button class="send-btn" id="sendtoall">Send Now</button>
         </section>
 
-        <section class="users">
+        <section class="users" id="allusers">
             <div class="users-header">
                 <span>User Profile</span>
                 <span>Wallet Balance</span>
                 <span>Email</span>
-                <label>
+                <label id="select-all">
                     Select All <input type="checkbox">
                 </label>
             </div>
 
-            <div class="user-list">
-                <div class="user">
+            <div class="user-list" id="user-list">
+                <div class="user" id="user1">
                     <div class="profile">
                         <img src="images/profile.png" alt="Profile">
                         <span>John Alex</span>
@@ -45,7 +45,7 @@
                     <input type="checkbox">
                 </div>
 
-                <div class="user">
+                <div class="user" id="user2">
                     <div class="profile">
                         <img src="images/profile.png" alt="Profile">
                         <span>John Alex</span>
@@ -55,7 +55,7 @@
                     <input type="checkbox">
                 </div>
 
-                <div class="user">
+                <div class="user" id="user3">
                     <div class="profile">
                         <img src="images/profile.png" alt="Profile">
                         <span>John Alex</span>
@@ -65,7 +65,7 @@
                     <input type="checkbox">
                 </div>
 
-                <div class="user">
+                <div class="user" id="user4">
                     <div class="profile">
                         <img src="images/profile.png" alt="Profile">
                         <span>John Alex</span>
