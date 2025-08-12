@@ -1,4 +1,4 @@
-import { getCurrentUser } from './user.js'
+import { getCurrentUser, supabase } from './user.js'
 
 // Function to format timestamp into a readable string
 function formatTimestamp(isoString) {
@@ -13,8 +13,21 @@ function formatTimestamp(isoString) {
   })
 }
 
+// Update notifications array in Supabase for the current user
+async function updateUserNotifications(userId, notifications) {
+  const { error } = await supabase
+    .from('users')
+    .update({ notifications })
+    .eq('id', userId)
+
+  if (error) {
+    console.error('Error updating notifications:', error)
+    alert('Failed to update notifications.')
+  }
+}
+
 // Render notifications to the page
-function renderNotifications(notifications) {
+function renderNotifications(notifications, userId) {
   const container = document.querySelector('.allnotifications')
   container.innerHTML = '' // Clear old notifications
 
@@ -23,7 +36,7 @@ function renderNotifications(notifications) {
     return
   }
 
-  notifications.forEach(notification => {
+  notifications.forEach((notification, index) => {
     const card = document.createElement('div')
     card.classList.add('notification-card')
 
@@ -34,13 +47,23 @@ function renderNotifications(notifications) {
         <p class="message-body">${notification.body}</p>
         <span class="timestamp">${formatTimestamp(notification.timestamp)}</span>
       </div>
-      <button class="mark-read">Mark Read</button>
+      <div class="actions">
+        <button class="mark-read">Mark Read</button>
+        <button class="delete">Delete</button>
+      </div>
     `
 
-    // Optional: mark as read logic
+    // MARK READ: visually change color
     card.querySelector('.mark-read').addEventListener('click', () => {
       card.classList.add('read')
       card.querySelector('.mark-read').disabled = true
+    })
+
+    // DELETE: remove from DB and re-render
+    card.querySelector('.delete').addEventListener('click', async () => {
+      const updatedNotifications = notifications.filter((_, i) => i !== index)
+      await updateUserNotifications(userId, updatedNotifications)
+      renderNotifications(updatedNotifications, userId) // re-render
     })
 
     container.appendChild(card)
@@ -56,7 +79,7 @@ async function loadNotifications() {
     return
   }
 
-  renderNotifications(user.notifications)
+  renderNotifications(user.notifications, user.id)
 }
 
 // Load on page start
