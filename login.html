@@ -1,149 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>BizzyBills Login</title>
-  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      width: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .background-img {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      padding: 40px 30px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-      color: #fff;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .logo span {
-      background: linear-gradient(90deg, #9C27B0, #2196F3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-left: 8px;
-    }
-
-    h1 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      font-weight: 500;
-      color: #C8C8C8;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #8E2DE2, #E040FB);
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .login-link {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #eee;
-    }
-
-    .login-link a {
-      color: #f06292;
-      text-decoration: none;
-    }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizzyBills NG Login</title>
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/favicon.png" type="image/png">
 </head>
 <body>
-
-  <!-- Background Image as <img src> -->
-  <img src="images/bgimage.png" alt="Background" class="background-img">
-
-  <div class="container">
-    <div class="logo">
-      <img src="images/logo.png" alt="logo" style="width: 150px; margin-right: 8px;">
-      <!-- <span>BizzyBills</span> -->
+    <div class="login-container">
+        <div class="top-section">
+            <img src="image/logo.png" alt="BizzyBills Logo" class="logo">
+        </div>
+        
+        <div class="form-section">
+            <h2>Welcome back !</h2>
+            <!-- Added correct ID for form -->
+            <form id="loginForm">
+                <!-- Changed to match JS: id="emailOrUsername" -->
+                <input type="text" id="emailOrUsername" placeholder="Email or Username" required>
+                
+                <div class="password-wrapper">
+                    <!-- Changed to match JS: id="password" -->
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fa fa-eye"></i>
+                </div>
+                
+                <div class="options">
+                    <label><input type="checkbox"> Remember me</label>
+                    <!-- Linked to forgot password page like old code -->
+                    <a href="forgot-password.html">Forgot password?</a>
+                </div>
+                
+                <!-- Keep button type submit so JS can handle -->
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            
+            <p class="signup-text">New user? <a href="#">Sign Up</a></p>
+            <p class="alt-login">Reach out to us via</p>
+            <!-- <div class="divider">OR</div>
+            <div class="social-login">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                <a href="https://www.facebook.com/share/1ALTBFHviE/"><i class="fab fa-facebook"></i></a>
+                <!-- <a href="#"><i class="fab fa-google"></i></a> -->
+            </div>
+        </div>
     </div>
-    <h1>Log in to your account to continue <br> from where you left</h1>
-    <form id="loginForm">
-        <input type="email" id="emailOrUsername" placeholder="Email or Username" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <button type="submit">Continue</button>
-    </form>
 
-    <div class="login-link">
-      First time here? <a href="register.html">Register</a>
-    </div>
-    <p><a href="forgot-password.html">Forgot your password?</a></p>
-  </div>
-  <script src="./scripts/messages.js"></script>
-  <script type="module" src="scripts/login.js"></script>
+    <!-- Keep your scripts at bottom -->
+    <script src="messages.js"></script>
+    <script type="module" src="scripts/login.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput = document.getElementById("password");
+        const toggleEye = document.querySelector(".password-wrapper i");
+
+        toggleEye.addEventListener("click", function () {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleEye.classList.remove("fa-eye");
+            toggleEye.classList.add("fa-eye-slash");
+          } else {
+            passwordInput.type = "password";
+            toggleEye.classList.remove("fa-eye-slash");
+            toggleEye.classList.add("fa-eye");
+          }
+        });
+      });
+    </script>
+
 </body>
 </html>
