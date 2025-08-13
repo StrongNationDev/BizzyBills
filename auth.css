@@ -1,0 +1,97 @@
+/* Reset some browser defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Center everything vertically & horizontally */
+body {
+  background: linear-gradient(135deg, #4a90e2, #007aff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container styling */
+.auth-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Title */
+.auth-container h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Description text */
+.auth-container p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Email input */
+.auth-container input[type="email"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.auth-container input[type="email"]:focus {
+  border-color: #007aff;
+  outline: none;
+}
+
+/* Button */
+.auth-container button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007aff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.auth-container button:hover {
+  background-color: #005fcb;
+}
+
+.auth-container button:active {
+  transform: scale(0.98);
+}
+
+/* Success/Error messages */
+#message {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Animation for smooth entry */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  .auth-container {
+    padding: 1.5rem;
+  }
+}
