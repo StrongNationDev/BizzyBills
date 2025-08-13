@@ -13,11 +13,10 @@ body {
     min-height: 100vh;
 }
 
-.login-container {
+.register-container {
     width: 100%;
     max-width: 400px;
     background: #fff;
-    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -43,10 +42,10 @@ body {
 h2 {
     margin-bottom: 20px;
     color: #333;
-    font-size: clamp(18px, 2.5vw, 22px); /* adjusts size based on screen */
+    font-size: clamp(18px, 2.5vw, 22px);
 }
 
-input[type="text"], input[type="password"] {
+input, select {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -54,6 +53,10 @@ input[type="text"], input[type="password"] {
     border-radius: 25px;
     background: #f2f2f2;
     font-size: 14px;
+}
+
+select {
+    appearance: none;
 }
 
 .password-wrapper {
@@ -69,19 +72,7 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
 }
 
-.options {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.options a {
-    color: #666;
-    text-decoration: none;
-}
-
-.login-btn {
+.register-btn {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
@@ -93,7 +84,7 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
 }
 
-.login-btn:hover {
+.register-btn:hover {
     background: #5c2ed8;
     color: white;
 }
@@ -108,36 +99,13 @@ input[type="text"], input[type="password"] {
     text-decoration: none;
 }
 
-.divider {
-    margin: 20px 0;
-    font-size: 12px;
-    color: #999;
-}
-
-.social-login a {
-    color: white;
-    background: #5c2ed8;
-    padding: 10px;
-    margin: 0 5px;
-    border-radius: 50%;
-    display: inline-block;
-    font-size: 14px;
-}
-
-.alt-login {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #777;
-}
-
 @media (max-width: 500px) {
     body {
         align-items: flex-start;
     }
-    .login-container {
+    .register-container {
         max-width: 100%;
         min-height: 100vh;
-        border-radius: 0;
         box-shadow: none;
     }
     .top-section {
@@ -146,10 +114,5 @@ input[type="text"], input[type="password"] {
     }
     .form-section {
         padding: 20px 15px;
-    }
-    .options {
-        flex-direction: row;
-        gap: 5px;
-        align-items: flex-start;
     }
 }
