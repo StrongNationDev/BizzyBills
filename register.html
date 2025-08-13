@@ -1,224 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BizzyBills Registration</title>
-  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      width: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-.background-img {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    pointer-events: none;
-    }
-
-
-    .container {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 30px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-      color: #fff;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .logo img {
-      width: 150px;
-      margin-right: 8px;
-    }
-
-    h1 {
-      font-size: 18px;
-      margin-bottom: 20px;
-      font-weight: 500;
-      color: #C8C8C8;
-    }
-
-    input, .select-box {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .select-box {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      background-size: 16px;
-    }
-
-    .select-box option {
-      background-color: #222;
-      color: white;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #8E2DE2, #E040FB);
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .login-link {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #eee;
-    }
-
-    .login-link a {
-      color: #f06292;
-      text-decoration: none;
-    }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        margin: 20px auto;
-        padding: 20px 15px;
-      }
-
-      h1 {
-        font-size: 16px;
-      }
-
-      input, .select-box, button {
-        font-size: 14px;
-        padding: 10px;
-      }
-
-      .logo img {
-        width: 120px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizzyBills NG - Register</title>
+    <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="image/favicon.png" type="image/png">
 </head>
 <body>
 
-  <a href="index.html">
-    <img src="images/bgimage.png" alt="Background" class="background-img">
-  </a>
+    <div class="register-container">
+        <!-- Top Section -->
+        <div class="top-section">
+            <img src="images/logo.png" alt="BizzyBills Logo" class="logo">
+        </div>
 
-  <div class="container">
-    <div class="logo">
-      <img src="images/logo.png" alt="logo">
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2>You're new here, Register an Account</h2>
+
+            <form id="registerForm">
+                <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+
+                <select id="location" name="location" required class="select-box">
+                    <option value="">Select Location</option>
+                    <option value="Abia">Abia</option>
+                    <option value="Adamawa">Adamawa</option>
+                    <option value="Akwa Ibom">Akwa Ibom</option>
+                    <option value="Anambra">Anambra</option>
+                    <option value="Bauchi">Bauchi</option>
+                    <option value="Bayelsa">Bayelsa</option>
+                    <option value="Benue">Benue</option>
+                    <option value="Borno">Borno</option>
+                    <option value="Cross River">Cross River</option>
+                    <option value="Delta">Delta</option>
+                    <option value="Ebonyi">Ebonyi</option>
+                    <option value="Edo">Edo</option>
+                    <option value="Ekiti">Ekiti</option>
+                    <option value="Enugu">Enugu</option>
+                    <option value="Gombe">Gombe</option>
+                    <option value="Imo">Imo</option>
+                    <option value="Jigawa">Jigawa</option>
+                    <option value="Kaduna">Kaduna</option>
+                    <option value="Kano">Kano</option>
+                    <option value="Katsina">Katsina</option>
+                    <option value="Kebbi">Kebbi</option>
+                    <option value="Kogi">Kogi</option>
+                    <option value="Kwara">Kwara</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Nasarawa">Nasarawa</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Ogun">Ogun</option>
+                    <option value="Ondo">Ondo</option>
+                    <option value="Osun">Osun</option>
+                    <option value="Oyo">Oyo</option>
+                    <option value="Plateau">Plateau</option>
+                    <option value="Rivers">Rivers</option>
+                    <option value="Sokoto">Sokoto</option>
+                    <option value="Taraba">Taraba</option>
+                    <option value="Yobe">Yobe</option>
+                    <option value="Zamfara">Zamfara</option>
+                    <option value="Federal Capital Territory">Abuja</option>
+                </select>
+
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{11}" maxlength="11" required>
+                <input type="text" id="pin" name="pin" placeholder="4 Digit Pin" pattern="[0-9]{4}" maxlength="4" required>
+
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    <i class="fa fa-eye"></i>
+                </div>
+
+                <button type="submit" class="register-btn">Register Now</button>
+            </form>
+
+            <p class="signup-text">
+                Already have an account? <a href="login.html">Log In</a>
+            </p>
+        </div>
     </div>
-    <h1>You're new here, Register an Account</h1>
 
-    <form id="registerForm">
-      <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
-      <input type="email" id="email" name="email" placeholder="Enter Email" required>
-      <input type="text" id="username" name="username" placeholder="Username" required>
+    <script src="./scripts/messages.js"></script>
+    <script type="module" src="scripts/createaccount.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const passwordInput = document.getElementById("password");
+            const toggleEye = document.querySelector(".password-wrapper i");
 
-      <select id="location" name="location" required class="select-box">
-        <option value="Abia">Abia</option>
-        <option value="Adamawa">Adamawa</option>
-        <option value="Akwa Ibom">Akwa Ibom</option>
-        <option value="Anambra">Anambra</option>
-        <option value="Bauchi">Bauchi</option>
-        <option value="Bayelsa">Bayelsa</option>
-        <option value="Benue">Benue</option>
-        <option value="Borno">Borno</option>
-        <option value="Cross River">Cross River</option>
-        <option value="Delta">Delta</option>
-        <option value="Ebonyi">Ebonyi</option>
-        <option value="Edo">Edo</option>
-        <option value="Ekiti">Ekiti</option>
-        <option value="Enugu">Enugu</option>
-        <option value="Gombe">Gombe</option>
-        <option value="Imo">Imo</option>
-        <option value="Jigawa">Jigawa</option>
-        <option value="Kaduna">Kaduna</option>
-        <option value="Kano">Kano</option>
-        <option value="Katsina">Katsina</option>
-        <option value="Kebbi">Kebbi</option>
-        <option value="Kogi">Kogi</option>
-        <option value="Kwara">Kwara</option>
-        <option value="Lagos">Lagos</option>
-        <option value="Nasarawa">Nasarawa</option>
-        <option value="Niger">Niger</option>
-        <option value="Ogun">Ogun</option>
-        <option value="Ondo">Ondo</option>
-        <option value="Osun">Osun</option>
-        <option value="Oyo">Oyo</option>
-        <option value="Plateau">Plateau</option>
-        <option value="Rivers">Rivers</option>
-        <option value="Sokoto">Sokoto</option>
-        <option value="Taraba">Taraba</option>
-        <option value="Yobe">Yobe</option>
-        <option value="Zamfara">Zamfara</option>
-        <option value="Federal Capital Territory">Abuja</option>
+            toggleEye.addEventListener("click", function () {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    toggleEye.classList.remove("fa-eye");
+                    toggleEye.classList.add("fa-eye-slash");
+                } else {
+                    passwordInput.type = "password";
+                    toggleEye.classList.remove("fa-eye-slash");
+                    toggleEye.classList.add("fa-eye");
+                }
+            });
+        });
+    </script>
 
-      </select>
-
-      <input type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{11}" maxlength="11" inputmode="numeric" required>
-      <input type="text" id="pin" name="pin" placeholder="4 Digit Pin" pattern="[0-9]{4}" maxlength="4" inputmode="numeric" required>
-      <input type="password" id="password" name="password" placeholder="Enter Password" required>
-
-      <button type="submit">Register Now</button>
-    </form>
-
-    <div class="login-link">
-      Already have an account? <a href="login.html">Log In</a>
-    </div>
-  </div>
-  <script src="./scripts/messages.js"></script>
-  <script type="module" src="scripts/createaccount.js"></script>
 </body>
 </html>
