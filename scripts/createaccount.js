@@ -71,5 +71,5 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     return;
   }
 
-  alert('Signup successful! Please check your email to verify your account.');
+  alert('Signup successful! Please check your email to verify your account you can also check your spam box if you did not see it.');
 });
