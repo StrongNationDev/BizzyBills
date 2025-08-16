@@ -13,15 +13,36 @@ document.querySelectorAll('.add-money, .contact-us, .service-card').forEach(el =
     });
     
 
-{/* Function for balance blurring */}
-const toggleBtn = document.getElementById("toggle-visibility");
-const balanceText = document.getElementById("balance-amount");
+// balance-blur.js
+document.addEventListener("DOMContentLoaded", function () {
+  const balanceElement = document.getElementById("balance-amount");
 
-  let isBlurred = false;
+  // Get saved state from localStorage
+  let isBlurred = localStorage.getItem("balanceBlurred");
 
-  toggleBtn.addEventListener("click", () => {
-    isBlurred = !isBlurred;
-    balanceText.classList.toggle("blurred", isBlurred);
+  // If no saved state, default to blurred
+  if (isBlurred === null) {
+    isBlurred = "true";
+    localStorage.setItem("balanceBlurred", "true");
+  }
 
-    toggleBtn.src = isBlurred ? "icons/eye.png" : "icons/eye.png";
+  // Apply initial blur state
+  updateBlurState(isBlurred === "true");
+
+  // Click to toggle
+  balanceElement.addEventListener("click", function () {
+    isBlurred = (isBlurred === "true") ? "false" : "true";
+    localStorage.setItem("balanceBlurred", isBlurred);
+    updateBlurState(isBlurred === "true");
   });
+
+  function updateBlurState(blur) {
+    if (blur) {
+      balanceElement.classList.add("blurred");
+      balanceElement.classList.remove("unblurred");
+    } else {
+      balanceElement.classList.remove("blurred");
+      balanceElement.classList.add("unblurred");
+    }
+  }
+});

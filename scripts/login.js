@@ -35,11 +35,11 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   });
 
   if (error) {
-    alert('Login failed: ' + error.message);
+    alert('Your Login attempt has failed, please try again. ' + error.message);
     return;
   }
 
   // Optional: redirect to dashboard or homepage
-  alert('Login successful!');
+  alert('You have Logged into your account successful!');
   window.location.href = '../BizzyBills/home.html';
 });
