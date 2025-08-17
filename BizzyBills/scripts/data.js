@@ -10,18 +10,30 @@ const offerSelect = document.getElementById('offerSelect');
 const dataPlans = {
   1: { // MTN
     "MTN SME": [
-      { id: 907, label: '150.0 MB - ₦110 (1Day) MTN SME' },
-      { id: 906, label: '230.0 MB - ₦250 (1Day) MTN SME' },
-      { id: 903, label: '500 MB - ₦380 (1Day) MTN SME' },
-      { id: 931, label: '1.0 GB - ₦480 (1-2 Day) MTN SME' },
-      { id: 930, label: '1.5 GB - ₦640 (2-3Days) MTN SME' },
-      { id: 691, label: '1.0 GB - ₦670 (1 Month) MTN SME' },
-      { id: 617, label: '1.2 GB - ₦800 (7Days MTN Pulse Users) MTN SME'},
-      { id: 663, label: '2.0 GB - ₦1300(1 Month) MTN SME'},
-      { id: 716, label: '3.0 GB - ₦1950(1 Month) MTN SME'},
-      { id: 717, label: '5.0 GB - ₦2470(1 Month) MTN SME'},
-      { id: 908, label: '6.0 GB - ₦2660 (7 Days) MTN SME'},
-      { id: 891, label: '11.0 GB - ₦3700 (7 Days) MTN SME'},
+      // new plans updating
+      { id: 946, label: '1.0 GB - ₦600 (7 Day) MTN SME' },
+      { id: 691, label: '1.0 GB - ₦650 (1 Month) MTN SME' },
+      { id: 663, label: '2.0 GB - ₦1300 (1 Month) MTN SME' },
+      { id: 716, label: '3.0 GB - ₦1850 (1 Month) MTN SME' },
+      { id: 717, label: '5.0 GB - ₦2300 (1 Month) MTN SME' },
+      { id: 891, label: '11.0 GB - ₦3600 (7Days) MTN SME' },
+
+      // old plans down here also
+      // { id: 907, label: '150.0 MB - ₦110 (1Day) MTN SME' },
+      // { id: 906, label: '230.0 MB - ₦250 (1Day) MTN SME' },
+      // { id: 903, label: '500 MB - ₦380 (1Day) MTN SME' },
+      // { id: 931, label: '1.0 GB - ₦480 (1-2 Day) MTN SME' },
+      // { id: 930, label: '1.5 GB - ₦640 (2-3Days) MTN SME' },
+      // { id: 691, label: '1.0 GB - ₦670 (1 Month) MTN SME' },
+      // { id: 617, label: '1.2 GB - ₦800 (7Days MTN Pulse Users) MTN SME'},
+      // { id: 663, label: '2.0 GB - ₦1300(1 Month) MTN SME'},
+      // { id: 716, label: '3.0 GB - ₦1950(1 Month) MTN SME'},
+      // { id: 717, label: '5.0 GB - ₦2470(1 Month) MTN SME'},
+      // { id: 908, label: '6.0 GB - ₦2660 (7 Days) MTN SME'},
+      // { id: 891, label: '11.0 GB - ₦3700 (7 Days) MTN SME'},
+    ],
+    "CORPORATE GIFTING":[
+      { id: 944, label: '1.0 GB - ₦610 (1 Month) CORPORATE GIFTING' },
     ],
     "MTN GIFTING": [
       { id: 835, label: '75.0MB - ₦80 (1Days) MTN GIFTING' },
