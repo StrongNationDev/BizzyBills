@@ -1,180 +1,184 @@
-body {
+/* ========== RESET & BASE STYLES ========== */
+* {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #e2e2e201;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.confirm-body .top-banner img {
+html {
+  font-size: 100%;
+}
+
+body.confirm-body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafc;
+  color: #333;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ========== TOP BANNER ========== */
+.top-banner {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+  background: linear-gradient(135deg, #4a90e2, #005bea);
+  color: #fff;
+}
+
+.top-banner img {
   width: 100%;
   height: auto;
-  display: block;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  opacity: 0.25;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
 }
-
 
 .top-section {
   position: relative;
-  text-align: center;
-  background-color: transparent;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  overflow: visible; /* allow button to show */
-  height: auto;      /* fit content */
-  margin-bottom: 10px; /* adjust if needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  z-index: 2;
 }
 
-
 .back-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
   background: white;
+  height: 30px;
+  width: auto;
+  padding: 8px;
+  border-radius: 5px;
+  /* background: transparent; */
   border: none;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 14px;
+  font-size: 1rem;
+  color: #000000;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.back-btn:hover {
+  transform: translateX(-5px);
+}
+
+.page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .top-text {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 0;
-  text-align: center;
-  width: 100%;
+  position: relative;
+  padding: 2rem 1rem 2.5rem;
+  z-index: 2;
 }
 
 .top-text p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1rem;
+  opacity: 0.85;
 }
 
-.top-text h2 {
-  margin: 5px 0 0 0;
-  font-size: 28px;
+.amount-display {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
 }
 
+/* ========== PAYMENT DETAILS ========== */
 .payment-details {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  box-shadow: 0 0 0 5px #ccc;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  margin: 0 1rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .detail {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  padding: 8px 0;
-  font-size: 14px;
-  color: #3a3a3a;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 0.95rem;
+}
+.detail:last-child {
+  border-bottom: none;
+}
+
+.detail span:first-child {
+  font-weight: 500;
+  color: #666;
 }
 
 .detail .icon {
-  width: 20px;
+  height: 20px;
   vertical-align: middle;
-  margin-right: 5px;
+  margin-right: 0.25rem;
 }
+
+/* ========== BUTTON ========== */
 .btn-container {
-  text-align: center;
-  margin-top: 50px;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 1rem 2rem;
 }
 
 .confirm-btn {
-  background: linear-gradient(to right, #00c6ff, #EC1BD0);
-  color: white;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00c853, #009624);
+  color: #fff;
   border: none;
-  padding: 15px 40px;
-  border-radius: 30px;
-  font-size: 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  width: 70%;
-  margin-top: 150px;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+.confirm-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.confirm-btn:active {
+  transform: translateY(1px);
 }
 
-/* Small Tablets and below (≤768px) */
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
-  .top-text {
-    top: 10px;
-    margin-top: 60px;
+  .amount-display {
+    font-size: 1.6rem;
   }
-
-  .top-text h2 {
-    font-size: 22px;
-  }
-
-  .top-text p {
-    font-size: 12px;
-  }
-
-  .payment-details {
-    margin: 15px 10px;
-    padding: 15px;
-    box-shadow: 0 0 0 3px #ccc;
-    margin-right: 15px;
-    margin-right: 5px;
-  }
-
   .detail {
-    font-size: 13px;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .detail span:last-child {
-    margin-top: 4px;
-  }
-
-  .amount-display-body{
-    width: 35%;
-  }
-
-  .btn-container {
-    margin-top: 30px;
-  }
-
-.confirm-btn {
-  margin-top: 2rem;
-}
-
-/* MOBILE OPTIMIZATION */
-@media (max-width: 768px) {
-  .top-section {
-    height: auto; /* Let content define height */
-    margin-bottom: 0;
-  }
-
-  .top-text {
-    top: 10%;
-    transform: translate(-50%, -50%);
-  }
-
-  .payment-details {
-    margin: 1rem;
-    padding: 1rem;
-  }
-
-  .confirm-btn {
-    width: 100%;
-    font-size: 14px;
-    padding: 12px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-  .top-text h2 {
-    font-size: 18px;
+  .top-section {
+      flex-direction: row;
+    /* flex-direction: column; */
+    gap: 0.5rem;
   }
-  .top-text p {
-    font-size: 12px;
+
+  .amount-display {
+    font-size: 1.4rem;
+  }
+
+  .confirm-btn {
+    font-size: 0.95rem;
+    padding: 0.8rem;
   }
 }
+
 
 
 /* loading screen */
@@ -211,6 +215,4 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
 }
