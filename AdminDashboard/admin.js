@@ -12,7 +12,8 @@ sendButton.addEventListener('click', async () => {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/broadcast', {
+    const res = await fetch('https://bizzybills-adminserver.onrender.com/broadcast', {
+    // const res = await fetch('http://localhost:3000/broadcast', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, body })
@@ -38,7 +39,8 @@ const selectAllCheckbox = document.querySelector('#select-all input')
 // Fetch and display users
 async function loadUsers() {
   try {
-    const res = await fetch('http://localhost:3000/users')
+    const res = await fetch('https://bizzybills-adminserver.onrender.com/users')
+    // const res = await fetch('http://localhost:3000/users')
     const users = await res.json()
 
     if (!Array.isArray(users)) {
@@ -88,7 +90,8 @@ async function deleteSelectedUsers() {
   if (!confirm(`Are you sure you want to delete ${ids.length} user(s)?`)) return
 
   try {
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch('https://bizzybills-adminserver.onrender.com/users', {
+    // const res = await fetch('http://localhost:3000/users', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ids })
