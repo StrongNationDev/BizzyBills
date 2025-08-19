@@ -37,6 +37,41 @@ const userList = document.getElementById('user-list')
 const selectAllCheckbox = document.querySelector('#select-all input')
 
 // Fetch and display users
+// async function loadUsers() {
+//   try {
+//     const res = await fetch('https://bizzybills-adminserver.onrender.com/users')
+//     // const res = await fetch('http://localhost:3000/users')
+//     const users = await res.json()
+
+//     if (!Array.isArray(users)) {
+//       console.error('Server did not return a user list:', users)
+//       return
+//     }
+    
+//     userList.innerHTML = '' // clear old data
+
+//     users.forEach(user => {
+//       const userDiv = document.createElement('div')
+//       userDiv.classList.add('user')
+//       userDiv.dataset.id = user.id
+
+//       userDiv.innerHTML = `
+//         <div class="profile">
+//         <img src="https://via.placeholder.com/40" alt="Profile">
+//           <span>${user.name}</span>
+//         </div>
+//         <span>$${user.wallet_balance || 0}</span>
+//         <span>${user.email}</span>
+//         <input type="checkbox" class="user-checkbox">
+//       `
+//       userList.appendChild(userDiv)
+//     })
+//   } catch (err) {
+//     console.error('❌ Error loading users:', err)
+//   }
+// }
+
+// Fetch and display users
 async function loadUsers() {
   try {
     const res = await fetch('https://bizzybills-adminserver.onrender.com/users')
@@ -55,12 +90,17 @@ async function loadUsers() {
       userDiv.classList.add('user')
       userDiv.dataset.id = user.id
 
+      // fallback profile image
+      const profileImage = user.profile_picture 
+        ? user.profile_picture 
+        : './images/me.png'
+
       userDiv.innerHTML = `
         <div class="profile">
-        <img src="https://via.placeholder.com/40" alt="Profile">
-          <span>${user.name}</span>
+          <img src="${profileImage}" alt="Profile">
+          <span>${user.full_name || user.username || 'Unknown'}</span>
         </div>
-        <span>$${user.wallet_balance || 0}</span>
+        <span>₦${user.wallet_balance || 0}</span>
         <span>${user.email}</span>
         <input type="checkbox" class="user-checkbox">
       `
@@ -70,6 +110,7 @@ async function loadUsers() {
     console.error('❌ Error loading users:', err)
   }
 }
+
 
 // Handle select all
 selectAllCheckbox.addEventListener('change', () => {
