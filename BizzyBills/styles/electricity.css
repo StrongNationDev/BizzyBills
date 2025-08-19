@@ -80,17 +80,23 @@ body {
   font-size: 18px;
 }
 
-.amount-input {
+.input-field {
   width: 91%;
   padding: 15px;
   font-size: 14px;
   border: none;
   border-radius: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pay-btn {
-  width: 100%;
+  width: 70%;
   padding: 15px;
   border: none;
   font-size: 14px;
@@ -99,7 +105,9 @@ body {
   border-radius: 30px;
   background: linear-gradient(to right, #00c6ff, #7b2ff7);
   cursor: pointer;
+  margin-top: 30px;
 }
+
 
 /* === Provider List Modal === */
 .provider-list {

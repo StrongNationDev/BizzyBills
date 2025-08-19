@@ -63,42 +63,39 @@ body {
 }
 
 
-/* updating */
-/* Badge on bell */
-.notification-wrapper {
-  position: relative;
-  display: inline-block;
-}
+/* updating 🔴 Small red badge on bell */
 
 .notification-badge {
   position: absolute;
   top: -6px;
   right: -6px;
-  background-color: red;
+  background: red;
   color: white;
   font-size: 12px;
   font-weight: bold;
   border-radius: 50%;
   padding: 2px 6px;
-  display: none; /* hidden by default */
+  min-width: 18px;
+  text-align: center;
 }
 
-/* Pop-up alert (like iPhone top bar) */
+/* 📱 iPhone-style popup alert */
 .popup-alert {
   position: fixed;
-  top: -100px;
+  top: -60px;
   left: 50%;
   transform: translateX(-50%);
   background: #333;
   color: white;
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 14px;
-  font-weight: bold;
-  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
+  z-index: 9999;
 }
+
 .popup-alert.show {
   top: 20px;
   opacity: 1;

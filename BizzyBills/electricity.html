@@ -131,24 +131,39 @@
   </div>
 
   <div class="form-section">
+
     <label for="provider-dropdown">Service Provider</label>
+
     <div class="dropdown" id="provider-dropdown" tabindex="0">
-      <span id="selected-provider">Choose a Provider</span>
+      <span id="selected-provider">Choose a Dico Name</span>
       <span class="arrow">▾</span>
     </div>
-    <input type="text" placeholder="Enter amount" class="amount-input" id="AmountToPay">
+
+    <input type="text" placeholder="Meter Number" class="input-field" id="meterNumber">
+
+    <div class="dropdown" id="metertype" tabindex="0">
+        <span id="metertype">Choose Meter Type</span>
+        <span class="arrow">▾</span>
+      </div>
+    <input type="text" placeholder="Enter amount" class="input-field" id="AmountToPay">
+
+    <input type="text" placeholder="Customer phone" class="input-field" id="customerNumber">
+
     <button class="pay-btn" id="continuetopay">Pay</button>
   </div>
 
-  <!-- Provider List Modal -->
+
+  <!-- Provider List Displaying Modal -->
   <div class="provider-list" id="provider-list-modal" style="display:none;">
     <div class="list-header">
       <button class="back-icon" id="close-provider-list">←</button>
       <span>Choose a Provider</span>
     </div>
+
     <input type="text" placeholder="Search" class="search-box" id="provider-search">
+
     <ul class="providers" id="provider-items">
-      <!-- Providers will be generated here by JS -->
+      <!-- Providers will be generated here by JS-->
     </ul>
   </div>
 
