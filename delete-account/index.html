@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Account | BizzyBillsNG</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fafafa;
+    }
+
+    /* Header/Nav */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #eaeaea;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #1a73e8;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 6px 14px;
+      border: 1px solid #1a73e8;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-login {
+      background: #fff;
+      color: #1a73e8;
+    }
+
+    .btn-login:hover {
+      background: #f1f1f1;
+    }
+
+    .btn-signup {
+      background: #1a73e8;
+      color: #fff;
+    }
+
+    .btn-signup:hover {
+      background: #0c5edb;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border: 1px solid #eaeaea;
+        border-radius: 4px;
+        padding: 10px 0;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Container */
+    .container {
+      width: 80%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1a73e8;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #1a73e8;
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .delete-form {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0c5edb;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="navbar">
+      <a href="/" class="logo">BizzyBillsNG</a>
+      <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav>
+        <ul>
+            <li><a href="../index.html">Services</a></li>
+            <li><a href="../index.html">Features</a></li>
+            <li><a href="../index.html">Testimonials</a></li>
+            <li><a href="../index.html">About</a></li>
+            <li><a href="/privacy-policy/index.html">Privacy Policy</a></li>
+            <li><a href="#">Delete Account</a></li>
+
+          <!-- <li><a href="/">Home</a></li>
+          <li><a href="../index.html">Services</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/delete-account/">Delete Account</a></li> -->
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="/login" class="btn btn-login">Log In</a>
+        <a href="/signup" class="btn btn-signup">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Delete Account Section -->
+  <div class="container">
+    <h1>Delete Your BizzyBillsNG Account</h1>
+    <p>We respect your right to control your data. If you no longer wish to use BizzyBillsNG, you may request that your account be deleted along with all associated personal data and transaction history (except where we are legally required to retain records).</p>
+
+    <h2>How to Request Account Deletion</h2>
+    <ul>
+      <li>Fill out the form below and submit your request.</li>
+      <li>Alternatively, you can email us directly at <a href="mailto:bizzybillsupport@bizzybillsng.store">bizzybillsupport@bizzybillsng.store</a> using your registered email.</li>
+      <li>Your request will be processed within 3 business days. You will receive a confirmation once your account is deleted.</li>
+    </ul>
+
+    <div class="delete-form">
+      <form>
+        <label for="email">Registered Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your registered email" required>
+
+        <label for="reason">Reason for Deletion (optional)</label>
+        <textarea id="reason" name="reason" rows="4" placeholder="Let us know why you are leaving..."></textarea>
+
+        <button type="submit">Submit Deletion Request</button>
+      </form>
+    </div>
+
+    <h2>Important Notes</h2>
+    <ul>
+      <li>Pending wallet balances should be withdrawn before requesting account deletion.</li>
+      <li>Transaction records may be retained where legally required (e.g., for financial compliance).</li>
+      <li>Once your account is deleted, recovery is not possible.</li>
+    </ul>
+
+    <footer>
+      &copy; 2025 BizzyBillsNG. All Rights Reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Toggle mobile nav
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
