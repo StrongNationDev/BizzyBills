@@ -100,7 +100,11 @@
       gap: 20px;
     }
     .grid-4 {grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));}
-    .card {
+      .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background: #fff;
       padding: 20px;
       border-radius: 8px;
@@ -108,6 +112,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: 0.3s;
     }
+
     .card:hover {transform: translateY(-5px);}
     .card img {height: 60px; margin-bottom: 15px;}
 
@@ -156,33 +161,156 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 768px) {
-      .hero h1 {font-size: 2rem;}
-      .hero p {font-size: 1rem;}
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px; /* hidden off screen */
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      padding: 60px 20px 20px;
+      z-index: 2000;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
+
+    /* When open, slide into view */
+    .sidebar.open {
+      left: 0;
+    }
+
+    /* Close (X) button */
+    .sidebar .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Make sidebar links stack vertically */
+    .sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0;
+    }
+
+    .sidebar nav ul li a {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    /* Put login/register buttons under links */
+    .sidebar .nav-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* Mobile vs desktop */
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: block; }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle { display: none; }
+      .sidebar { display: none; }
+    }
+
+    /* Sticky APK download bar */
+    .download-apk-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #1a73e8;
+      color: #fff;
+      text-align: center;
+      padding: 15px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      z-index: 3000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .download-apk-bar a {
+      background: #fff;
+      color: #1a73e8;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .download-apk-bar a:hover {
+      background: #f1f1f1;
+    }
+
+
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <div class="navbar">
-      <a href="/" class="logo">BizzyBillsNG</a>
-      <nav>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="/delete-account/">Delete Account</a></li>
-        </ul>
-      </nav>
-      <div class="nav-actions">
-        <a href="/login.html" class="btn-login">Log In</a>
-        <a href="/register.html" class="btn-signup">Register</a>
-      </div>
+<header>
+  <div class="navbar">
+    <a href="/" class="logo">BizzyBillsNG</a>
+
+    <!-- Hamburger Icon for Mobile -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <!-- Normal nav for desktop -->
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/delete-account/">Delete Account</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions desktop-nav">
+      <a href="/login.html" class="btn-login">Log In</a>
+      <a href="/register.html" class="btn-signup">Register</a>
     </div>
-  </header>
+  </div>
+
+  <!-- Sidebar for mobile -->
+  <div class="sidebar" id="mobile-nav">
+    <span class="close-btn" id="close-btn">&times;</span>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/delete-account/">Delete Account</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="/login.html" class="btn-login">Log In</a>
+      <a href="/register.html" class="btn-signup">Register</a>
+    </div>
+  </div>
+</header>
+
 
   <!-- Hero -->
   <section class="hero">
@@ -196,19 +324,19 @@
     <h2 class="section-title">Our Services</h2>
     <div class="grid grid-4">
       <div class="card" data-animate>
-        <img src="https://via.placeholder.com/60" alt="Airtime">
+        <img src="./images/phon.png" alt="Airtime">
         <h3>Buy Airtime</h3>
       </div>
       <div class="card" data-animate>
-        <img src="https://via.placeholder.com/60" alt="Data">
+        <img src="./images/wifi.png" alt="Data">
         <h3>Buy Data</h3>
       </div>
       <div class="card" data-animate>
-        <img src="https://via.placeholder.com/60" alt="Electricity">
+        <img src="./images/light.png" alt="Electricity">
         <h3>Buy Electricity</h3>
       </div>
       <div class="card" data-animate>
-        <img src="https://via.placeholder.com/60" alt="Cable TV">
+        <img src="./images/telv.png" alt="Cable TV">
         <h3>Cable TV</h3>
       </div>
     </div>
@@ -230,7 +358,7 @@
       </div>
       <div class="card" data-animate>
         <!-- <img src="./images/enjoy.png" alt="Enjoy Always"> -->
-        <img src="./images/logo.png" alt="Enjoy Always">
+        <img src="./images/enjoy.png" alt="Enjoy Always">
         <h3>Enjoy Always</h3>
         <p>Fund your account instantly and purchase services without delay.</p>
       </div>
@@ -274,9 +402,16 @@
   <!-- About -->
   <section id="about" class="about">
     <h2 class="section-title">About BizzyBills</h2>
-    <p>BizzyBills is your go-to platform for fast and reliable services, including Data Subscription, Airtime Recharge, Electricity Bill Payment, and Cable TV Recharge — all at the best rates.</p>
+    <p>BizzyBills is your go-to platform for fast and reliable services, including Data Subscription, Airtime Recharge, Electricity Bill Payment, and Cable TV Recharge, all at the best rates.</p>
     <p>Experience convenience, speed, and affordability in one place.</p>
     <a href="/register.html" class="cta-btn">Get Started</a>
+
+        <!-- Sticky APK Download Bar -->
+        <div class="download-apk-bar">
+          <span style="margin-right: 10px;">📱 Download our App:</span>
+          <a href="/apk/bizzybills.apk" download>Download APK</a>
+        </div>
+
   </section>
 
   <!-- Footer -->
@@ -297,6 +432,42 @@
     }, {threshold: 0.2});
 
     animateElements.forEach(el => observer.observe(el));
+  </script>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const closeBtn = document.getElementById('close-btn');
+
+    // Create overlay dynamically
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    document.body.appendChild(overlay);
+
+    // Open sidebar
+    menuToggle.addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      overlay.classList.add('show');
+    });
+
+    // Close sidebar
+    closeBtn.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+
+    // Click outside closes it
+    overlay.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+
+    // Auto-close when clicking a link
+    document.querySelectorAll('#mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+    });
   </script>
 </body>
 </html>
