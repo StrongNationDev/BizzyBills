@@ -178,6 +178,7 @@ verifyBtn.addEventListener("click", async () => {
         setTimeout(() => {
           document.body.removeChild(overlay);
           window.location.href = "cableconfirm.html";
+        //   window.location.href = "./Confirm-Detail";
         }, 1500);
       }
     }
