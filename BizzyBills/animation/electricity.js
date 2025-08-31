@@ -2,8 +2,6 @@ const providers = [
   { name: "IKEDC", icon: "icons/ikedc.png" },
   { name: "IBEDC", icon: "icons/ibedc.png" },
   { name: "EEDC", icon: "icons/eedc.png" },
-  { name: "EKEDC", icon: "icons/ekedc.png" },
-  { name: "BEDC", icon: "icons/bedc.png" }
 ];
 
 let selectedProviderIdx = 0; 
