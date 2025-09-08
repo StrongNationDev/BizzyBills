@@ -36,10 +36,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   // Step 2: Sign up in Supabase Auth
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
-    password,
-    options: {
-      emailRedirectTo: 'https://www.bizzybillsng.store/verified.html'
-    }
+    password
   });
 
   if (authError || !authData?.user?.id) {
