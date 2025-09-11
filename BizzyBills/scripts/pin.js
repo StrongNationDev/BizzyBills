@@ -105,7 +105,18 @@ async function verifyAndTransact() {
 
   const result = await response.json();
 
-  if (!response.ok || result.Status !== 'successful') {
+
+  // updating this to check for both response.ok and result.Status
+
+  // if (!response.ok || result.Status !== 'successful') {
+
+    const isSuccess = 
+    result.Status?.toLowerCase() === 'successful' || 
+    result.status === true || 
+    result.message?.toLowerCase().includes('success');
+
+  if (!response.ok || !isSuccess) {
+
     // Airtime failed — REFUND
     await fetch('https://bizzybillsng-sambas-api.onrender.com/api/refund-user', {
       // await fetch('http://localhost:5000/api/refund-user', {
