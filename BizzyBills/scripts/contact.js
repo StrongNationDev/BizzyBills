@@ -13,7 +13,7 @@
     };
 
     // Send email
-    emailjs.send("service_qgcygqo", "template_xxx", templateParams)
+    emailjs.send("service_qgcygqo", "template_xr7md0a", templateParams)
       .then(function(response) {
         alert("✅ Message sent successfully!");
         document.getElementById('contactForm').reset(); // clear form
