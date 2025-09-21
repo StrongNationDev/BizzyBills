@@ -21,77 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-
-
-
-// updating notification bar
-// async function checkNotifications() {
-//   const user = await getCurrentUser();
-//   if (!user) return;
-
-//   const notifications = user.notifications || [];
-
-//   if (notifications.length === 0) return;
-
-//   const latest = notifications[notifications.length - 1];
-
-//   showNotificationBadge(notifications.length);
-
-//   const lastSeen = localStorage.getItem(`lastSeen_${user.id}`);
-//   const latestTimestamp = new Date(latest.timestamp).getTime();
-
-//   if (!lastSeen || latestTimestamp > parseInt(lastSeen)) {
-//     showPopupAlert(`Hey @${user.username}, you received inbox in your notification box!`);
-//     showSystemNotification(latest.title, latest.body);
-//   }
-
-//   localStorage.setItem(`lastSeen_${user.id}`, latestTimestamp);
-// }
-
-// function showNotificationBadge(count) {
-//   let bell = document.querySelector('.bell-icon');
-//   if (!bell) return;
-
-//   let oldBadge = document.querySelector('.notification-badge');
-//   if (oldBadge) oldBadge.remove();
-
-//   let badge = document.createElement('span');
-//   badge.className = 'notification-badge';
-//   badge.textContent = count;
-//   bell.parentElement.style.position = 'relative';
-//   bell.parentElement.appendChild(badge);
-// }
-
-// function showPopupAlert(message) {
-//   let popup = document.createElement('div');
-//   popup.className = 'popup-alert';
-//   popup.textContent = message;
-
-//   document.body.appendChild(popup);
-
-//   setTimeout(() => popup.classList.add('show'), 100);
-//   setTimeout(() => popup.classList.remove('show'), 4000);
-//   setTimeout(() => popup.remove(), 4500);
-// }
-
-// function showSystemNotification(title, body) {
-//   if (!("Notification" in window)) return;
-
-//   if (Notification.permission === "granted") {
-//     new Notification(title, { body });
-//   } else if (Notification.permission !== "denied") {
-//     Notification.requestPermission().then(permission => {
-//       if (permission === "granted") {
-//         new Notification(title, { body });
-//       }
-//     });
-//   }
-// }
-
-// checkNotifications();
-
-
-
 async function checkNotifications() {
   const user = await getCurrentUser();
   if (!user) return;
@@ -196,3 +125,88 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 checkNotifications();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// updating notification bar
+// async function checkNotifications() {
+//   const user = await getCurrentUser();
+//   if (!user) return;
+
+//   const notifications = user.notifications || [];
+
+//   if (notifications.length === 0) return;
+
+//   const latest = notifications[notifications.length - 1];
+
+//   showNotificationBadge(notifications.length);
+
+//   const lastSeen = localStorage.getItem(`lastSeen_${user.id}`);
+//   const latestTimestamp = new Date(latest.timestamp).getTime();
+
+//   if (!lastSeen || latestTimestamp > parseInt(lastSeen)) {
+//     showPopupAlert(`Hey @${user.username}, you received inbox in your notification box!`);
+//     showSystemNotification(latest.title, latest.body);
+//   }
+
+//   localStorage.setItem(`lastSeen_${user.id}`, latestTimestamp);
+// }
+
+// function showNotificationBadge(count) {
+//   let bell = document.querySelector('.bell-icon');
+//   if (!bell) return;
+
+//   let oldBadge = document.querySelector('.notification-badge');
+//   if (oldBadge) oldBadge.remove();
+
+//   let badge = document.createElement('span');
+//   badge.className = 'notification-badge';
+//   badge.textContent = count;
+//   bell.parentElement.style.position = 'relative';
+//   bell.parentElement.appendChild(badge);
+// }
+
+// function showPopupAlert(message) {
+//   let popup = document.createElement('div');
+//   popup.className = 'popup-alert';
+//   popup.textContent = message;
+
+//   document.body.appendChild(popup);
+
+//   setTimeout(() => popup.classList.add('show'), 100);
+//   setTimeout(() => popup.classList.remove('show'), 4000);
+//   setTimeout(() => popup.remove(), 4500);
+// }
+
+// function showSystemNotification(title, body) {
+//   if (!("Notification" in window)) return;
+
+//   if (Notification.permission === "granted") {
+//     new Notification(title, { body });
+//   } else if (Notification.permission !== "denied") {
+//     Notification.requestPermission().then(permission => {
+//       if (permission === "granted") {
+//         new Notification(title, { body });
+//       }
+//     });
+//   }
+// }
+
+// checkNotifications();

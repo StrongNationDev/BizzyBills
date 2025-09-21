@@ -29,24 +29,26 @@ const dataPlans = {
       { id: 837, label: '110.OMB - ₦98 (1Days) MTN GIFTING' },
       { id: 856, label: '230.OMB - ₦260 (1Days) MTN GIFTING' },
       { id: 845, label: '500.OMB - ₦348 (1Days) MTN GIFTING' },
-      { id: 848, label: '1.0 MB - ₦500 (1-2Days) MTN GIFTING' },
+      { id: 848, label: '1.0 MB - ₦515 (1-2Days) MTN GIFTING' },
       { id: 935, label: '1.2 MB - ₦500 (1 Month) (WhatsApp, F.B.& I.G)' },
       { id: 927, label: '500 MB - ₦530 (7 Days) MTN GIFTING' },
       { id: 928, label: '750 MB - ₦500 (3Days MTN Pulse Users) MTN GIFTING' },
       { id: 881, label: '1.5 GB - ₦650 (2-3Days) MTN GIFTING' },
-      { id: 921, label: '1.0 GB - ₦810 (7Days MTN Pulse Users)' },
+      { id: 921, label: '1.0 GB - ₦835 (7Days MTN Pulse Users)' },
       { id: 929, label: '1.2 GB - ₦800 (7Days MTN Pulse Users)' },
-      { id: 850, label: '2.0 GB - ₦800 (2-3Days) MTN GIFTING' },
+      { id: 850, label: '2.0 GB - ₦820 (2-3Days) MTN GIFTING' },
       { id: 834, label: '2.5 GB - ₦775 (1Days) MTN GIFTING' },
-      { id: 870, label: '2.5 GB - ₦915 (2-3Days) MTN GIFTING' },
-      { id: 838, label: '1.5 GB - ₦1010 (7 Days) MTN GIFTING' },
+      { id: 870, label: '2.5 GB - ₦925 (2-3Days) MTN GIFTING' },
+      { id: 838, label: '1.5 GB - ₦1025 (7 Days) MTN GIFTING' },
       { id: 833, label: '3.2 GB - ₦1020 (2-3Days) MTN GIFTING' },
-      { id: 866, label: '3.5 GB - ₦1515 (7 Days) MTN GIFTING' },
-      { id: 841, label: '2.0 GB - ₦1525 (1 Month) MTN GIFTING' },
+      { id: 866, label: '3.5 GB - ₦1525 (7 Days) MTN GIFTING' },
+      { id: 841, label: '2.0 GB - ₦1535 (1 Month) MTN GIFTING' },
       { id: 843, label: '2.7 GB - ₦2030 (1 Month) MTN GIFTING' },
       { id: 842, label: '3.5 GB - ₦2510 (1 Month) MTN GIFTING' },
       { id: 849, label: '6.0 GB - ₦2510 (7Days) MTN GIFTING' },
-      { id: 853, label: '7.0 GB - ₦3500 (1 Month) MTN GIFTING' },
+      
+      // { id: 853, label: '7.0 GB - ₦3500 (1 Month) MTN GIFTING' },
+      
       { id: 847, label: '11.0 GB - ₦3475 (7 Days) MTN GIFTING' },
       { id: 882, label: '10.0 GB - ₦4485 (1 Month) MTN GIFTING' },
       { id: 934, label: '12.0 GB - ₦4230 (1Month Wifi Only) MTN GIFTING' },
@@ -58,17 +60,17 @@ const dataPlans = {
       { id: 933, label: '30.0 GB - ₦9230 (1 Month Wifi Only) MTN GIFTING'},
       { id: 863, label: '36.0 GB - ₦9980 (1 Month) MTN GIFTING'},
       { id: 862, label: '75.0 GB - ₦17485 (1 Month) MTN GIFTING'},
-      { id: 860, label: '90.0 GB - ₦24485 (2 Month) MTN GIFTING'},
+      { id: 860, label: '90.0 GB - ₦24185 (2 Month) MTN GIFTING'},
       { id: 861, label: '150.0 GB - ₦38050 (2 Month) MTN GIFTING'},
       { id: 859, label: '200.0 GB - ₦48030 (2 Month) MTN GIFTING'},
     ]
   },
   2: { // GLO
     "GLO GIFTING": [
-      { id: 539, label: '750 MB - ₦210 (1-2Days) GLO GIFTING' },
-      { id: 421, label: '1.5 GB - ₦315 (1-2 Days) GLO GIFTING'},
-      { id: 476, label: '2.5 GB - ₦495 (2-3Days) GLO GIFTING'},
-      { id: 476, label: '10.0 GB - ₦2020 (7Days) GLO GIFTING'},
+      { id: 539, label: '750 MB - ₦230 (1-2Days) GLO GIFTING' },
+      { id: 421, label: '1.5 GB - ₦325 (1-2 Days) GLO GIFTING'},
+      { id: 476, label: '2.5 GB - ₦535 (2-3Days) GLO GIFTING'},
+      { id: 476, label: '10.0 GB - ₦2030 (7Days) GLO GIFTING'},
     ],
     "GLO CORPORATE GIFTING": [
       { id: 902, label: '200 MB - ₦110 (1 Month) GLO CORPORATE GIFTING'},
@@ -86,37 +88,51 @@ const dataPlans = {
   4: { // AIRTEL
     "AIRTEL GIFTING": [
       { id: 923, label: '150.0 MB - ₦85 (1Day Dont owe debt) AIRTEL GIFTING' },
-      { id: 867, label: '100 MB - ₦110 (1Days) AIRTEL GIFTING' },
-      { id: 925, label: '300  MB - ₦140 (1Days Dont owe debt) AIRTEL GIFTING'},
-      { id: 868, label: '200 MB - ₦210 (1Days) AIRTEL GIFTING' },
-      { id: 926, label: '600 MB - ₦290 (2Days Dont owe debt) AIRTEL GIFTING' },
-      { id: 869, label: '300 MB - ₦315 (1 Days) AIRTEL GIFTING' },
-      { id: 749, label: '1.5 GB - ₦480 (1-2Days Dont owe debt) AIRTEL GIFTING' },
-      { id: 741, label: '2.0 GB - ₦675 (2Days Dont owe debt) AIRTEL GIFTING' },
-      { id: 763, label: '1.0 GB - ₦815 (7Days) AIRTEL GIFTING' },
-      { id: 890, label: '2.0 GB - ₦780 (2Days) AIRTEL GIFTING' },
-      { id: 748, label: '4.0 GB - ₦875 (2Days Dont owe debt) AIRTEL GIFTING' },
-      { id: 767, label: '1.5 GB - ₦1080 (7Days) AIRTEL GIFTING' },
-      { id: 920, label: '3.2 GB - ₦1020 (2-3 Days) AIRTEL GIFTING'},
-      { id: 809, label: '5.0 GB - ₦1515 (2-3Days) AIRTEL GIFTING'},
-      { id: 829, label: '3.5 GB - ₦1520 (7 Days) AIRTEL GIFTING'},
-      { id: 769, label: '3.0 GB - ₦2020 (1month) AIRTEL GIFTING'},
-      { id: 757, label: '7.0 GB - ₦2120 (7Days Dont owe debt) AIRTEL GIFTING'},
-      { id: 770, label: '4.0 GB - ₦2520 (1month) AIRTEL GIFTING'},
-      { id: 771, label: '8.0 GB - ₦3015 (1month) AIRTEL GIFTING'},
-      { id: 758, label: '10.0 GB - ₦3080 (7Days Dont owe debt) AIRTEL GIFTING'},
-      { id: 773, label: '13.0 GB - ₦5015 (1month) AIRTEL GIFTING'},
-      { id: 774, label: '18.0 GB - ₦6020 (1month) AIRTEL GIFTING'},
-      { id: 775, label: '25.0 GB - ₦8030 (1month) AIRTEL GIFTING'},
-      { id: 776, label: '35.0 GB - ₦9980 (1month) AIRTEL GIFTING'},
-      { id: 777, label: '60.0 GB - ₦15025 (1month) AIRTEL GIFTING'},
+      { id: 925, label: '300  MB - ₦160 (1Days Dont owe debt) AIRTEL GIFTING'},
+      { id: 926, label: '600 MB - ₦295 (2Days Dont owe debt) AIRTEL GIFTING' },
+      { id: 758, label: '10.0 GB - ₦3140 (7Days Dont owe debt) AIRTEL GIFTING'},
+      { id: 773, label: '13.0 GB - ₦5540 (1month) AIRTEL GIFTING'},
+      { id: 776, label: '35.0 GB - ₦10040 (1month) AIRTEL GIFTING'},
+      
+
+
+
+      // { id: 890, label: '2.0 GB - ₦780 (2Days) AIRTEL GIFTING' },
+      
+      // { id: 767, label: '1.5 GB - ₦1035 (7Days) AIRTEL GIFTING' },
+
+
+      // { id: 757, label: '7.0 GB - ₦2120 (7Days Dont owe debt) AIRTEL GIFTING'},
+      
+
+      // { id: 771, label: '8.0 GB - ₦3015 (1month) AIRTEL GIFTING'},
+      
+      // { id: 774, label: '18.0 GB - ₦6020 (1month) AIRTEL GIFTING'},
+      
+      // { id: 775, label: '25.0 GB - ₦8030 (1month) AIRTEL GIFTING'},
+      
+      // { id: 777, label: '60.0 GB - ₦15025 (1month) AIRTEL GIFTING'},
     ],
     "AIRTEL CORPORATE GIFTING": [
-      { id: 889, label: '1.5 GB - ₦640 (2 - 3 Days) AIRTEL CORPORATE GIFTING'},
-      { id: 768, label: '2.0 GB - ₦1515 (1 Month) AIRTEL CORPORATE GIFTING'},
+      { id: 867, label: '100 MB - ₦120 (1Days) AIRTEL GIFTING' },
+      { id: 868, label: '200 MB - ₦230 (1Days) AIRTEL GIFTING' },
+      { id: 869, label: '300 MB - ₦325 (1 Days) AIRTEL GIFTING' },
+      { id: 749, label: '1.5 GB - ₦530 (1-2Days Dont owe debt) AIRTEL GIFTING' },
+      { id: 741, label: '2.0 GB - ₦680 (2Days Dont owe debt) AIRTEL GIFTING' },
+      { id: 763, label: '1.0 GB - ₦820 (7Days) AIRTEL GIFTING' },
+      { id: 767, label: '1.5 GB - ₦1035 (7Days) AIRTEL GIFTING' },
+      { id: 920, label: '3.2 GB - ₦1035 (2-3 Days) AIRTEL GIFTING'},
+      { id: 829, label: '3.5 GB - ₦1530 (7 Days) AIRTEL GIFTING'},
+      { id: 809, label: '5.0 GB - ₦1535 (2-3Days) AIRTEL GIFTING'},
+      { id: 769, label: '3.0 GB - ₦2040 (1month) AIRTEL GIFTING'},
+      { id: 770, label: '4.0 GB - ₦2540 (1month) AIRTEL GIFTING'},
+      
+
+      // { id: 889, label: '1.5 GB - ₦640 (2 - 3 Days) AIRTEL CORPORATE GIFTING'},
+      { id: 768, label: '2.0 GB - ₦1535 (1 Month) AIRTEL CORPORATE GIFTING'},
       { id: 961, label: '4.0 GB - ₦875 (2-3Days) AIRTEL CORPORATE GIFTING' },,
-      { id: 809, label: '1.0 GB - ₦1625 (2-3Days) AIRTEL CORPORATE GIFTING' },
-      { id: 772, label: '10.0 GB - ₦3125 (1 Month) AIRTEL CORPORATE GIFTING' },
+      // { id: 809, label: '1.0 GB - ₦1625 (2-3Days) AIRTEL CORPORATE GIFTING' },
+      // { id: 772, label: '10.0 GB - ₦3125 (1 Month) AIRTEL CORPORATE GIFTING' },
     ]
   }
 };
