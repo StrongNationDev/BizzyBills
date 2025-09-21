@@ -105,8 +105,7 @@ const dataPlans = {
       // { id: 757, label: '7.0 GB - ₦2120 (7Days Dont owe debt) AIRTEL GIFTING'},
       
 
-      // { id: 771, label: '8.0 GB - ₦3015 (1month) AIRTEL GIFTING'},
-      
+
       // { id: 774, label: '18.0 GB - ₦6020 (1month) AIRTEL GIFTING'},
       
       // { id: 775, label: '25.0 GB - ₦8030 (1month) AIRTEL GIFTING'},
@@ -126,6 +125,7 @@ const dataPlans = {
       { id: 809, label: '5.0 GB - ₦1535 (2-3Days) AIRTEL GIFTING'},
       { id: 769, label: '3.0 GB - ₦2040 (1month) AIRTEL GIFTING'},
       { id: 770, label: '4.0 GB - ₦2540 (1month) AIRTEL GIFTING'},
+      { id: 771, label: '8.0 GB - ₦3050 (1month) AIRTEL GIFTING'},
       
 
       // { id: 889, label: '1.5 GB - ₦640 (2 - 3 Days) AIRTEL CORPORATE GIFTING'},
