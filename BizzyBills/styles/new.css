@@ -342,17 +342,17 @@ body.dark-mode .light-bell {
 
 .transaction-amount {
   font-weight: 700;
-  color: var(--card-text); /* ✅ Matches light/dark theme */
+  color: var(--card-text);
 }
 
 .transaction-status {
   font-weight: 600;
   font-size: 11px;
-  color: #3ba55d; /* success stays green (works in both modes) */
+  color: #3ba55d;
 }
 .transaction-status.failed {
   color: red;
 }
 .transaction-status.success {
-  color: #3ba55d; /* green */
+  color: #3ba55d;
 }
