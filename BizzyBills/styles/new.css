@@ -77,6 +77,17 @@ body {
   cursor: pointer;
   filter: var(--icon-filter);
 }
+.dark-bell {
+  display: none;
+}
+
+body.dark-mode .dark-bell {
+  display: inline;
+}
+
+body.dark-mode .light-bell {
+  display: none;
+}
 
 .notification-wrapper {
   position: relative;
@@ -280,62 +291,7 @@ body {
 
 
 
-
 /* =========================
-   RESPONSIVE DESIGN
-========================= */
-  /* .transaction {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-    padding: 14px 16px;
-    margin-bottom: 14px;
-    font-size: 13px;
-    color: #1c1c1c;
-    cursor: default;
-  }
-  .transaction-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .transaction-icon img {
-    width: 26px;
-    height: 26px;
-  }
-  .transaction-info {
-    display: flex;
-    flex-direction: column;
-  }
-  .transaction-label {
-    font-weight: 600;
-  }
-  .transaction-date {
-    font-weight: 400;
-    font-size: 11px;
-    color: #7e7e7e;
-  }
-  .transaction-right {
-    text-align: right;
-  }
-  .transaction-amount {
-    font-weight: 700;
-    color: #1c1c1c;
-  }
-  .transaction-status {
-    font-weight: 600;
-    font-size: 11px;
-    color: #3ba55d;
-  } */
-
-
-
-
-
-  /* =========================
    TRANSACTIONS (Light/Dark Compatible)
 ========================= */
 .transaction {
@@ -393,4 +349,10 @@ body {
   font-weight: 600;
   font-size: 11px;
   color: #3ba55d; /* success stays green (works in both modes) */
+}
+.transaction-status.failed {
+  color: red;
+}
+.transaction-status.success {
+  color: #3ba55d; /* green */
 }
