@@ -170,7 +170,7 @@ function getTransactionIcon(tx) {
   switch (type) {
     case 'airtime': return 'icons/airtime.png';
     case 'data': return 'icons/data.png';
-    case 'deposit': return 'icons/wallet.png';
+    case 'deposit': return 'icons/fund.png';
     case 'cable': return 'icons/cable.png';
     case 'electricity': return 'icons/electricity.png';
     default: return 'icons/transaction.png';

@@ -53,6 +53,11 @@ body {
   z-index: 1;
 }
 
+.nav-link img{
+  width: auto;
+  height: 25px;
+}
+
 .bell-btn.jump,
 .back-btn.jump {
   animation: jumpOut 0.6s ease-out forwards;
