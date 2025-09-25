@@ -1,101 +1,156 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
 body {
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.welcome-container {
-    width: 100%;
-    max-width: 400px;
-    background: #fff;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.top-section {
-    background: linear-gradient(135deg, #5c2ed8, #01c1f6);
-    padding: 40px 0 20px 0;
-    text-align: center;
-    border-bottom-left-radius: 50px 20px;
+.emoji img {
+  width: auto;
+  height: 80px;
+  margin-bottom: 1rem;
 }
 
-.top-section img.logo {
-    width: 100px;
-    height: auto;
+.welcome-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #000000;
 }
 
-.content-section {
-    padding: 30px 20px;
-    text-align: center;
+.username {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
 }
 
-h2 {
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 22px;
+#password-input {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 1rem;
 }
 
-.btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 25px;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
+#sign-in-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #3c00a0;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
 }
 
-.primary-btn {
-    background: linear-gradient(135deg, #5c2ed8, #01c1f6);
-    color: white;
+#sign-in-btn:active {
+  transform: scale(0.98);
 }
 
-.secondary-btn {
-    border: 1px solid #5c2ed8;
-    color: #5c2ed8;
-    background: transparent;
+.sign-out {
+  font-size: 0.95rem;
+  color: #666;
+  cursor: pointer;
 }
 
-.secondary-btn:hover {
-    background: #5c2ed8;
-    color: white;
+.sign-out:hover {
+  text-decoration: underline;
 }
 
-.social-login {
-    margin: 20px 0 10px 0;
+/* Responsive for very small phones */
+@media (max-width: 360px) {
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  #password-input, #sign-in-btn {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
 }
 
-.social-login a {
-    color: white;
-    background: #5c2ed8;
-    padding: 10px;
-    margin: 0 5px;
-    border-radius: 50%;
-    display: inline-block;
-    font-size: 14px;
+
+
+
+
+/* ===== Modal Styles ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.alt-login {
-    font-size: 12px;
-    color: #777;
+.modal.show {
+  display: flex;
+  opacity: 1;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-    .welcome-container {
-        max-width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-    }
+.modal-content {
+  background: var(--modal-bg, #fff);
+  color: var(--modal-text, #333);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 80%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9);
+  transition: transform 0.25s ease-in-out;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+#modal-message {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+#modal-close-btn {
+  background: #4b0082;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+#modal-close-btn:hover {
+  background: #360061;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .modal-content {
+    background: #1e1e1e;
+    color: #fff;
+  }
 }

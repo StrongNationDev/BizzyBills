@@ -119,7 +119,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (this.checked) {
       setTimeout(() => {
         supabase.auth.signOut();
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
       }, 500);
     }
   });
