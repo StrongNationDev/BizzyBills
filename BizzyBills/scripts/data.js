@@ -109,6 +109,20 @@ const dataPlans = {
 
     ],
     "AIRTEL CORPORATE GIFTING": [
+      { id: 867, label: '100 MB - ₦120 (1Days) AIRTEL GIFTING' },
+      { id: 868, label: '200 MB - ₦220 (1Days) AIRTEL GIFTING' },
+      { id: 869, label: '300 MB - ₦325 (1 Days) AIRTEL GIFTING' },
+      { id: 964, label: '1.5 GB - ₦540 (1-2Days) AIRTEL GIFTING' },
+      { id: 702, label: '2.0 GB - ₦685 (5 Days) AIRTEL GIFTING' },
+      { id: 763, label: '1.0 GB - ₦825 (7Days) AIRTEL GIFTING' },
+      { id: 767, label: '1.5 GB - ₦995 (7Days) AIRTEL GIFTING' }, //extra
+      { id: 961, label: '4.0 GB - ₦880 (2-3 Days) AIRTEL GIFTING'},
+      { id: 767, label: '1.5 GB - ₦1040 (7 Days) AIRTEL GIFTING'},
+      { id: 920, label: '3.2 GB - ₦1045 (2-3Days) AIRTEL GIFTING'},
+      { id: 829, label: '3.5 GB - ₦1540 (7 Days) AIRTEL GIFTING'},
+      { id: 768, label: '2.0 GB - ₦1540 (1month) AIRTEL GIFTING'},
+      { id: 809, label: '5.0 GB - ₦1550 (2-3Days) AIRTEL GIFTING'},
+      
       // { id: 867, label: '100 MB - ₦120 (1Days) AIRTEL GIFTING' },
       // { id: 868, label: '200 MB - ₦230 (1Days) AIRTEL GIFTING' },
       // { id: 869, label: '300 MB - ₦325 (1 Days) AIRTEL GIFTING' },
