@@ -1,0 +1,27 @@
+/* theme.css */
+:root {
+  --bg-color: #f8f6ff;
+  --text-color: #1a1a1a;
+  --card-bg: #ffffff;
+  --accent-color: #5a3fff;
+  --muted-text: #666;
+}
+
+body.dark {
+  --bg-color: #0d0d0d;
+  --text-color: #ffffff;
+  --card-bg: #1a1a1a;
+  --accent-color: #8c7aff;
+  --muted-text: #aaa;
+}
+
+/* Apply basic dark/light globally */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+button, input, .card {
+  background: var(--card-bg);
+  color: var(--text-color);
+}
