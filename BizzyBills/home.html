@@ -227,26 +227,10 @@
 
   <script src="messages.js"></script>
   <script type="module" src="./scripts/profile.js"></script>
-  <!-- <script src="./animation/home.js"></script> -->
   <script type="module" src="./scripts/user.js"></script>
   <script type="module" src="./scripts/homehistory.js"></script>
   <script type="module" src="./scripts/home.js"></script>
-
-
-
-
-
-  <script>
-    // Simple Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      themeToggle.src = document.body.classList.contains('dark-mode') 
-        ? 'icons/moon.png' 
-        : 'icons/sun.png';
-    });
-  </script>
-
+<script src="./scripts/theme.js" type="module"></script>
 </body>
 </html>
 

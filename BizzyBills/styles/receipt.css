@@ -7,7 +7,7 @@
   --muted-text: #666;
 }
 
-body.dark {
+body.dark-mode {
   --bg-color: #0d0d0d;
   --text-color: #ffffff;
   --card-bg: #1a1a1a;
