@@ -11,7 +11,7 @@ const dataPlans = {
   1: { // MTN
     "MTN SME": [
       { id: 946, label: '1.0 GB - ₦540 (7 Day) MTN SME' },
-      { id: 691, label: '1.0 GB - ₦560 (1 Month) MTN SME' },
+      { id: 691, label: '1.0 GB - ₦650 (1 Month) MTN SME' },
       { id: 663, label: '2.0 GB - ₦1090 (1 Month) MTN SME' },
       { id: 716, label: '3.0 GB - ₦1645 (1 Month) MTN SME' },
       { id: 717, label: '5.0 GB - ₦2240 (1 Month) MTN SME' },
