@@ -1,0 +1,22 @@
+/* styles/dark-mode.css */
+body.dark-mode {
+  background: #000;
+  color: #fff;
+}
+
+body.dark-mode a {
+  color: #8c7aff;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+body.dark-mode button {
+  background: #333;
+  color: #fff;
+}
