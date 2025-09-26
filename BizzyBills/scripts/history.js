@@ -1,7 +1,4 @@
 // history.js
-// Put this into your history page and include as a module:
-// <script type="module" src="./history.js"></script>
-
 import { getCurrentUser, supabase } from './user.js';
 
 function formatCurrency(amount) {
@@ -246,132 +243,6 @@ document.addEventListener('DOMContentLoaded', loadHistory);
 
 
 
-
-
-
-
-// for home.html page popualetion
-// Add this new function at the very end of history.js
-
-async function loadRecentTransactionsForHome() {
-  const profile = await getCurrentUser();
-  if (!profile) {
-    console.error('No user logged in or could not fetch profile.');
-    return;
-  }
-
-  let transactions = [];
-
-  // 1) From profile arrays
-  if (Array.isArray(profile.transactions) && profile.transactions.length) transactions = profile.transactions;
-  else if (Array.isArray(profile.history) && profile.history.length) transactions = profile.history;
-  else if (Array.isArray(profile.transaction_history) && profile.transaction_history.length) transactions = profile.transaction_history;
-
-  // 2) Try parsing JSON strings in profile
-  if (!transactions.length) {
-    for (const [k, v] of Object.entries(profile)) {
-      if (Array.isArray(v) && v.length) {
-        const isTxLike = v.some(it => it && (it.type || it.amount || it.time || it.timestamp));
-        if (isTxLike) {
-          transactions = v;
-          break;
-        }
-      } else if (typeof v === 'string') {
-        const parsed = tryParseJsonIfString(v);
-        if (Array.isArray(parsed) && parsed.length) {
-          const isTxLike = parsed.some(it => it && (it.type || it.amount || it.time || it.timestamp));
-          if (isTxLike) {
-            transactions = parsed;
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  // 3) Fallback: query candidate tables
-  if (!transactions.length) {
-    const fallback = await fetchTransactionsFromCandidateTables(profile.id);
-    if (Array.isArray(fallback) && fallback.length) transactions = fallback;
-  }
-
-  if (!Array.isArray(transactions) || !transactions.length) {
-    console.warn('No transactions found for recent history.');
-    return;
-  }
-
-  // Keep only the last 5
-  const recent5 = transactions
-    .slice() // copy array
-    .sort((a, b) => new Date(b.created_at || b.time || b.timestamp) - new Date(a.created_at || a.time || a.timestamp))
-    .slice(0, 5);
-
-  const container = document.getElementById('lastrecenthistory');
-  if (!container) return;
-
-  container.innerHTML = ''; // clear any existing
-
-  recent5.forEach(tx => {
-    const card = document.createElement('div');
-    card.classList.add('transaction-card');
-
-    // Icon based on network/type
-    let iconSrc = '';
-    const net = normalizeNetwork(tx);
-    if (/mtn/.test(net)) iconSrc = 'icons/mtn.png';
-    else if (/glo/.test(net)) iconSrc = 'icons/glo.png';
-    else if (/airtel/.test(net)) iconSrc = 'icons/airtel.png';
-    else iconSrc = 'icons/default.png';
-
-    const img = document.createElement('img');
-    img.src = iconSrc;
-    img.alt = net || 'Transaction';
-    img.classList.add('tx-icon');
-
-    const details = document.createElement('div');
-    details.classList.add('tx-details');
-
-    const title = document.createElement('strong');
-    title.textContent = getTitleForTx(tx);
-
-    const dateP = document.createElement('p');
-    dateP.textContent = formatDate(tx.created_at ?? tx.time ?? tx.timestamp);
-
-    const costP = document.createElement('p');
-    costP.innerHTML = `Cost: <strong>${formatCurrency(tx.amount ?? tx.original_amount ?? tx.provider_response?.plan_amount ?? 0)}</strong>`;
-
-    details.appendChild(title);
-    details.appendChild(dateP);
-    details.appendChild(costP);
-
-    const btn = document.createElement('button');
-    btn.classList.add('receipt-btn', 'yellow');
-    btn.textContent = 'Open Receipt';
-    btn.addEventListener('click', () => {
-      try {
-        localStorage.setItem('selectedTransaction', JSON.stringify(tx));
-      } catch (err) {
-        console.error('Could not save selectedTransaction to localStorage', err);
-      }
-      const t = (tx.type || '').toLowerCase();
-      if (t === 'airtime') window.location.href = 'myairtimereceipt.html';
-      else window.location.href = 'mydatareceipt.html';
-    });
-
-    card.appendChild(img);
-    card.appendChild(details);
-    card.appendChild(btn);
-
-    container.appendChild(card);
-  });
-}
-
-// If you want it to auto-load on home.html:
-if (document.getElementById('lastrecenthistory')) {
-  document.addEventListener('DOMContentLoaded', loadRecentTransactionsForHome);
-}
-
-
 // screen loader
 window.addEventListener('DOMContentLoaded', async () => {
   const user = await getCurrentUser();
@@ -384,3 +255,139 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('loading-overlay').classList.add('fade-out');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// for home.html page popualetion
+// Add this new function at the very end of history.js
+
+// async function loadRecentTransactionsForHome() {
+//   const profile = await getCurrentUser();
+//   if (!profile) {
+//     console.error('No user logged in or could not fetch profile.');
+//     return;
+//   }
+
+//   let transactions = [];
+
+//   // 1) From profile arrays
+//   if (Array.isArray(profile.transactions) && profile.transactions.length) transactions = profile.transactions;
+//   else if (Array.isArray(profile.history) && profile.history.length) transactions = profile.history;
+//   else if (Array.isArray(profile.transaction_history) && profile.transaction_history.length) transactions = profile.transaction_history;
+
+//   // 2) Try parsing JSON strings in profile
+//   if (!transactions.length) {
+//     for (const [k, v] of Object.entries(profile)) {
+//       if (Array.isArray(v) && v.length) {
+//         const isTxLike = v.some(it => it && (it.type || it.amount || it.time || it.timestamp));
+//         if (isTxLike) {
+//           transactions = v;
+//           break;
+//         }
+//       } else if (typeof v === 'string') {
+//         const parsed = tryParseJsonIfString(v);
+//         if (Array.isArray(parsed) && parsed.length) {
+//           const isTxLike = parsed.some(it => it && (it.type || it.amount || it.time || it.timestamp));
+//           if (isTxLike) {
+//             transactions = parsed;
+//             break;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   // 3) Fallback: query candidate tables
+//   if (!transactions.length) {
+//     const fallback = await fetchTransactionsFromCandidateTables(profile.id);
+//     if (Array.isArray(fallback) && fallback.length) transactions = fallback;
+//   }
+
+//   if (!Array.isArray(transactions) || !transactions.length) {
+//     console.warn('No transactions found for recent history.');
+//     return;
+//   }
+
+//   // Keep only the last 5
+//   const recent5 = transactions
+//     .slice() // copy array
+//     .sort((a, b) => new Date(b.created_at || b.time || b.timestamp) - new Date(a.created_at || a.time || a.timestamp))
+//     .slice(0, 5);
+
+//   const container = document.getElementById('lastrecenthistory');
+//   if (!container) return;
+
+//   container.innerHTML = ''; // clear any existing
+
+//   recent5.forEach(tx => {
+//     const card = document.createElement('div');
+//     card.classList.add('transaction-card');
+
+//     // Icon based on network/type
+//     let iconSrc = '';
+//     const net = normalizeNetwork(tx);
+//     if (/mtn/.test(net)) iconSrc = 'icons/mtn.png';
+//     else if (/glo/.test(net)) iconSrc = 'icons/glo.png';
+//     else if (/airtel/.test(net)) iconSrc = 'icons/airtel.png';
+//     else iconSrc = 'icons/default.png';
+
+//     const img = document.createElement('img');
+//     img.src = iconSrc;
+//     img.alt = net || 'Transaction';
+//     img.classList.add('tx-icon');
+
+//     const details = document.createElement('div');
+//     details.classList.add('tx-details');
+
+//     const title = document.createElement('strong');
+//     title.textContent = getTitleForTx(tx);
+
+//     const dateP = document.createElement('p');
+//     dateP.textContent = formatDate(tx.created_at ?? tx.time ?? tx.timestamp);
+
+//     const costP = document.createElement('p');
+//     costP.innerHTML = `Cost: <strong>${formatCurrency(tx.amount ?? tx.original_amount ?? tx.provider_response?.plan_amount ?? 0)}</strong>`;
+
+//     details.appendChild(title);
+//     details.appendChild(dateP);
+//     details.appendChild(costP);
+
+//     const btn = document.createElement('button');
+//     btn.classList.add('receipt-btn', 'yellow');
+//     btn.textContent = 'Open Receipt';
+//     btn.addEventListener('click', () => {
+//       try {
+//         localStorage.setItem('selectedTransaction', JSON.stringify(tx));
+//       } catch (err) {
+//         console.error('Could not save selectedTransaction to localStorage', err);
+//       }
+//       const t = (tx.type || '').toLowerCase();
+//       if (t === 'airtime') window.location.href = 'myairtimereceipt.html';
+//       else window.location.href = 'mydatareceipt.html';
+//     });
+
+//     card.appendChild(img);
+//     card.appendChild(details);
+//     card.appendChild(btn);
+
+//     container.appendChild(card);
+//   });
+// }
+
+// // If you want it to auto-load on home.html:
+// if (document.getElementById('lastrecenthistory')) {
+//   document.addEventListener('DOMContentLoaded', loadRecentTransactionsForHome);
+// }
