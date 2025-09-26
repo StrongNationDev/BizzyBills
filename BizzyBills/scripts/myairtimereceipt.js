@@ -48,3 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('TransactionDate').textContent = formatDate(dateVal);
 });
 
+// downkoad function
+// Enable Download Receipt as PNG
+import html2canvas from 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm';
+
+document.getElementById('download-btn')?.addEventListener('click', async () => {
+  const container = document.querySelector('.receipt-container') || document.body;
+
+  // Add a quick "downloading" feedback
+  const btn = document.getElementById('download-btn');
+  btn.textContent = 'Downloading...';
+  btn.disabled = true;
+
+  try {
+    const canvas = await html2canvas(container, {
+      scale: 2, // High resolution for clear PNG
+      useCORS: true // Allows external images like logos
+    });
+
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'BizzyBills-Receipt.png';
+    link.click();
+  } catch (error) {
+    console.error('Download failed:', error);
+    alert('Failed to download receipt.');
+  } finally {
+    btn.textContent = 'Download';
+    btn.disabled = false;
+  }
+});
