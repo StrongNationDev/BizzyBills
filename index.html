@@ -36,11 +36,12 @@
       align-items: center;
       padding: 15px 20px;
     }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #1a73e8;
+    .logo img {
+      height: 40px; /* adjust as needed */
+      width: auto;  /* keeps proportions */
+      display: block;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -267,8 +268,9 @@
 <body>
 <header>
   <div class="navbar">
-    <a href="/" class="logo">BizzyBillsNG</a>
-
+    <a href="/" class="logo">
+      <img src="./icons/favicon.png" alt="BizzyBillsNG Logo">
+    </a>
     <!-- Hamburger Icon for Mobile -->
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
 
