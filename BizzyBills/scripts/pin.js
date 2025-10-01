@@ -67,7 +67,15 @@ async function verifyAndTransact() {
   }
 
   // ✅ Show the loading overlay
-  document.getElementById('loading-overlay').style.display = 'flex';
+  // document.getElementById('loading-overlay').style.display = 'flex';
+  document.getElementById('loading-overlay').classList.add('active');
+
+
+
+
+
+
+
 
   const requestPayload = {
     network: payload.network_id,
@@ -168,7 +176,10 @@ async function verifyAndTransact() {
     window.location.href = 'failed.html';
   } finally {
     // ✅ Always hide the overlay at the end (except on redirect, which ends execution anyway)
-    document.getElementById('loading-overlay').style.display = 'none';
+    // document.getElementById('loading-overlay').style.display = 'none';
+    // Hide overlay
+    document.getElementById('loading-overlay').classList.remove('active');
+
   }
 }
 
