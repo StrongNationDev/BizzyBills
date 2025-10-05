@@ -157,3 +157,44 @@ document.querySelector('.users').prepend(deleteBtn)
 
 // Initial load
 loadUsers()
+
+
+
+
+
+// =======================
+// EXPORT USER DETAILS
+// =======================
+document.getElementById('export-btn').addEventListener('click', async () => {
+  try {
+    const res = await fetch('https://bizzybills-adminserver.onrender.com/users');
+    const users = await res.json();
+
+    if (!Array.isArray(users) || users.length === 0) {
+      alert('No user data available to export.');
+      return;
+    }
+
+    // Prepare header + data rows
+    let csv = 'Full Name,Email\n';
+    users.forEach(user => {
+      const name = (user.full_name || user.username || 'Unknown').replace(/,/g, '');
+      const email = user.email ? user.email.replace(/,/g, '') : '';
+      csv += `${name},${email}\n`;
+    });
+
+    // Create downloadable file
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `BizzyBills_Users_${new Date().toISOString().split('T')[0]}.xlsx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('❌ Export failed:', err);
+    alert('Failed to export user data.');
+  }
+});
