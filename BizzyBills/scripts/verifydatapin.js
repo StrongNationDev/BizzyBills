@@ -25,11 +25,23 @@ keypadButtons.forEach(btn => {
 
     setPinBoxes(pinInput);
 
-    // Auto-submit when 4 digits
+  //   // Auto-submit when 4 digits
+  //   if (pinInput.length === 4) {
+  //     // small delay for UX so boxes render before action
+  //     setTimeout(() => validateAndProcess(pinInput).catch(err => {
+  //       console.error('validateAndProcess error:', err);
+  //     }), 80);
+  //   }
+
+  // Auto-submit when 4 digits
     if (pinInput.length === 4) {
+      // ✅ Show the loading overlay immediately to block the screen
+      if (loadingOverlay) loadingOverlay.classList.add('active');
+
       // small delay for UX so boxes render before action
       setTimeout(() => validateAndProcess(pinInput).catch(err => {
         console.error('validateAndProcess error:', err);
+        if (loadingOverlay) loadingOverlay.classList.remove('active'); // hide if error occurs before validate
       }), 80);
     }
   });
@@ -76,7 +88,8 @@ async function validateAndProcess(pin) {
     }
 
     // show loading overlay (if element exists)
-    if (loadingOverlay) loadingOverlay.style.display = 'flex';
+    // if (loadingOverlay) loadingOverlay.style.display = 'flex';
+    if (loadingOverlay) loadingOverlay.classList.add('active');
 
     // call server - server will check user balance again and perform provider call + wallet update
     const resp = await fetch('https://bizzybillsng-sambas-api.onrender.com/api/data', {
@@ -96,7 +109,9 @@ async function validateAndProcess(pin) {
     const json = await resp.json();
     console.log('📡 Server Response:', json);
 
-    if (loadingOverlay) loadingOverlay.style.display = 'none';
+    // if (loadingOverlay) loadingOverlay.style.display = 'none';
+    if (loadingOverlay) loadingOverlay.classList.remove('active');
+
 
     // success path: server returns { success:true, status:'successful', transaction_id, new_balance, transaction }
     if (json && json.success === true && json.status === 'successful') {
@@ -133,7 +148,6 @@ async function validateAndProcess(pin) {
     // window.location.href = 'datafailed.html';
   }
 }
-
 
 
 
