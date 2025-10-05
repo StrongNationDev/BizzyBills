@@ -1,4 +1,282 @@
-* {
+/* =========================
+   DEFAULT: Desktop/Tablet
+   ========================= */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  padding: 50px;
+}
+
+/* You can even hide the page content by default on desktop if you want: */
+/*
+.container {
+  display: none;
+}
+*/
+
+/* =========================
+   MOBILE VIEW ONLY (iPhone + Android)
+   ========================= */
+@media only screen and (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: #e2e2e2;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+  }
+
+  .top-section {
+    display: flex;
+    flex-direction: row;
+    height: 170px;
+    width: auto;
+    position: relative;
+    text-align: center;
+    background-color: black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+  }
+
+  .top-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .page-title {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .recharge-form {
+    padding: 20px;
+  }
+
+  .label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .network-options {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .network-icon {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+
+  .network-icon.selected-network {
+    background-color: black;
+    border: 2px solid #fff;
+  }
+
+  .amount-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .amount-btn {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px #ccc;
+  }
+
+  .pay-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background: linear-gradient(90deg, #28c4d8, #7b27f5);
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  /* Modal styles */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-box {
+    background-color: #fff;
+    padding: 25px 30px;
+    max-width: 400px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: slideFadeIn 0.3s ease-out;
+  }
+
+  .modal-box p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  #closeModalBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  #closeModalBtn:hover {
+    background-color: #0056b3;
+  }
+
+  @keyframes slideFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading overlay */
+  #loading-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(24, 85, 183, 0.337);
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+  }
+
+  #loading-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden; 
+    pointer-events: none;
+  }
+
+  .loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .loader-logo {
+    width: auto;
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  .loading-bar-container {
+    width: 220px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .loading-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #1855b7;
+    transition: width 0.2s linear;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,7 +290,6 @@ body {
 
 .container {
     width: 90%;
-  /* max-width: 400px; */
   margin: 0 auto;
   padding-bottom: 50px;
 }
@@ -128,7 +405,6 @@ body {
 
 
 
-/* Modal Backdrop */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -143,7 +419,6 @@ body {
   z-index: 1000;
 }
 
-/* Modal Box */
 .modal-box {
   background-color: #fff;
   padding: 25px 30px;
@@ -155,7 +430,6 @@ body {
   animation: slideFadeIn 0.3s ease-out;
 }
 
-/* Modal Text */
 .modal-box p {
   font-size: 16px;
   color: #333;
@@ -163,7 +437,6 @@ body {
   line-height: 1.5;
 }
 
-/* Close Button */
 #closeModalBtn {
   padding: 10px 20px;
   background-color: #007bff;
@@ -179,7 +452,6 @@ body {
   background-color: #0056b3;
 }
 
-/* Entrance Animation */
 @keyframes slideFadeIn {
   from {
     opacity: 0;
@@ -195,10 +467,7 @@ body {
 
 
 
-/* =========================
-   LOADING ANIMATION
-========================= */
-/* loading screen */
+
 #loading-overlay {
   position: fixed;
   inset: 0;
@@ -232,7 +501,6 @@ body {
   border-radius: 50%;
 }
 
-/* Loading bar container */
 .loading-bar-container {
   width: 220px;
   height: 8px;
@@ -241,10 +509,9 @@ body {
   overflow: hidden;
 }
 
-/* Actual bar that fills up */
 .loading-bar {
   width: 0%;
   height: 100%;
   background-color: #1855b7;
   transition: width 0.2s linear;
-}
+} */
