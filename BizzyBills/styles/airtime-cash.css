@@ -1,0 +1,208 @@
+  :root{
+    --bg: #0b0b0b;
+    --card: #111111;
+    --muted: #9a9a9a;
+    --text: #ffffff;
+    --accent: #5a0fe3; /* deep purple */
+    --accent-dark: #3b008d;
+    --input-bg: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.06);
+    --danger: #e74c3c;
+    --radius: 12px;
+    --shadow: 0 4px 18px rgba(0,0,0,0.6);
+    --glass: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    --label-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  /* Light theme override */
+  :root.light {
+    --bg: #f7f7fb;
+    --card: #ffffff;
+    --muted: #69707a;
+    --text: #0b1226;
+    --accent: #4b14d8;
+    --accent-dark: #390fb0;
+    --input-bg: #f1eefc;
+    --border: rgba(11,17,38,0.06);
+    --shadow: 0 8px 20px rgba(21,21,40,0.06);
+    --glass: linear-gradient(180deg, rgba(11,17,38,0.02), rgba(11,17,38,0.01));
+  }
+
+  /* Respect user preference by default */
+  @media (prefers-color-scheme: light) {
+    :root:not(.force-dark) { /* if no explicit class, switch */
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --muted: #69707a;
+      --text: #0b1226;
+      --accent: #4b14d8;
+      --accent-dark: #390fb0;
+      --input-bg: #f1eefc;
+      --border: rgba(11,17,38,0.06);
+      --shadow: 0 8px 20px rgba(21,21,40,0.06);
+    }
+  }
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Container sizing - phone optimized */
+  .screen {
+    max-width:420px; /* limit width for large phones */
+    margin:0 auto;
+    min-height:100vh;
+    padding:18px 16px 28px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  /* Header */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .back-btn {
+    width:40px; height:40px;
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent;
+    border:1px solid var(--border);
+    cursor:pointer;
+    flex:0 0 40px;
+  }
+  .title {
+    font-size:16px;
+    font-weight:600;
+  }
+  .spacer {flex:1;}
+  .theme-toggle {
+    width:36px;height:36px;border-radius:10px;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    background:transparent;
+  }
+
+  /* Form block */
+  .card {
+    background:var(--card);
+    border-radius:14px;
+    padding:14px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  label.section {
+    font-size:var(--label-size);
+    color:var(--muted);
+    padding-left:6px;
+    margin-top:6px;
+  }
+
+  /* Custom select / input style */
+  .select, .input, .amount, .receive-method {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    background:var(--input-bg);
+    border-radius:12px;
+    border:1px solid var(--border);
+    min-height:52px;
+  }
+
+  .select .left, .input .left {
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .network-logo {
+    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:13px;color:#fff;
+    background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+    flex:0 0 38px;
+  }
+
+  .select .label {
+    font-weight:600;
+    font-size:15px;
+  }
+  .right-arrow {
+    margin-left:auto;
+    width:18px;height:18px;opacity:0.9;
+  }
+
+  .phone-field {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+  }
+  .flag {
+    font-size:18px;
+  }
+  .cc {
+    font-weight:700;color:var(--muted);
+  }
+  input[type="tel"], input[type="text"] {
+    background:transparent;border:0;outline:0;color:var(--text);
+    font-size:16px;flex:1;
+  }
+  input::placeholder { color:var(--muted); opacity:0.9; }
+
+  /* Amount field styling */
+  .amount .currency {
+    font-weight:700; font-size:15px; color:var(--muted); min-width:60px;
+  }
+
+  .small-muted {
+    font-size:13px;color:var(--muted); padding-left:4px;
+  }
+
+  /* Proceed button */
+  .btn-wrap { margin-top:8px; }
+  button.proceed {
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:28px;
+    font-weight:700;
+    font-size:16px;
+    color:white;
+    background: linear-gradient(90deg,var(--accent),var(--accent-dark));
+    box-shadow: 0 8px 30px rgba(75,20,216,0.18);
+    cursor:pointer;
+  }
+  button.proceed:disabled {
+    opacity:0.45;
+    cursor:not-allowed;
+    box-shadow:none;
+  }
+
+  /* Subtle separators */
+  .hr { height:1px;background:var(--border);border-radius:1px;margin:6px 0; }
+
+  /* Bottom spacing when keyboard visible on phones */
+  .footer-space { height:10vh; }
+
+  /* Tiny screen adjustments */
+  @media (max-width:360px){
+    .screen { padding:14px; }
+    .network-logo { width:34px;height:34px;font-size:12px; }
+  }
+
+  /* Utility */
+  .muted { color:var(--muted); font-size:13px; }
+  .bold { font-weight:700; color:var(--text); }
