@@ -2,7 +2,8 @@ import { getCurrentUser, supabase } from './user.js';
 
 // const API_URL = "http://localhost:5000/api/airtime";
 
-const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
+// const API_URL = "https://bizzybillsng-sambas-api.onrender.com/api/airtime";
+const API_URL = "http://localhost:5000/api/airtime";
 const pinBoxes = document.querySelectorAll('.pin-boxes div');
 const modal = document.getElementById('forgotModal');
 let pin = '';
@@ -87,8 +88,8 @@ async function verifyAndTransact() {
 
   try {
   // STEP 1: Pre-debit wallet
-  // const debitRes = await fetch('http://localhost:5000/api/debit-user', {
-    const debitRes = await fetch('https://bizzybillsng-sambas-api.onrender.com/api/debit-user', {
+  const debitRes = await fetch('http://localhost:5000/api/debit-user', {
+    // const debitRes = await fetch('https://bizzybillsng-sambas-api.onrender.com/api/debit-user', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -126,8 +127,8 @@ async function verifyAndTransact() {
   if (!response.ok || !isSuccess) {
 
     // Airtime failed — REFUND
-    await fetch('https://bizzybillsng-sambas-api.onrender.com/api/refund-user', {
-      // await fetch('http://localhost:5000/api/refund-user', {
+    // await fetch('https://bizzybillsng-sambas-api.onrender.com/api/refund-user', {
+      await fetch('http://localhost:5000/api/refund-user', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

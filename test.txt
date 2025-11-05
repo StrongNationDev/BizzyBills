@@ -1,0 +1,6 @@
+i have a file named data.html and airtime.html, both files are working with external API to perform successful transaction for user, now the client what t change the external API Platform to another one which is called (mypay.ng) instead of the older one called sambaswallet.com.
+
+now, let's start it by this, i will send you the html of the airtime.html, the javascripts server.js which helps communicate with the direct external API
+what i mean is this, i will send the data.html code, the airtime.html code (also, before the transaction complete, there is 2 other pages named confirm.html and pin.html, but, it is on the pin.html that has the pin.js which handles the transaction successfully), so meaning i will send the pin.js also (for the datapurchase i named it datapin.js, but for airtime purchase, i named it pin.js)
+
+Should i start
