@@ -21,20 +21,22 @@
       <input type="text" id="DestinationNumber" placeholder="Enter phone number" />
 
       <p class="section-title">Network</p>
+
       <div class="networks" id="network_ids">
         <label>
-          <input type="radio" name="network" />
-          <img src="icons/airtel.png" alt="Airtel" />
+          <input type="radio" name="network" id="2"/>
+          <img class="network-icon" src="icons/airtel.png" alt="Airtel" />
         </label>
         <label>
-          <input type="radio" name="network" />
-          <img src="icons/mtn.png" alt="MTN" />
+          <input type="radio" name="network" id="1"/>
+          <img class="network-icon" src="icons/mtn.png" alt="MTN" />
         </label>
         <label>
-          <input type="radio" name="network" />
-          <img src="icons/glo.png" alt="Glo" />
+          <input type="radio" name="network" id="3"/>
+          <img class="network-icon" src="icons/glo.png" alt="Glo" />
         </label>
       </div>
+
 
 
     <!-- Offers Dropdown -->
@@ -46,13 +48,13 @@
     </div>
 
     <!-- Plans Dropdown -->
-    <p class="section-title">Select Plan</p>
+    <!-- <p class="section-title">Select Plan</p>
     <div class="dropdown" id="plans">
       <select>
         <option>Select Plan</option>
       </select>
-    </div>
-      <button type="submit" class="pay-button">Pay</button>
+    </div> -->
+      <button type="submit" class="pay-button">Pay Now</button>
 
     </form>
 
@@ -64,8 +66,11 @@
       </div>
     </div>
   </div>
+<!-- <script type="module" src="data.js"></script> -->
+ <script type="module" src="./scripts/data.js"></script>
   <script src="messages.js"></script>
-  <script type="module" src="./scripts/data.js"></script>
-      <script src="./scripts/theme.js" type="module"></script>
+  <script src="./scripts/theme.js" type="module"></script>
 </body>
 </html>
+
+

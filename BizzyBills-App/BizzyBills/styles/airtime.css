@@ -18,13 +18,17 @@ body {
 
 
 .top-section {
-  position: relative;
-  text-align: center;
-  background-color: black;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  overflow: hidden;
-}
+    display: flex;
+    flex-direction: row;
+    height: 170px;
+    width: auto;
+    position: relative;
+    text-align: center;
+    background-color: black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+  }
 
 .top-bg {
   width: 100%;
@@ -116,15 +120,14 @@ body {
   width: 100%;
   padding: 15px;
   margin-top: 30px;
-  background: linear-gradient(90deg, #28c4d8, #7b27f5);
+  background-color: #6c63ff;
+  /* background: linear-gradient(90deg, #28c4d8, #7b27f5); */
   border: none;
   color: white;
   font-size: 16px;
   border-radius: 30px;
   cursor: pointer;
 }
-
-
 
 
 .modal-backdrop {
@@ -187,10 +190,123 @@ body {
 
 
 
+/* Highlight selected network */
+.network-icon.active-network {
+  border: 2px solid #00bcd4;
+  background-color: rgba(0, 188, 212, 0.2);
+  transform: scale(1.05);
+  transition: 0.2s ease-in-out;
+}
 
 
 
-#loading-overlay {
+
+
+
+
+
+
+:root {
+  --accent-color: #6c63ff;
+  --text-color: #111;
+  --card-bg: #fff;
+  --muted-text: #555;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 360px;
+  background: white;
+  padding: 25px 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: slideUp 0.3s ease-out forwards;
+  transform: translateY(30px);
+}
+
+.modal-content h4 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--accent-color, #6c63ff);
+}
+
+.modal-content p {
+  font-size: 0.95rem;
+  color: var(--muted-text, #444);
+  margin: 5px 0;
+}
+
+.modal-content p span {
+  color: var(--accent-color, #6c63ff);
+  font-weight: 600;
+}
+
+.modal-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.modal-btn.confirm {
+  background: var(--accent-color, #6c63ff);
+  color: #fff;
+}
+
+.modal-btn.confirm:hover {
+  background: #5b52e6;
+  transform: scale(1.02);
+}
+
+.modal-btn.cancel {
+  background: transparent;
+  border: 2px solid var(--accent-color, #6c63ff);
+  color: var(--accent-color, #6c63ff);
+}
+
+.modal-btn.cancel:hover {
+  background: rgba(108, 99, 255, 0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* #loading-overlay {
   position: fixed;
   inset: 0;
   display: flex;
@@ -236,4 +352,76 @@ body {
   height: 100%;
   background-color: #1855b7;
   transition: width 0.2s linear;
+} */
+
+
+
+
+
+
+
+/* PIN Modal */
+
+.pin-box {
+  max-width: 380px;
+  padding: 25px;
+}
+
+.pin-display {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+}
+
+.pin-dot.filled {
+  background: var(--accent-color);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.key {
+  padding: 15px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid var(--accent-color);
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.key:hover {
+  background: rgba(108, 99, 255, 0.15);
+}
+
+.key.clear {
+  background: #ffe5e5;
+  border-color: #ff8787;
+}
+
+.key.clear:hover {
+  background: #ffbcbc;
+}
+
+.key.confirm-pin-btn {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+}
+
+.key.confirm-pin-btn:hover {
+  background: #574de8;
 }
