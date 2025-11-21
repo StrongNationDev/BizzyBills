@@ -256,7 +256,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Step 1: request server to debit user
     try {
-      const debitRes = await fetch("http://localhost:5000/api/debit-user", {
+      const debitRes = await fetch("https://bizzybillsng-sambas-api.onrender.com/api/debit-user", {
+      // const debitRes = await fetch("http://localhost:5000/api/debit-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, amount })
@@ -275,7 +276,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Step 2: send data purchase to /api/data
     let apiResponse = null;
     try {
-      const res = await fetch("http://localhost:5000/api/data", {
+      const res = await fetch("https://bizzybillsng-sambas-api.onrender.com/api/data", {
+      // const res = await fetch("http://localhost:5000/api/data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -340,7 +342,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ---- refund helper ----
   async function refundUser(userId, amount) {
     try {
-      await fetch("http://localhost:5000/api/refund-user", {
+      // await fetch("http://localhost:5000/api/refund-user", {
+      await fetch("https://bizzybillsng-sambas-api.onrender.com/api/refund-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, amount })

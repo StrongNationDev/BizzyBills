@@ -153,7 +153,8 @@ async function processAirtimeTransaction() {
   document.getElementById("pinModal").style.display = "none";
 
   // 3. Debit wallet
-  const debitRes = await fetch("http://localhost:5000/api/debit-user", {
+  const debitRes = await fetch("https://bizzybillsng-sambas-api.onrender.com/api/debit-user", {
+  // const debitRes = await fetch("http://localhost:5000/api/debit-user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId: currentUser.id, amount })
@@ -175,7 +176,8 @@ async function processAirtimeTransaction() {
 
   let apiResponse;
   try {
-    const res = await fetch("http://localhost:5000/api/airtime", {
+    const res = await fetch("https://bizzybillsng-sambas-api.onrender.com/api/airtime", {
+    // const res = await fetch("http://localhost:5000/api/airtime", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -225,7 +227,8 @@ async function processAirtimeTransaction() {
    REFUND HELPED FUNCTION
 --------------------------------------------------- */
 async function refund(amount) {
-  await fetch("http://localhost:5000/api/refund-user", {
+    await fetch("https://bizzybillsng-sambas-api.onrender.com/api/refund-user", {
+  // await fetch("http://localhost:5000/api/refund-user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId: currentUser.id, amount })
