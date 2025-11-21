@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <h1>Admin Dashboard</h1>
+        <a href="../index.html" class="logout">LogOut</a>
+    </header>
+
+    <main class="container">
+        <section class="broadcast" id="broadcast">
+            <h2>Send Broadcast</h2>
+            <input type="text" placeholder="Message Title" class="message-title">
+            <textarea placeholder="Write your message....!" class="message-body"></textarea>
+            <button class="send-btn" id="sendtoall">Send Now</button>
+        </section>
+
+        <section class="users" id="allusers">
+            <div class="action-buttons">
+                <button class="delete-btn">Delete Selected</button>
+                <button id="export-btn" class="export-btn">Export User Details</button>
+            </div>
+            <div class="users-header">
+                <span>User Profile</span>
+                <span>Wallet Balance</span>
+                <span>Email</span>
+                <label id="select-all">
+                    Select All <input type="checkbox">
+                </label>
+            </div>
+
+            <div class="user-list" id="user-list">
+                <div class="user" id="user1">
+                    <div class="profile">
+                        <img src="images/profile.png" alt="Profile">
+                        <span>John Alex</span>
+                    </div>
+                    <span>$200</span>
+                    <span>alex@gmail.com</span>
+                    <input type="checkbox">
+                </div>
+
+                <div class="user" id="user2">
+                    <div class="profile">
+                        <img src="images/profile.png" alt="Profile">
+                        <span>John Alex</span>
+                    </div>
+                    <span>$200</span>
+                    <span>alex@gmail.com</span>
+                    <input type="checkbox">
+                </div>
+
+                <div class="user" id="user3">
+                    <div class="profile">
+                        <img src="images/profile.png" alt="Profile">
+                        <span>John Alex</span>
+                    </div>
+                    <span>$200</span>
+                    <span>alex@gmail.com</span>
+                    <input type="checkbox">
+                </div>
+
+                <div class="user" id="user4">
+                    <div class="profile">
+                        <img src="images/profile.png" alt="Profile">
+                        <span>John Alex</span>
+                    </div>
+                    <span>$200</span>
+                    <span>alex@gmail.com</span>
+                    <input type="checkbox">
+                </div>
+            </div>
+        </section>
+    </main>
+<script src="admin.js"></script>
+</body>
+</html>

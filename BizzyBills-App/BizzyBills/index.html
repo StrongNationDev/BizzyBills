@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Back</title>
+  <link rel="stylesheet" href="./styles/welcome.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Emoji Icon -->
+    <div class="emoji">
+      <img src="icons/laugh.png" alt="Welcome Emoji" />
+    </div>
+
+    <!-- Welcome Text -->
+    <h1 class="welcome-title">Welcome Back</h1>
+    <p class="username" id="username-display">@username</p>
+
+    <!-- Password Input -->
+    <input type="password" id="password-input" placeholder="Password" />
+
+    <!-- Sign In Button -->
+    <button id="sign-in-btn">Sign In</button>
+
+    <!-- Sign Out -->
+    <p class="sign-out" id="sign-out-btn">Sign Out</p>
+  </div>
+
+    <!-- Modal Component -->
+  <div id="custom-modal" class="modal">
+    <div class="modal-content">
+      <p id="modal-message">Welcome Back, You have successfully Signed into your account</p>
+      <button id="modal-close-btn">OK</button>
+    </div>
+  </div>
+    <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>
+<script type="module" src="scripts/welcome.js"></script>

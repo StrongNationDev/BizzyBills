@@ -1,0 +1,72 @@
+.message-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.message-content {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  color: #333;
+  padding: 20px 25px;
+  border-radius: 12px;
+  max-width: 90%;
+  width: 350px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  position: relative;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+#message-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+#message-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 22px;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#message-close:hover {
+  color: #ff4d4d;
+}
+
+@media (max-width: 480px) {
+  .message-content {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

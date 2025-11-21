@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Airtime Recharge</title>
+  <link rel="stylesheet" href="./styles/airtime.css"/>
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <div class="top-section"> 
+      <a href="home.html"><button class="back-btn">← Back</button></a>
+      <!-- <img src="image/topbg.png" alt="Top Background" class="top-bg" /> -->
+      <h2 class="page-title">Buy Airtime Recharge</h2>
+    </div>
+
+    <form class="recharge-form">
+      <label for="phone" class="label">Phone Number</label>
+      <input type="tel" id="DestinationNumber" placeholder="Enter phone number" class="input" />
+
+      <label class="label">Network</label>
+
+      <div class="network-options">
+        <img src="icons/airtel.png" network="AIRTEL" alt="AIRTEL" class="network-icon" />
+        <img src="icons/mtn.png" network="MTN" alt="MTN" class="network-icon" />
+        <img src="icons/glo.png" network="GLO" alt="GLO" class="network-icon" />
+      </div>
+
+      <!-- ID Method -->
+      <!-- <div class="network-options">
+        <img src="icons/mtn.png" network="1" alt="MTN" class="network-icon" />
+        <img src="icons/glo.png" network="2" alt="GLO" class="network-icon" />
+        <img src="icons/airtel.png" network="3" alt="AIRTEL" class="network-icon" />
+        <img src="icons/9mobile.png" network="4" alt="9MOBILE" class="network-icon" />
+      </div> -->
+
+
+      <label class="label">Enter or Select Amount</label>
+      <input type="number" placeholder="Enter phone number" id="AmountToCharge" class="input" />
+
+      <div class="amount-options">
+        <button type="button" class="amount-btn">₦100</button>
+        <button type="button" class="amount-btn">₦200</button>
+        <button type="button" class="amount-btn">₦500</button>
+        <button type="button" class="amount-btn">₦1,000</button>
+        <button type="button" class="amount-btn">₦2,000</button>
+        <button type="button" class="amount-btn">₦2,500</button>
+      </div>
+
+      <button type="button" class="pay-btn" id="openConfirm">Pay Now</button>
+
+      <!-- <a href="confirm.html"><button type="submit" class="pay-btn">Pay</button></a> -->
+    </form>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-content">
+        <h4>You are about to buy Airtime</h4>
+        <p>Order Details</p>
+        <p>Phone: <span id="mPhone"></span></p>
+        <p>Amount: ₦<span id="mAmount"></span></p>
+        <p>Cashback: ₦0</p>
+        <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+        <!-- <button id="confirmOrder" class="modal-btn confirm">Confirm Order</button> -->
+        <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal">
+      <div class="modal-content">
+        <h4 id="resultTitle"></h4>
+        <p id="resultMessage"></p>
+        <button id="closeResult" class="modal-btn confirm">Close</button>
+      </div>
+    </div>
+
+    <!-- PIN Modal -->
+<div id="pinModal" class="modal">
+  <div class="modal-content pin-box">
+    <h4>Enter Transaction PIN</h4>
+
+    <!-- PIN dots -->
+    <div class="pin-display">
+      <span class="pin-dot" id="d1"></span>
+      <span class="pin-dot" id="d2"></span>
+      <span class="pin-dot" id="d3"></span>
+      <span class="pin-dot" id="d4"></span>
+    </div>
+
+    <!-- Keypad -->
+    <div class="keypad">
+      <button class="key">1</button>
+      <button class="key">2</button>
+      <button class="key">3</button>
+
+      <button class="key">4</button>
+      <button class="key">5</button>
+      <button class="key">6</button>
+
+      <button class="key">7</button>
+      <button class="key">8</button>
+      <button class="key">9</button>
+
+      <button class="key clear">Clear</button>
+      <button class="key">0</button>
+      <button class="key confirm-pin-btn">Confirm Order</button>
+    </div>
+
+    <button id="closePin" class="modal-btn cancel">Cancel</button>
+  </div>
+</div>
+
+  </div>
+  <!-- <script src="script.js"></script> -->
+  <script type="module" src="./scripts/airtime.js" ></script>
+  <script src="messages.js"></script>
+  <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Virtual Account</title>
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+  <link rel="stylesheet" href="./styles/fund.css">
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+</head>
+
+<body class="virtual-account-body">
+
+  <div class="top-section">
+    <a href="home.html"><button class="back-btn">← Back</button></a>
+    <img src="./image/topbg.png" alt="top background" class="top-img">
+    <h2 class="top-title">My Virtual Account</h2>
+  </div>
+
+  <div class="getaccount" id="getaccount">
+    <button>Generate Virtual Account</button>
+  </div>
+
+  <div class="va-content">
+    <div class="account-card">
+      <div class="card-header">
+        <div class="bank-info">
+          <img src="icons/paymentpoint.png" alt="Moniepoint" class="bank-logo">
+          <span class="bank-name">Palmpay</span>
+        </div>
+        <img src="icons/card-chip.png" alt="Card chip" class="card-chip">
+      </div>
+      <div class="account-details">
+        <!-- <span>BIZZY BILLS NIGERIA-(Paymentpoint)</span> -->
+        <span class="account-name">Loading</span>
+        <span class="account-number">Loading</span>
+        <div class="charges">
+          <p>₦50 Charge on funding</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="copy-btn" id="copyDetailBtn">Copy Detail</button>
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+  <script src="messages.js"></script>
+  <script>
+    // "Copy Detail" button copies account name and number
+    document.getElementById('copyDetailBtn').onclick = function() {
+      const name = document.querySelector('.account-name').textContent;
+      const number = document.querySelector('.account-number').textContent;
+      const full = `${name}\n${number}`;
+      navigator.clipboard.writeText(full);
+      this.textContent = "Copied!";
+      setTimeout(() => { this.textContent = "Copy Detail"; }, 1600);
+    };
+  </script>
+  <script type="module" src="./scripts/fund.js"></script>
+  <script type="module" src="./scripts/account.js"></script>
+    <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>

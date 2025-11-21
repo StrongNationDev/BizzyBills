@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="./styles/profile.css" />
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+
+  <div class="settings-page">
+    <div class="top-bar">
+      
+      <a href="home.html" class="nav-link" data-target="home.html">
+        <button class="back-btn animate-btn">
+          <img src="icons/back.png" alt="Back" />
+        </button>
+      </a>
+      <h2>My Profile</h2>
+      <a href="notifications.html" class="nav-link" data-target="notifications.html">
+        <button class="bell-btn animate-btn">
+          <img src="icons/light-bell.png" alt="Notifications" />
+        </button>
+      </a>
+    </div>
+
+    <div class="profile-card">
+      <img src="icons/me.png" alt="Profile Picture" class="profile-pic" />
+      <h3>Loading</h3>
+      <div class="line"></div>
+      <div class="wallet">
+        <p>My wallet balance</p>
+        <div class="wallet-amount">
+          <strong>Loading</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-settings">
+      <h4>User Details</h4>
+      <div class="setting-row">
+        <img src="icons/user.png" alt="Username" />
+        <span>Username</span>
+        <span class="value" id="username">Loading</span>
+      </div>
+      <div class="setting-row">
+        <img src="icons/mail2.png" alt="Email" />
+        <span>My mail</span>
+        <span class="value" id="email">Loading</span>
+      </div>
+      <div class="setting-row">
+        <img src="icons/password.png" alt="Password" />
+        <span>Password</span>
+        <span class="value" id="pass-safety">Loading</span>
+      </div>
+      <div class="setting-row">
+        <img src="icons/pin.png" alt="Transaction Pin" />
+        <span>Transaction Pin</span>
+        <span class="value" id="pin-safety">Loading</span>
+      </div>
+    </div>
+
+    <div class="Dangerzone">
+      <h4>Danger Zone</h4>
+      <div class="setting-row">
+        <img src="icons/logout.png" alt="Password" />
+        <span>Log Me Out</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="logoutSwitch" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-row">
+        <img src="icons/delete.png" alt="Transaction Pin" />
+        <span>Delete Account</span>
+        <span class="value">Terminate Account</span>
+      </div>
+    </div>
+  
+    <div class="contact-us"> 
+      <h4>Contact Us</h4>
+      <div class="contact-icons">
+        <a href="#" class="contact-link" data-target="whatsapp">
+          <img src="icons/whatsapp.png" alt="WhatsApp" class="contact-icon" />
+        </a>
+        <a href="#" class="contact-link" data-target="mail">
+          <img src="icons/Mail.png" alt="Email" class="contact-icon" />
+        </a>
+        <a href="#" class="contact-link" data-target="telegram">
+          <img src="icons/telegram.png" alt="Telegram" class="contact-icon" />
+        </a>
+        <a href="#" class="contact-link" data-target="instagram">
+          <img src="icons/instagram.png" alt="Instagram" class="contact-icon" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+      
+    <div class="nav-item" onclick="window.location.href='home.html'" style="cursor: pointer;">
+      <img src="icons/home.png" alt="Home" />
+      <p>Home</p>
+    </div>
+
+    <div class="nav-item" onclick="window.location.href='profile.html'" style="cursor: pointer;">
+      <img src="icons/light-me.png" alt="Profile" />
+      <p>Profile</p>
+    </div>
+      
+      <div class="nav-item" onclick="window.location.href='contact.html'">
+        <img src="icons/light-contact.png" alt="Contact" />
+        <p>Contact us</p>
+      </div>
+      
+    <div class="nav-item" onclick="window.location.href='pricing.html'" style="cursor: pointer;">
+      <img src="icons/light-price.png" alt="Pricing" />
+      <p>Pricing</p>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+  <script src="messages.js"></script>
+  <script src="./animation/animation.js"></script>
+  <script type="module" src="./scripts/setting.js"></script>
+  <script src="./scripts/theme.js" type="module"></script>
+
+</body>
+</html>

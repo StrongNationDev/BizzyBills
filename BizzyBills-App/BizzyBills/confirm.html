@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Payment</title>
+  <link rel="stylesheet" href="./styles/confirm.css">
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="confirm-body">
+  <div class="top-banner">
+<!-- updating -->
+     <div class="top-section">
+        <a href="airtime.html"><button class="back-btn">← Back</button></a>
+        <h2 class="page-title"></h2>
+      </div>
+
+    <img src="./image/transactbg.png" alt="Top Background">
+    <div class="top-text"> 
+      <p>Confirm Payment</p>
+      <h2 class="amount-display" id="AmountToCharge" >Loading</h2>
+    </div>
+
+  </div>
+
+  <div class="payment-details">
+    <div class="detail">
+      <span>Network</span>
+      <span><img src="icons/mtn.png" alt="MTN" class="icon"> Loading</span>
+    </div>
+    <div class="detail">
+      <span>Product</span>
+      <span class="product-type">Airtime Recharge</span>
+    </div>
+    <div class="detail">
+      <span>Amount</span>
+      <span class="amount-display" id="AmountToCharge" >Loading</span>
+    </div>
+    <div class="detail">
+      <span>Destination</span>
+      <span id="DestinationNumber" class="number" >Loading</span>
+    </div>
+  </div>
+
+  <div class="btn-container">
+    <a href="pin.html"><button class="confirm-btn" id="paynow">Confirm Payment</button></a>
+  </div>
+  <script src="messages.js"></script>
+<script type="module" src="./scripts/confirm.js"></script>
+    <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>

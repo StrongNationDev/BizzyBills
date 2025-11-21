@@ -1,0 +1,184 @@
+# 📱 BizzyBills - Smart VTU Web App
+
+BizzyBills is a full-stack **Virtual Top-Up (VTU)** web application that allows users to conveniently purchase **data bundles**, **airtime**, and perform other utility services directly from their wallet. It provides a sleek, user-friendly interface optimized for both **web** and **mobile** views.
+
+This project is fully built using **HTML, CSS, JavaScript (ES6 modules)** on the frontend, integrated with **Supabase** as a backend-as-a-service (authentication and database), and connects to **Husmodata API** for real VTU transactions.
+
+---
+
+## ✨ Features
+
+- 🔐 **Secure user authentication** using Supabase.
+- 👛 **Wallet system** for funding and checking balance.
+- 💾 User PIN system for transaction confirmation.
+- 💡 **Buy Data Bundles** for MTN, GLO, Airtel.
+- 📞 **Buy Airtime (coming soon)**.
+- 🧾 **Transaction history tracking** per user.
+- 🪪 Real-time feedback and status alerts.
+- 📦 Plan selector dynamically populated by network.
+- 🧠 LocalStorage-based session handling between pages.
+- 📱 Fully responsive for mobile and desktop use.
+
+---
+
+## 📸 UI Flow
+
+1. **Login/Register**
+2. **Create Wallet + Set PIN**
+3. **Check Wallet Balance**
+4. **Choose to Buy Data**
+5. **Select Network & Plan**
+6. **Confirm Purchase Details**
+7. **Enter PIN to Authorize**
+8. **Trigger API + Show Receipt**
+9. **View History of Transactions**
+
+---
+
+## 🧰 Technologies Used
+
+| Layer | Tech Stack |
+|-------|------------|
+| **Frontend** | HTML5, CSS3, JavaScript ES6 (Modules) |
+| **Frameworks** | None – Vanilla JS |
+| **Authentication** | Supabase Auth |
+| **Database** | Supabase Postgres (via Supabase Client SDK) |
+| **API** | Husmodata API – for Data Subscriptions |
+| **Hosting** | Compatible with GitHub Pages / Vercel / Netlify |
+| **Icon & Images** | PNG, SVG Assets (local) |
+| **Design** | Fully custom responsive CSS, mobile-first |
+
+---
+
+## 🚀 Getting Started
+
+### 📁 Project Structure
+
+
+
+---
+
+### 🛠 How to Run the Project
+
+> No framework or build tools required — runs directly in browser.
+
+#### Option 1: Run Locally
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/yourusername/bizzybills.git
+   cd bizzybills
+
+
+
+
+
+Serve locally (you can use any HTTP server, e.g. Python, Node, VSCode Live Server)
+
+bash
+Copy
+Edit
+# Example using Python
+python -m http.server
+Open your browser and go to http://localhost:8000
+
+Option 2: Deploy Online
+Upload to GitHub Pages, Netlify, or Vercel
+
+Be sure to allow public access and correct redirect settings (especially for Supabase auth)
+
+🔐 Supabase Configuration
+Create a Supabase project
+
+Enable Email/Password Auth
+
+Create a users table with fields:
+
+id (uuid)
+
+wallet_balance (float)
+
+pin (string)
+
+history (array of JSON)
+
+Configure your Supabase URL and public anon key in user.js:
+
+export const supabase = createClient(
+  'https://your-project-url.supabase.co',
+  'public-anon-key'
+);
+🔌 Husmodata API Integration
+We use Husmodata to power real VTU transactions.
+
+Data API Endpoint:
+
+ruby
+Copy
+Edit
+POST https://www.husmodata.com/api/data/
+Headers:
+  Authorization: Token <your-api-key>
+Body:
+{
+  "network": network_id,
+  "plan": plan_id,
+  "mobile_number": "08012345678",
+  "Ported_number": true
+}
+💡 All data purchases are triggered in datapin.js after PIN confirmation.
+
+🛡 Security Notes
+PIN is securely compared against Supabase value (not stored in frontend).
+
+All wallet updates and transaction logging happen after successful API call.
+
+Sensitive operations (like purchases) are protected by login and PIN.
+
+Session is managed with Supabase + getCurrentUser() helper.
+
+📈 Future Enhancements
+✅ Airtime Recharge (in progress)
+
+💡 Electricity & TV bills
+
+💳 Wallet Funding via Paystack
+
+📊 Admin Dashboard for tracking usage
+
+🔔 Notification & Email Receipts
+
+🌐 Language & Currency support
+
+🙌 Contribution
+Pull requests and issues are welcome!
+
+To contribute:
+
+Fork the repository
+
+Create your feature branch (git checkout -b feature/YourFeature)
+
+Commit your changes (git commit -am 'Add some feature')
+
+Push to the branch (git push origin feature/YourFeature)
+
+
+Create a new Pull Request
+
+🧑‍💼 About the Author
+Enoch Precious
+Frontend Developer | Telegram Bot Engineer | SaaS Enthusiast
+
+Telegram: @Enochs_world
+
+GitHub: github.com/strongnationdev
+
+📜 License
+This project is licensed under the MIT License.
+Feel free to use, extend, and distribute with proper attribution.
+
+
+📢 Disclaimer
+
+This project is for educational and business demo purposes.
+Ensure you use real API keys, secure your backend logic, and comply with your API provider’s terms when deploying to production.

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing Plans</title>
+  <link rel="stylesheet" href="./styles/pricing.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="prices-dashboard">
+
+    <!-- Header -->
+
+    <div class="top-bar">
+      <a href="home.html" class="nav-link" data-target="home.html">
+        <button class="back-btn animate-btn">
+          <img src="icons/back.png" alt="Back" />
+        </button>
+      </a>
+      <h2>Our Peices</h2>
+      <a href="notifications.html" class="nav-link" data-target="notifications.html">
+        <button class="bell-btn animate-btn">
+          <img src="icons/bell.png" alt="Notifications" />
+        </button>
+      </a>
+    </div>
+
+
+    <div class="plan-card yellow" id="mtnPlans">
+      <div class="plan-card-header">
+        <img src="icons/mtn.png" alt="MTN" />
+        <span>All Plans</span>
+      </div>
+      <div class="plan-list"></div>
+    </div>
+
+    <div class="plan-card green" id="gloPlans">
+      <div class="plan-card-header">
+        <img src="icons/glo.png" alt="GLO" />
+        <span>All Plans</span>
+      </div>
+      <div class="plan-list"></div>
+    </div>
+
+    <div class="plan-card red" id="airtelPlans">
+      <div class="plan-card-header">
+        <img src="icons/airtel.png" alt="Airtel" />
+        <span>All Plans</span>
+      </div>
+      <div class="plan-list"></div>
+    </div>
+    <!-- Bottom Nav -->
+  <div class="bottom-nav">
+      
+    <div class="nav-item" onclick="window.location.href='home.html'" style="cursor: pointer;">
+      <img src="icons/home.png" alt="Home" />
+      <p>Home</p>
+    </div>
+
+      
+    <div class="nav-item" onclick="window.location.href='profile.html'" style="cursor: pointer;">
+      <img src="icons/user.png" alt="Profile" />
+      <p>Profile</p>
+    </div>
+      
+      <div class="nav-item" onclick="window.location.href='contact.html'">
+        <img src="icons/light-contact.png" alt="Contact" />
+        <p>Contact us</p>
+      </div>
+      
+    <div class="nav-item" onclick="window.location.href='pricing.html'" style="cursor: pointer;">
+      <img src="icons/light-price.png" alt="Pricing" />
+      <p>Pricing</p>
+    </div>
+
+  </div>
+  </div>
+    <script src="./scripts/plans.js"></script>
+    <script src="./scripts/pricing.js"></script>
+</body>
+</html>

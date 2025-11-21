@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BizzyBillsNC</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(90deg, #9c27b0 0%, #e91e63 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 24px;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 12px 24px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary {
+      background-color: #e91e63;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #c2185b;
+    }
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: white;
+      color: #9c27b0;
+      border-color: #9c27b0;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav a {
+      color: white;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #fce4ec;
+    }
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .auth-buttons button {
+      font-weight: 600;
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-size: 0.9rem;
+    }
+    .btn-login {
+      background: transparent;
+      color: white;
+      border: 1.5px solid white;
+    }
+    .btn-login:hover {
+      background: white;
+      color: #9c27b0;
+    }
+    .btn-signup {
+      background: white;
+      color: #9c27b0;
+    }
+    .btn-signup:hover {
+      background: #c2185b;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 80px;
+      gap: 40px;
+    }
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-content p {
+      font-size: 1.125rem;
+      margin-bottom: 24px;
+      color: #fce4ec;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .hero-image-container {
+      flex: 1;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      background: white;
+    }
+    .hero-image-container img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Our Services Section */
+    .services {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .services h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: #fce4ec;
+    }
+    .service-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .service-card {
+      background: rgba(255 255 255 / 0.15);
+      border-radius: 24px;
+      padding: 24px 32px;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+    .service-card:hover {
+      background: rgba(255 255 255 / 0.3);
+    }
+    .service-card img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+    .service-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: #fce4ec;
+    }
+
+    /* Why Choose Us Section */
+    .why-choose {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .why-choose p.intro {
+      font-size: 1rem;
+      margin-bottom: 40px;
+      color: #fce4ec;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .choose-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .choose-card {
+      background: rgba(255 255 255 / 0.15);
+      border-radius: 20px;
+      padding: 24px 28px;
+      width: 280px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .choose-card h4 {
+      background: #5c0099;
+      padding: 8px 16px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      max-width: max-content;
+      margin-bottom: 12px;
+    }
+    .choose-card p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      color: #fce4ec;
+    }
+    .choose-card button {
+      margin-top: auto;
+      align-self: flex-start;
+      background-color: #b68de0;
+      color: #4a0072;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choose-card button:hover {
+      background-color: #8a4cd3;
+      color: white;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      color: #fce4ec;
+    }
+    .testimonials h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    .testimonial-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .testimonial-card {
+      background: rgba(255 255 255 / 0.15);
+      border-radius: 24px;
+      padding: 24px 32px;
+      width: 320px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-style: italic;
+    }
+    .testimonial-card p {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .testimonial-author {
+      text-align: right;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 0.9rem;
+      color: #e1bee7;
+    }
+    .testimonial-source {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #ce93d8;
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+      background: linear-gradient(90deg, #5c0099 0%, #9c27b0 100%);
+      border-radius: 40px 40px 0 0;
+      padding: 48px 20px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .cta-section p {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .cta-section button {
+      background-color: white;
+      color: #5c0099;
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 14px 48px;
+      border-radius: 40px;
+      transition: background-color 0.3s ease;
+    }
+    .cta-section button:hover {
+      background-color: #b68de0;
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a0a0a;
+      padding: 40px 20px;
+      color: #aaa;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      font-size: 0.85rem;
+    }
+    footer .footer-column {
+      flex: 1 1 180px;
+      max-width: 280px;
+    }
+    footer .footer-column h4 {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    footer .footer-column a {
+      display: block;
+      margin-bottom: 8px;
+      color: #aaa;
+      transition: color 0.3s ease;
+    }
+    footer .footer-column a:hover {
+      color: white;
+    }
+    footer .logo-footer {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    footer .logo-footer img {
+      height: 28px;
+      width: auto;
+    }
+    footer .download-app {
+      text-align: center;
+    }
+    footer .download-app img {
+      height: 40px;
+      margin: 8px 8px 0 0;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+    footer .privacy {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    /* Responsive: Mobile styles */
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(180deg, #9c27b0 0%, #e91e63 100%);
+      }
+      header {
+        flex-direction: column;
+        gap: 12px;
+        padding-bottom: 12px;
+      }
+      nav {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero {
+        flex-direction: column;
+        margin-bottom: 48px;
+        gap: 24px;
+      }
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-image-container {
+        max-width: 280px;
+        margin: 0 auto;
+        border-radius: 12px;
+      }
+      .service-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .service-card {
+        width: 90%;
+      }
+      .choose-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .choose-card {
+        width: 90%;
+        margin-bottom: 24px;
+      }
+      .testimonial-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .testimonial-card {
+        width: 90%;
+        margin-bottom: 24px;
+      }
+      .cta-section {
+        border-radius: 0;
+        margin-bottom: 40px;
+      }
+      footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+      footer .footer-column {
+        max-width: 100%;
+      }
+      footer .download-app img {
+        height: 48px;
+        margin: 0 12px 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="BizzyBillsNC Logo" />
+        BizzyBillsNC
+      </a>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Service</a>
+        <a href="#">About us</a>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn-login">Log in</button>
+        <button class="btn-signup">Sign up</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-content">
+        <h1>Seamless Airtime, Data & TV Subscriptions in Seconds</h1>
+        <p>BizzyBills makes paying for essentials fast, reliable, and stress-free</p>
+        <div class="hero-buttons">
+          <button class="btn-primary">Get started</button>
+          <button class="btn-secondary">See pricing</button>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <img src="images/hero-phone.png" alt="Person holding phone with BizzyBills app" />
+      </div>
+    </section>
+
+    <section class="services" aria-label="Our Services">
+      <h2>Our Services</h2>
+      <div class="service-cards">
+        <article class="service-card" tabindex="0" role="region" aria-labelledby="airtime-title">
+          <img src="icon/airtime.svg" alt="Airtime icon" />
+          <h3 id="airtime-title">Airtime</h3>
+          <p>Buy airtime instantly on all networks, anytime</p>
+        </article>
+        <article class="service-card" tabindex="0" role="region" aria-labelledby="data-title">
+          <img src="icon/data-purchase.svg" alt="Data purchase icon" />
+          <h3 id="data-title">Data purchase</h3>
+          <p>Buy data instantly on all networks, anytime</p>
+        </article>
+        <article class="service-card" tabindex="0" role="region" aria-labelledby="electricity-title">
+          <img src="icon/electric-bill.svg" alt="Electricity bill icon" />
+          <h3 id="electricity-title">Electrical bill</h3>
+          <p>Pay electrical bills instantly on all networks, anytime</p>
+        </article>
+        <article class="service-card" tabindex="0" role="region" aria-labelledby="tv-title">
+          <img src="icon/tv-subscription.svg" alt="TV subscription icon" />
+          <h3 id="tv-title">TV subscription</h3>
+          <p>Buy TV subscription instantly on all networks, anytime</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="why-choose" aria-label="Why choose BizzyBillsNC">
+      <p class="intro">BizzyBills provides the best value for all your everyday payments</p>
+      <div class="choose-cards">
+        <div class="choose-card" tabindex="0" role="region" aria-labelledby="easy-setup-title">
+          <h4 id="easy-setup-title">Easy to Set Up</h4>
+          <p>Start paying your bills and subscriptions in seconds with a simple setup.</p>
+          <button type="button">Get started</button>
+        </div>
+        <div class="choose-card" tabindex="0" role="region" aria-labelledby="secured-funding-title">
+          <h4 id="secured-funding-title">Seamless & Secured Funding</h4>
+          <p>Enjoy seamless and secure payment funding methods for your peace of mind.</p>
+          <button type="button">Learn more</button>
+        </div>
+        <div class="choose-card" tabindex="0" role="region" aria-labelledby="convenience-title">
+          <h4 id="convenience-title">24/7 Convenience</h4>
+          <p>Pay your bills anytime, anywhere with our reliable app and services.</p>
+          <button type="button">Download app</button>
+        </div>
+        <div class="choose-card" tabindex="0" role="region" aria-labelledby="reliable-title">
+          <h4 id="reliable-title">Reliable & Secure</h4>
+          <p>Your transactions are protected with industry-standard encryption and security.</p>
+          <button type="button">Security info</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" aria-label="Customer testimonials">
+      <h3>What our happy user say</h3>
+      <div class="testimonial-cards">
+        <blockquote class="testimonial-card" tabindex="0">
+          <p>"I have only used the Airtime and Data services and I am very impressed how fast and reliable it is."</p>
+          <footer class="testimonial-author">- Alina Johnson</footer>
+          <footer class="testimonial-source">- Sell All Reviews</footer>
+        </blockquote>
+        <blockquote class="testimonial-card" tabindex="0">
+          <p>"I use their data purchase ALL and speed, it saves very fast and dependable."</p>
+          <footer class="testimonial-author">- James Hatfield</footer>
+          <footer class="testimonial-source">- Verified user</footer>
+        </blockquote>
+        <blockquote class="testimonial-card" tabindex="0">
+          <p>"There is no delay in funding our purchases. BizzyBills is so reliable for speed."</p>
+          <footer class="testimonial-author">- Babatunde Jaher</footer>
+          <footer class="testimonial-source">- Local Business</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-label="Call to action">
+      <p>What are you waiting for, let's register now</p>
+      <button class="btn-primary">Get started</button>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-column">
+      <a href="#" class="logo-footer">
+        <img src="images/logo.png" alt="BizzyBillsNC Logo" />
+        BizzyBillsNC
+      </a>
+      <p>always busy, always ready.</p>
+    </div>
+    <div class="footer-column" aria-labelledby="about-us-footer">
+      <h4 id="about-us-footer">About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Support Center</a>
+      <a href="#">Contact us</a>
+    </div>
+    <div class="footer-column download-app" aria-label="Download app">
+      <h4>Download app now</h4>
+      <a href="#"><img src="icon/appstore.svg" alt="Download on Apple App Store" /></a>
+      <a href="#"><img src="icon/playstore.svg" alt="Download on Google Play Store" /></a>
+      <p class="privacy">Privacy Policy</p>
+    </div>
+  </footer>
+</body>
+</html>

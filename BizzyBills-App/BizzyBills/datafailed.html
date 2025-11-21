@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction Failed</title>
+  <link rel="stylesheet" href="./styles/fail.css">
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+</head>
+<body>
+  <div class="container">
+    <div class="status-icon">
+      <div class="checkmark failed">
+        <img src="icons/failed.png" alt="Failed" />
+      </div>
+    </div>
+    <h2 class="status-title">Transaction Failed</h2>
+    <p class="status-message" id="errorMessage">An unknown error occurred.</p>
+    <a href="home.html">
+      <button class="close-btn">Go Back</button>
+    </a>
+  </div>
+    <script src="./scripts/theme.js" type="module"></script>
+  <script>
+    // Get query params from URL
+    const params = new URLSearchParams(window.location.search);
+    const errorMessage = params.get("error");
+
+    // Display error message if available
+    if (errorMessage) {
+      document.getElementById("errorMessage").textContent = decodeURIComponent(errorMessage);
+    }
+  </script>
+
+</body>
+</html>

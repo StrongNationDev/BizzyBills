@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Data Subscription</title>
+  <link rel="stylesheet" href="./styles/data.css" />
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <div class="top-section">
+      <a href="home.html"><button class="back-btn">← Back</button></a>
+      <!-- <img src="image/topbg.png" alt="Top Background" class="top-bg" /> -->
+      <h2 class="page-title">Buy Data Subscription</h2>
+    </div>
+
+    <form class="form">
+      <label for="phone">Phone Number</label>
+      <input type="text" id="DestinationNumber" placeholder="Enter phone number" />
+
+      <p class="section-title">Network</p>
+
+      <div class="networks" id="network_ids">
+        <label>
+          <input type="radio" name="network" id="2"/>
+          <img class="network-icon" src="icons/airtel.png" alt="Airtel" />
+        </label>
+        <label>
+          <input type="radio" name="network" id="1"/>
+          <img class="network-icon" src="icons/mtn.png" alt="MTN" />
+        </label>
+        <label>
+          <input type="radio" name="network" id="3"/>
+          <img class="network-icon" src="icons/glo.png" alt="Glo" />
+        </label>
+      </div>
+
+
+
+    <!-- Offers Dropdown -->
+    <p class="section-title">Select Network Offers</p>
+    <div class="dropdown" id="offers">
+      <select id="offerSelect">
+        <option value="">Select Offer</option>
+      </select>
+    </div>
+
+    <!-- Plans Dropdown -->
+    <p class="section-title">Select Plan</p>
+    <div class="dropdown" id="plans">
+      <select>
+        <option>Select Plan</option>
+      </select>
+    </div>
+      <button type="submit" class="pay-button">Pay Now</button>
+
+    </form>
+
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-content">
+        <h4>You are about to buy Airtime</h4>
+        <p>Order Details</p>
+        <p>Phone: <span id="mPhone"></span></p>
+        <p>Amount: ₦<span id="mAmount"></span></p>
+        <p>Cashback: ₦0</p>
+        <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+        <!-- <button id="confirmOrder" class="modal-btn confirm">Confirm Order</button> -->
+        <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+      </div>
+    </div>
+
+    <!-- PIN Modal -->
+    <div id="pinModal" class="modal">
+      <div class="modal-content pin-box">
+        <h4>Enter Transaction PIN</h4>
+
+        <!-- PIN dots -->
+        <div class="pin-display">
+          <span class="pin-dot" id="d1"></span>
+          <span class="pin-dot" id="d2"></span>
+          <span class="pin-dot" id="d3"></span>
+          <span class="pin-dot" id="d4"></span>
+        </div>
+
+        <!-- Keypad -->
+        <div class="keypad">
+          <button class="key">1</button>
+          <button class="key">2</button>
+          <button class="key">3</button>
+
+          <button class="key">4</button>
+          <button class="key">5</button>
+          <button class="key">6</button>
+
+          <button class="key">7</button>
+          <button class="key">8</button>
+          <button class="key">9</button>
+
+          <button class="key clear">Clear</button>
+          <button class="key">0</button>
+          <button class="key confirm-pin-btn">Confirm Order</button>
+        </div>
+
+        <button id="closePin" class="modal-btn cancel">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal">
+      <div class="modal-content">
+        <h4 id="resultTitle"></h4>
+        <p id="resultMessage"></p>
+        <button id="closeResult" class="modal-btn confirm">Close</button>
+      </div>
+    </div>
+
+  <!-- Modal Overlay -->
+    <div id="insufficientModal">
+      <div class="modal-content">
+        <p id="modalMessage"></p>
+        <button onclick="document.getElementById('insufficientModal').style.display='none'">OK</button>
+      </div>
+    </div>
+  </div>
+<!-- <script type="module" src="data.js"></script> -->
+ <script type="module" src="./scripts/data.js"></script>
+  <script src="messages.js"></script>
+  <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>
+
+

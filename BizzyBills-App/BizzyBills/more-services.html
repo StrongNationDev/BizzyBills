@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>BizzyBills Dashboard</title>
+  <link rel="stylesheet" href="./styles/new.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- Top Section -->
+    <!-- <div class="top-section">
+      <div class="profile-header">
+        <img src="icons/sun.png" alt="Toggle Theme" id="theme-toggle" class="theme-toggle" />
+      </div>
+    </div> -->
+
+    <!-- Services Section -->
+    <div class="services">
+      <p class="section-title"><-   All Services</p>
+      <div class="service-list">
+
+
+        <a href="airtime.html" class="service-card" data-target="airtime.html">
+          <img src="icons/airtime.png" alt="Airtime" />
+          <p>Airtime</p>
+        </a>
+
+        <a href="data.html" class="service-card" data-target="data.html">
+          <img src="icons/data.png" alt="Data" />
+          <p>Data</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/cable.png" alt="TV" />
+          <p>TV</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/electricity.png" alt="Electricity" />
+          <p>Electricity</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/referral.png" alt="My Referral" />
+          <p>My Referral</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/esim.png" alt="E-sim" />
+          <p>E-sim</p>
+        </a>
+
+        <a href="airtime-to-cash.html" class="service-card" data-target="processing.html">
+          <img src="icons/cash.png" alt="Airtime to Cash" />
+          <p>Airtime to Cash</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/bonus.png" alt="Wallet Bonuses" />
+          <p>Wallet Bonuses</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/gift.png" alt="Gift User" />
+          <p>Gift User</p>
+        </a>
+        
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/education.png" alt="Education pin" />
+          <p>Education pin</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/redeem.png" alt="Redeem voucher" />
+          <p>Redeem voucher</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/sms.png" alt="Bulk SMS" />
+          <p>Bulk SMS</p>
+        </a>
+        <!-- <a href="more.html" class="service-card">
+          <img src="icons/more.png" alt="More" />
+          <p>More</p>
+        </a> -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="messages.js"></script>
+  <script type="module" src="./scripts/profile.js"></script>
+  <script src="./animation/home.js"></script>
+  <script type="module" src="./scripts/history.js"></script>
+  <script type="module" src="./scripts/home.js"></script>
+  <script>
+    // Simple Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.src = document.body.classList.contains('dark-mode') 
+        ? 'icons/moon.png' 
+        : 'icons/sun.png';
+    });
+  </script>
+</body>
+</html>

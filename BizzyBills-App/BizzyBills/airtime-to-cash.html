@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Airtime to Cash</title>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<link rel="stylesheet" href="./styles/airtime-cash.css">
+</head>
+
+<body>
+<div id="app" class="screen">
+  <div class="topbar">
+    <button class="back-btn" aria-label="Back" onclick="history.back();">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="title">Airtime to Cash</div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="card">
+    <label class="section">Select Network Provider</label>
+    <div class="select" id="networkSelect">
+      <div class="left">
+        <div class="network-logo" id="networkLogo">MTN</div>
+        <div class="label" id="networkLabel">MTN</div>
+      </div>
+      <svg class="right-arrow" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <label class="section">Phone Number with Airtime</label>
+    <div class="input">
+      <div class="phone-field">
+        <span class="flag">🇳🇬</span><span class="cc">+234</span>
+        <input id="phoneInput" type="tel" maxlength="10" placeholder="1234567890">
+      </div>
+    </div>
+
+    <label class="section">Amount</label>
+    <div class="amount">
+      <div class="currency">₦</div>
+      <input id="amountInput" type="text" inputmode="numeric" placeholder="0.00">
+    </div>
+
+    <div class="hr"></div>
+
+    <label class="section">Receive Cash</label>
+    <div class="receive-method" id="receiveMethod">
+      <div style="flex:1" id="receiveLabel">Receive Cash Method</div>
+      <svg class="right-arrow" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <label class="section">Account Number</label>
+    <div class="input">
+      <div class="phone-field">
+        <input id="account" type="tel" maxlength="10" placeholder="8072975168">
+      </div>
+    </div>
+
+    <!-- <div style="padding-left:6px;">
+      <div class="small-muted">My Name <span id="UserBankUsername" class="bold">-</span></div>
+    </div> -->
+
+    <div class="btn-wrap">
+      <button id="proceedBtn" class="proceed" disabled>Proceed</button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ MUST be type="module" for imports to work -->
+<script type="module" src="scripts/airtimeto_cash.js"></script>
+</body>
+</html>

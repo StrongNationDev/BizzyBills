@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airtime to Cash</title>
+<style>
+  :root {
+    --bg: #f9f9f9;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #666;
+    --accent: #4b14d8;
+    --danger: #e74c3c;
+    --border: #ddd;
+    --radius: 12px;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+  }
+
+  .screen {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid var(--border);
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .info {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .number-box {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    background: #efe9ff;
+    padding: 10px 14px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 12px 0;
+    letter-spacing: 1px;
+  }
+
+  .note {
+    background: #edf3ff;
+    border-left: 4px solid var(--accent);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 18px;
+  }
+
+  .guide {
+    background: #ffeef0;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .guide strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .highlight {
+    background: #fff6d8;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .warning {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--danger);
+    font-weight: 600;
+    text-align: center;
+    background: #ffe5e5;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 15px; }
+    .card { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="history.back()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="title">Airtime to Cash</div>
+  </div>
+
+  <div class="card">
+    <div class="info">
+        Kindly transfer the sum of to the phone number shown below:
+      <!-- Kindly transfer the sum of <b>₦899</b> to the phone number shown below: -->
+    </div>
+
+    <div class="number-box">MTN NUMBER : 090 3637 0095</div>
+    <div class="number-box">AIRTEL NUMBER : 090 7912 4214</div>
+    <div class="number-box">GLO NUMBER : 070 5185 1398</div>
+
+    <div class="note">
+      <strong>PLEASE NOTE:</strong> Due to certain restrictions, we cannot automatically deduct airtime.  
+      You must manually transfer the airtime to the phone number above.  
+      Thank you.
+    </div>
+
+    <div class="section-title">How to transfer airtime on <b>AIRTEL</b></div>
+    <div class="guide">
+      <strong>Airtel Transfer - Default PIN:</strong> 0000 <br><br>
+      To create a new PIN: <br>
+      <span class="highlight">*432*4*1*1234*NEWPIN*NEWPIN#</span><br>
+      Example: <span class="highlight">*432*4*1*1234*5555*5555#</span><br><br>
+
+      Dial <span class="highlight">*432*1*09047897181*amount*amount*5555#</span> to send the Airtime.  
+      Replace <b>5555</b> with your transfer PIN if you already have one.
+    </div>
+
+    <div class="warning">
+      ⚠️ Only click Submit after you have transferred the airtime to avoid your account being banned.
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Subscription Receipt</title>
+  <link rel="stylesheet" href="./styles/receipt.css" />
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="container" id="receipt-container">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <a href="history.html" class="back-btn">
+        <img src="icons/back.png" alt="Back" />
+        <span>Transaction Details</span>
+      </a>
+    </div>
+
+    <!-- Main card -->
+    <div class="receipt-card">
+      <div class="network-logo">
+        <img src="icons/mtn.png" alt="MTN" />
+      </div>
+      <h2 class="receipt-amount" id="AmountToCharge">₦300.00</h2>
+      <p class="receipt-status success">✔ Successful</p>
+    </div>
+
+    <!-- Transaction details -->
+    <div class="transaction-box">
+      <h3 class="section-title">Transaction Details</h3>
+      <div class="detail"><span>Recipient Mobile</span><span id="DestinationNumber">09078654537</span></div>
+      <div class="detail"><span>Transaction Type</span><span>Airtime Purchase</span></div>
+      <div class="detail"><span>Transaction ID</span><span id="TransactionID">TR00533</span></div>
+      <div class="detail"><span>Date</span><span id="TransactionDate">Sept 21st, 2025 01:50:05</span></div>
+    </div>
+
+    <!-- Bottom actions -->
+    <div class="bottom-actions">
+      <button id="share-btn" class="share-btn">Share</button>
+      <button id="download-btn" class="download-btn">Download</button>
+    </div>
+
+    <!-- Branding -->
+    <div class="branding">
+      <img src="icons/light-logo.png" alt="BizzybillsNG" />
+      <p>BizzybillsNG</p>
+    </div>
+  </div>
+    <script src="./scripts/theme.js" type="module"></script>
+  <script src="messages.js"></script>
+  <script type="module" src="./scripts/myairtimereceipt.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.background-image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.content {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  z-index: 2;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.app-name {
+  font-size: 1.8rem;
+  color: #5b18eb;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 250px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  width: 80%;
+  padding: 14px 0;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login {
+  background-color: #5b18eb;
+  color: #fff;
+  border: none;
+}
+
+.register {
+  background-color: #fff;
+  color: #5b18eb;
+  border: 2px solid #5b18eb;
+}
+
+
+.bio {
+  color: rgb(15, 15, 15);
+  margin-bottom: 15px;
+}
+
+.login {
+  background-color: #5b18eb;
+  color: #fff;
+}
+
+.register {
+  background-color: #fff;
+  color: #5b18eb;
+  border: 2px solid #5b18eb;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .app-name {
+    font-size: 1.5rem;
+    margin-bottom: 200px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .btn {
+    width: 85%;
+    font-size: 0.95rem;
+  }
+}

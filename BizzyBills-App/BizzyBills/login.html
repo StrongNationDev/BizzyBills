@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizzyBills NG Login</title>
+    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/favicon.png" type="image/png">
+</head>
+<body>
+    <div class="login-container">
+        <div class="top-section">
+            <img src="image/logo.png" alt="BizzyBills Logo" class="logo">
+        </div>
+        
+        <div class="form-section">
+            <h2>Welcome back !</h2>
+            <!-- Added correct ID for form -->
+            <form id="loginForm">
+                <!-- Changed to match JS: id="emailOrUsername" -->
+                <input type="text" id="emailOrUsername" placeholder="Email or Username" required>
+                
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fa fa-eye"></i>
+                </div>
+                
+                <div class="options">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="forgot-password.html">Forgot password?</a>
+                </div>
+                
+                <!-- Keep button type submit so JS can handle -->
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            
+            <p class="signup-text">New user? <a href="#">Sign Up</a></p>
+            <p class="alt-login">Reach out to us via</p>
+                <a href="https://www.facebook.com/share/1ALTBFHviE/"><i class="fab fa-facebook"></i></a>
+                <!-- <a href="#"><i class="fab fa-google"></i></a> -->
+            </div>
+            <p class="alt-login">Sign in with another account</p>
+        </div>
+    </div>
+
+    <!-- Keep your scripts at bottom -->
+    <script src="messages.js"></script>
+    <script type="module" src="scripts/login.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput = document.getElementById("password");
+        const toggleEye = document.querySelector(".password-wrapper i");
+
+        toggleEye.addEventListener("click", function () {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleEye.classList.remove("fa-eye");
+            toggleEye.classList.add("fa-eye-slash");
+          } else {
+            passwordInput.type = "password";
+            toggleEye.classList.remove("fa-eye-slash");
+            toggleEye.classList.add("fa-eye");
+          }
+        });
+      });
+    </script>
+
+</body>
+</html>

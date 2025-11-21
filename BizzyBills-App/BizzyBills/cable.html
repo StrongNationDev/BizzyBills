@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recharge Cable TV</title>
+  <link rel="stylesheet" href="./styles/cable.css">
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+</head>
+<body class="electricity-body">
+  <div class="top-section">
+    <a href="home.html"><button class="back-btn">← Back</button></a>
+    <img src="./image/topbg.png" alt="top background" class="top-img">
+    <h2 class="top-title">Recharge Cable TV</h2>
+  </div>
+
+  <div class="form-section">
+    <label for="provider-dropdown">Fill in Your Cable Details</label>
+
+    <!-- Provider dropdown -->
+    <div class="dropdown" id="provider-dropdown" tabindex="0">
+      <span id="selected-provider">Choose a Cable Name</span>
+      <span class="arrow">▾</span>
+    </div>
+
+    <!-- IUC number input -->
+    <div class="fillingarea" id="IUCNumber" tabindex="0">
+      <input type="text" placeholder="Smart Card number / IUC number" class="amount-input" id="amount-input">
+    </div>
+
+    <!-- Plan dropdown -->
+    <div class="dropdown" id="cableplan-dropdown" tabindex="0">
+      <span id="selected-cableplan">Choose a Cable Plan</span>
+      <span class="arrow">▾</span>
+    </div>
+
+    <button class="pay-btn" id="verify-details-btn">Verify Details</button>
+  </div>
+
+  <!-- Provider List Modal (customizable in CSS) -->
+  <div class="provider-list" id="provider-list-modal" style="display:none;">
+    <div class="list-header">
+      <button class="back-icon" id="close-provider-list">←</button>
+      <span>Choose a Cable Name</span>
+    </div>
+    <input type="text" placeholder="Search" class="search-box" id="provider-search">
+    <ul class="providers" id="provider-items">
+      <!-- Providers injected by JS -->
+    </ul>
+  </div>
+
+  <!-- Cable Plan List Modal (separate so you can style differently if you want) -->
+  <div class="provider-list" id="plan-list-modal" style="display:none;">
+    <div class="list-header">
+      <button class="back-icon" id="close-plan-list">←</button>
+      <span>Choose a Cable Plan</span>
+    </div>
+    <input type="text" placeholder="Search" class="search-box" id="plan-search">
+    <ul class="providers" id="plan-items">
+      <!-- Plans injected by JS -->
+    </ul>
+  </div>
+
+  <script type="module" src="./scripts/cable.js"></script>
+    <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>

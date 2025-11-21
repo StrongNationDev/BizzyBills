@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="./styles/notifications.css">
+    <link rel="stylesheet" href="./styles/dark-mode.css" />
+
+</head>
+<body>
+    <div class="container">
+        <div class="back"><a href="home.html">Back</a></div>
+        <h2 class="title">Notifications</h2>
+        <p class="subtitle">These are messages from Admin</p>
+        <div class="allnotifications">
+            <div class="notification-card">
+                <div class="avatar"></div>
+                <div class="content">
+                    <h3 class="message-title">Message Title</h3>
+                    <p class="message-body">Message body</p>
+                    <span class="timestamp">11:26 AM, Tuesday June 11</span>
+                </div>
+                <button class="mark-read">Mark Read</button>
+            </div>
+
+            <div class="notification-card">
+                <div class="avatar"></div>
+                <div class="content">
+                    <h3 class="message-title">Message Title</h3>
+                    <p class="message-body">Message body</p>
+                    <span class="timestamp">11:26 AM, Tuesday June 11</span>
+                </div>
+                <button class="mark-read">Mark Read</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./scripts/notifications.js"></script>
+    <script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>

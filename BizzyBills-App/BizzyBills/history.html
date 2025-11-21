@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transactions</title>
+  <link rel="stylesheet" href="./styles/history.css" />
+  <link rel="stylesheet" href="./styles/dark-mode.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="transaction-dashboard">
+
+    <!-- Header -->
+
+    <div class="top-bar">
+      
+      <a href="home.html" class="nav-link" data-target="home.html">
+        <button class="back-btn animate-btn">
+          <img src="icons/back.png" alt="Back" />
+        </button>
+      </a>
+      <h2>Transactions</h2>
+      <a href="notifications.html" class="nav-link" data-target="notifications.html">
+        <button class="bell-btn animate-btn">
+          <img src="icons/light-bell.png" alt="Notifications" />
+        </button>
+      </a>
+    </div>
+
+    <!-- Transaction List -->
+     <div class="transactions-body">
+
+      <!-- Airtel Data Box -->
+      <div class="transaction-card" id="airtel_databox">
+        <div class="trans-icon"><img src="icons/airtel.png" alt="Airtel" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Data Subscription Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn red"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- Airtel Airtime Box -->
+      <div class="transaction-card" id="airtel_airtimebox">
+        <div class="trans-icon"><img src="icons/airtel.png" alt="Airtel" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Airtime Recharge Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn green"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- Glo Airtime Box -->
+      <div class="transaction-card" id="glo_airtimebox">
+        <div class="trans-icon"><img src="icons/glo.png" alt="GLO" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Airtime Recharge Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn green"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- Glo Data Box -->
+      <div class="transaction-card" id="glo_databox">
+        <div class="trans-icon"><img src="icons/glo.png" alt="GLO" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Data Subscription Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn green"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- MTN Data Box -->
+      <div class="transaction-card" id="mtn_databox">
+        <div class="trans-icon"><img src="icons/mtn.png" alt="MTN" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Data Subscription Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn yellow"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- MTN Airtime Box -->
+      <div class="transaction-card" id="mtn_airtimebox">
+        <div class="trans-icon"><img src="icons/mtn.png" alt="MTN" /></div>
+        <div class="trans-info">
+          <p class="trans-title" id="type">Airtime Recharge Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn yellow"><a href="">Open Receipt</a></div>
+      </div>
+
+      <!-- Topup Deposite Box -->
+      <div class="transaction-card" id="depositbox">
+        <div class="trans-icon"><img src="icons/fund.png" alt="Funding" /></div>
+        <div class="trans-info">
+          <p class="trans-title">Account Topup funding Successful</p>
+          <p class="trans-Amount" id="Amount">Amount: <strong>₦1,400</strong></p>
+          <p class="trans-time" id="time">11:26 AM, Tuesday June 11</p>
+        </div>
+        <div class="receipt-btn blue"><a href="">Open Receipt</a></div>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+
+    <div class="bottom-nav">
+      
+    <div class="nav-item" onclick="window.location.href='home.html'" style="cursor: pointer;">
+      <img src="icons/home.png" alt="Home" />
+      <p>Home</p>
+    </div>
+
+    <div class="nav-item" onclick="window.location.href='profile.html'" style="cursor: pointer;">
+      <img src="icons/user.png" alt="Profile" />
+      <p>Profile</p>
+    </div>
+      
+      <div class="nav-item" onclick="window.location.href='contact.html'">
+        <img src="icons/light-contact.png" alt="Contact" />
+        <p>Contact us</p>
+      </div>
+      
+    <div class="nav-item" onclick="window.location.href='pricing.html'" style="cursor: pointer;">
+      <img src="icons/light-price.png" alt="Pricing" />
+      <p>Pricing</p>
+    </div>
+
+  </div>
+
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+  <script src="messages.js"></script>
+  <script src="./animation/animation.js"></script>
+  <script type="module" src="./scripts/history.js"></script>
+  <script src="./scripts/theme.js" type="module"></script>
+
+</body>
+</html>

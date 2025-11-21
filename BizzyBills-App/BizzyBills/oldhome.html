@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BizzyBills Dashboard</title>
+  <link rel="stylesheet" href="./styles/home.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="dashboard">
+    <div class="top-section">
+      <img src="image/topbg.png" alt="Top Background" class="top-bg" />
+      <div class="profile">
+        <img src="icons/me.png" alt="Profile" class="profile-pic" />
+        <div class="welcome-text">
+          <p>Welcome,</p>
+          <strong>Loading</strong>
+        </div>
+        <!-- <a href="notifications.html"><img src="icons/bell.png" alt="Notifications" class="bell-icon" /></a> -->
+        <a href="notifications.html" class="notification-wrapper">
+          <img src="icons/bell.png" alt="Notifications" class="bell-icon" />
+          <span class="notification-badge" id="notification-badge"></span>
+        </a>
+        
+      </div>
+      <div class="balance-section">
+        <p class="balance-title">Available Balance</p>
+        <div class="balance-amount">
+          <!-- <h2>₦</h2> -->
+          <h1 id="balance-amount">Loading</h1>
+          <!-- <img src="icons/eye.png" alt="View" class="eyeicon" id="toggle-visibility" /> -->
+        </div>
+        <img src="icons/wallet.png" alt="Wallet" class="wallet-icon" />
+      </div>
+    </div>
+    <div class="action-buttons">
+
+    <a href="funding.html" class="add-money" data-target="funding.html">
+      <img src="icons/plus.png" alt="Add" /> Add Money
+    </a>
+
+    <a href="contact.html" class="contact-us" data-target="contact.html">
+      <img src="icons/call.png" alt="Contact" /> Contact Us
+    </a>
+</div>
+
+<div class="services">
+  <p class="section-title">Our Service</p>
+
+  <div class="service-list">
+  <a href="data.html" class="nav-link" data-target="data.html">
+    <div class="service-card">
+      <img src="icons/data.png" alt="Data" />
+      <p>Data</p>
+    </div>
+    
+      </a>
+        <a href="airtime.html" class="nav-link" data-target="airtime.html">
+        <div class="service-card">
+          <img src="icons/airtime.png" alt="Airtime" />
+          <p>Airtime</p>
+        </div>
+      </a>
+
+      <a href="processing.html" class="nav-link" data-target="cable.html">
+        <div class="service-card">
+          <img src="icons/cable.png" alt="Cable TV" />
+          <p>Cable TV</p>
+        </div>
+      </a>
+
+      <a href="processing.html" class="nav-link" data-target="electricity.html">
+        <div class="service-card">
+          <img src="icons/electricity.png" alt="Electricity" />
+          <p>Electricity</p>
+        </div>
+      </a>
+    </div>
+</div>
+
+  <div class="transaction-header">
+    <p class="section-title">Transactions</p>
+    <a href="history.html" class="view-all">View all <img src="icons/arrow.png" alt="Arrow" /></a>
+  </div>
+
+<div class="transactions" id="lastrecenthistory">
+
+<!-- 
+  <div class="transaction-card">
+    <img src="icons/mtn.png" alt="MTN" class="tx-icon" />
+    <div class="tx-details">
+      <strong>Recharge Card</strong>
+      <p>11:26 AM, Tuesday June 11</p>
+      <p>Cost: <strong>#1,400</strong></p>
+    </div>
+    <button class="receipt-btn yellow">Open Receipt</button>
+  </div>
+  </div> -->
+
+</div>
+
+  <div class="bottom-nav">
+      
+    <div class="nav-item" onclick="window.location.href='home.html'" style="cursor: pointer;">
+      <img src="icons/home.png" alt="Home" />
+      <p>Home</p>
+    </div>
+
+      
+    <div class="nav-item" onclick="window.location.href='profile.html'" style="cursor: pointer;">
+      <img src="icons/user.png" alt="Profile" />
+      <p>Profile</p>
+    </div>
+      
+    <div class="nav-item" onclick="window.location.href='history.html'" style="cursor: pointer;">
+      <img src="icons/history.png" alt="Hisyory" />
+      <p>History</p>
+    </div>
+      
+    <div class="nav-item" onclick="window.location.href='pricing.html'" style="cursor: pointer;">
+      <img src="icons/price.png" alt="Pricing" />
+      <p>Pricing</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+  <script src="messages.js"></script>
+  <script type="module" src="./scripts/profile.js"></script>
+  <script src="./animation/home.js"></script>
+  <script type="module" src="./scripts/history.js"></script>
+  <script type="module" src="./scripts/home.js"></script>
+</body>
+</html>

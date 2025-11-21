@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Account | BizzyBillsNG</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fafafa;
+    }
+ 
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {color: #1a73e8;}
+    .nav-actions a {
+      margin-left: 10px;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      border: 1px solid #1a73e8;
+      transition: 0.3s;
+    }
+    .btn-login {background: #fff; color: #1a73e8;}
+    .btn-login:hover {background: #f1f1f1;}
+    .btn-signup {background: #1a73e8; color: #fff;}
+    .btn-signup:hover {background: #0c5edb;}
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    .hero h1 {font-size: 2.5rem; margin-bottom: 10px;}
+    .hero p {margin-bottom: 20px; font-size: 1.2rem;}
+    .hero .cta-btn {
+      padding: 12px 24px;
+      background: #fff;
+      color: #1a73e8;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .cta-btn:hover {background: #f1f1f1;}
+
+    /* Container */
+    .container {
+      width: 80%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1a73e8;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #1a73e8;
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .delete-form {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0c5edb;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      padding: 60px 20px 20px;
+      z-index: 2000;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* When open, slide into view */
+    .sidebar.open {
+      left: 0;
+    }
+
+    /* Close (X) button */
+    .sidebar .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0;
+    }
+
+    .sidebar nav ul li a {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .sidebar .nav-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* Mobile vs desktop */
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: block; }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle { display: none; }
+      .sidebar { display: none; }
+    }
+
+    /* modal css styling */
+        /* Modal styles */
+        .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center; align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .modal-buttons {
+      margin-top: 20px;
+    }
+    .modal-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+      <div class="navbar">
+        <a href="/" class="logo">BizzyBillsNG</a>
+    
+        <!-- Hamburger Icon for Mobile -->
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    
+        <!-- Normal nav for desktop -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="../index.html">Services</a></li>
+            <li><a href="../index.html">Features</a></li>
+            <li><a href="../index.html">Testimonials</a></li>
+            <li><a href="../index.html">About</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="#">Delete Account</a></li>
+        </ul>
+        </nav>
+    
+        <div class="nav-actions desktop-nav">
+          <a href="/login.html" class="btn-login">Log In</a>
+          <a href="/register.html" class="btn-signup">Register</a>
+        </div>
+      </div>
+    
+      <!-- Sidebar for mobile -->
+      <div class="sidebar" id="mobile-nav">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Services</a></li>
+            <li><a href="../index.html">Features</a></li>
+            <li><a href="../index.html">Testimonials</a></li>
+            <li><a href="../index.html">About</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="#">Delete Account</a></li>
+        </ul>
+        </nav>
+    
+        <div class="nav-actions">
+          <a href="/login.html" class="btn-login">Log In</a>
+          <a href="/register.html" class="btn-signup">Register</a>
+        </div>
+      </div>
+    </header>
+  
+
+  <!-- Delete Account Section -->
+  <div class="container">
+    <h1>Delete Your BizzyBillsNG Account</h1>
+    <p>We respect your right to control your data. If you no longer wish to use BizzyBillsNG, you may request that your account be deleted along with all associated personal data and transaction history (except where we are legally required to retain records).</p>
+
+    <h2>How to Request Account Deletion</h2>
+    <ul>
+      <li>Fill out the form below and submit your request.</li>
+      <li>Alternatively, you can email us directly at <a href="mailto:bizzybillsupport@bizzybillsng.store">bizzybillsupport@bizzybillsng.store</a> using your registered email.</li>
+      <li>Your request will be processed within 3 business days. You will receive a confirmation once your account is deleted.</li>
+    </ul>
+
+    <div class="delete-form">
+      <form>
+        <label for="email">Registered Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your registered email" required>
+
+        <label for="reason">Reason for Deletion (optional)</label>
+        <textarea id="reason" name="reason" rows="4" placeholder="Let us know why you are leaving..."></textarea>
+
+        <button type="submit">Submit Deletion Request</button>
+      </form>
+    </div>
+
+    <h2>Important Notes</h2>
+    <ul>
+      <li>Pending wallet balances should be withdrawn before requesting account deletion.</li>
+      <li>Transaction records may be retained where legally required (e.g., for financial compliance).</li>
+      <li>Once your account is deleted, recovery is not possible.</li>
+    </ul>
+
+    <footer>
+      &copy; 2025 BizzyBillsNG. All Rights Reserved.
+    </footer>
+  </div>
+
+    <!-- Modal -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-content">
+        <p>
+          Are you sure you want to permanently delete your account from <b>BizzyBills NG</b>?<br><br>
+          <b>This action cannot be undone.</b><br><br>
+          If you have any money in your balance, kindly reach out to the admin on<br>
+          <a href="mailto:bizzybillsupport@bizzybillsng.store">bizzybillsupport@bizzybillsng.store</a>
+        </p>
+        <div class="modal-buttons">
+          <button id="cancelBtn">Cancel</button>
+          <button id="confirmBtn">Yes, Continue</button>
+        </div>
+      </div>
+    </div>
+  
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS public key
+    })();
+
+    const form = document.getElementById("deleteForm");
+    const modal = document.getElementById("confirmModal");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault(); // prevent normal submit
+      modal.style.display = "flex"; // show modal
+    });
+
+    cancelBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    confirmBtn.addEventListener("click", function() {
+      const email = document.getElementById("email").value;
+      const reason = document.getElementById("reason").value;
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        user_email: email,
+        delete_reason: reason
+      })
+      .then(function() {
+        alert("Your deletion request has been sent to the admin.");
+        modal.style.display = "none";
+        form.reset();
+      }, function(error) {
+        alert("Failed to send request. Please try again later.");
+        console.error(error);
+      });
+    });
+  </script>
+  <script>
+    // Toggle mobile nav
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+    <script>
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      const closeBtn = document.getElementById('close-btn');
+  
+      // Create overlay dynamically
+      const overlay = document.createElement('div');
+      overlay.classList.add('overlay');
+      document.body.appendChild(overlay);
+  
+      // Open sidebar
+      menuToggle.addEventListener('click', () => {
+        mobileNav.classList.add('open');
+        overlay.classList.add('show');
+      });
+  
+      // Close sidebar
+      closeBtn.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+  
+      // Click outside closes it
+      overlay.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        overlay.classList.remove('show');
+      });
+  
+      // Auto-close when clicking a link
+      document.querySelectorAll('#mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      });
+    </script>
+  
+</body>
+</html>

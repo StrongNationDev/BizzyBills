@@ -1,0 +1,501 @@
+/* =========================================================
+   MOBILE VIEW ONLY — Works perfectly on iPhone & Android
+   ========================================================= */
+@media only screen and (max-width: 820px) {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: #e5e5e5;
+    color: #000;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 92%;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #e5e5e5;
+    padding-bottom: 60px;
+  }
+
+  /* ===== Top Section ===== */
+  .top-section {
+    display: flex;
+    flex-direction: row;
+    height: 170px;
+    width: auto;
+    position: relative;
+    text-align: center;
+    background-color: black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+  }
+
+
+  .top-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .page-title {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  /* ===== Form Section ===== */
+  .form {
+    padding: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    font-size: 16px;
+    box-shadow: 0 0 0 1px #ccc;
+  }
+
+  .section-title {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  /* ===== Network Buttons ===== */
+  .networks {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+/* network icon base */
+  .network-icon {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  }
+
+  .network-icon.active-network {
+    border: 2px solid #00bcd4;
+    background-color: rgba(0, 188, 212, 0.2);
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+
+  .networks img:not(.active-network) {
+    filter: grayscale(20%);
+  }
+
+  .networks input[type="radio"] {
+    display: none;
+  }
+
+  /* ===== Dropdown ===== */
+  .dropdown select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+    margin-bottom: 16px;
+    appearance: none;
+    box-shadow: 0 0 0 1px #ccc;
+  }
+
+  /* ===== Plans ===== */
+  .plans label {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 0 1px #ccc;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .plans input {
+    margin-right: 10px;
+  }
+
+  /* ===== Pay Button ===== */
+  .pay-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #6c63ff;
+    /* background: linear-gradient(90deg, #28c4d8, #7b27f5); */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .pay-button:active {
+    opacity: 0.85;
+  }
+
+  /* ===== Modal ===== */
+  #insufficientModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #insufficientModal .modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: modalIn 0.3s ease-out;
+  }
+
+  #modalMessage {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  #insufficientModal button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  #insufficientModal button:active {
+    background: #0056b3;
+  }
+
+  @keyframes modalIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ===== Loading Overlay ===== */
+  #loading-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(24, 85, 183, 0.3);
+    z-index: 9999;
+    transition: opacity 0.4s ease;
+  }
+
+  #loading-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .loader-logo {
+    height: 70px;
+    width: auto;
+    border-radius: 50%;
+  }
+
+  .loading-bar-container {
+    width: 220px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .loading-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1855b7;
+    transition: width 0.2s linear;
+  }
+}
+
+/* =========================================================
+   NON-MOBILE VIEW — Disable or Neutralize Layout on Desktop
+   ========================================================= */
+@media only screen and (min-width: 821px) {
+  body {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .container {
+    display: none; /* Hides the page on desktop */
+  }
+
+  body::before {
+    content: "This page is optimized for mobile devices.";
+    display: block;
+    color: #555;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+
+
+ /* ===== MODAL BASE STYLE ===== */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* ===== MODAL CARD ===== */
+.modal-content {
+  background: var(--card-bg, #ffffff);
+  color: var(--text-color, #000);
+  width: 85%;
+  max-width: 360px;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(30px);
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* ===== MODAL TITLES & TEXT ===== */
+.modal-content h4 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--accent-color, #6c63ff);
+}
+
+.modal-content p {
+  font-size: 0.95rem;
+  color: var(--muted-text, #444);
+  margin: 5px 0;
+}
+
+.modal-content p span {
+  color: var(--accent-color, #6c63ff);
+  font-weight: 600;
+}
+
+/* ===== MODAL BUTTONS ===== */
+.modal-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+/* Confirm button (primary) */
+.modal-btn.confirm {
+  background: var(--accent-color, #6c63ff);
+  color: #fff;
+}
+
+.modal-btn.confirm:hover {
+  background: #5b52e6;
+  transform: scale(1.02);
+}
+
+/* Cancel button */
+.modal-btn.cancel {
+  background: transparent;
+  border: 2px solid var(--accent-color, #6c63ff);
+  color: var(--accent-color, #6c63ff);
+}
+
+.modal-btn.cancel:hover {
+  background: rgba(108, 99, 255, 0.1);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== DARK MODE ===== */
+body.dark .modal-content {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+body.dark .modal-content p {
+  color: #aaa;
+}
+
+body.dark .modal-btn.cancel {
+  border-color: #8c7aff;
+  color: #8c7aff;
+}
+
+body.dark .modal-btn.cancel:hover {
+  background: rgba(140, 122, 255, 0.15);
+}
+:root {
+  --accent-color: #6c63ff;
+  --text-color: #111;
+  --card-bg: #fff;
+  --muted-text: #555;
+}
+
+
+
+
+
+
+
+
+/* PIN Modal */
+
+.pin-box {
+  max-width: 380px;
+  padding: 25px;
+}
+
+.pin-display {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+}
+
+.pin-dot.filled {
+  background: var(--accent-color);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.key {
+  padding: 15px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  border: 2px solid var(--accent-color);
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.key:hover {
+  background: rgba(108, 99, 255, 0.15);
+}
+
+.key.clear {
+  background: #ffe5e5;
+  border-color: #ff8787;
+}
+
+.key.clear:hover {
+  background: #ffbcbc;
+}
+
+.key.confirm-pin-btn {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+}
+
+.key.confirm-pin-btn:hover {
+  background: #574de8;
+}

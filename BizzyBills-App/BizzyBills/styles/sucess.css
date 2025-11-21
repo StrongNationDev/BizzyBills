@@ -1,0 +1,155 @@
+
+ * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #e8e8e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #e8e8e8;
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.sharebox {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.share {
+  cursor: pointer;
+  background-color: #000000;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  width: fit-content;
+  margin: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+
+.done-text {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.status-icon {
+  margin: 40px auto 20px;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkmark {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pop-in 0.6s ease-out;
+}
+
+.checkmark img {
+  width: 110px;
+  height: 110px;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+.status-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #000;
+}
+
+.status-message{
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.transaction-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.close-btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: linear-gradient(to right, #7f00ff, #e100ff);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 70%;
+}
+
+.container::after {
+  content: 'BIZZYBILLSNG';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 18px;
+  opacity: 0.5;
+  font-weight: bold;
+  color: #333;
+}

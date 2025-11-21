@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  height: 64px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+
+body {
+  padding-top: 64px;
+  background-color: aliceblue;
+}
+
+.top-bar button {
+  background: none;
+  border: none;
+}
+
+.bell-btn {
+  width: auto;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.back-btn {
+  width: auto;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-link img{
+  width: auto;
+  height: 25px;
+}
+
+.bell-btn.jump,
+.back-btn.jump {
+  animation: jumpOut 0.6s ease-out forwards;
+}
+
+@keyframes jumpOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    transform: scale(1.4) translateY(-20px);
+    filter: blur(2px);
+    box-shadow: 0 0 20px rgba(0, 140, 255, 0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-60px);
+    filter: blur(6px);
+    box-shadow: 0 0 40px rgba(0, 140, 255, 0.2);
+  }
+}
+
+.transaction-dashboard {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 16px;
+  background-color: aliceblue;
+}
+
+.transaction-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 15px;
+  padding: 15px;
+  gap: 12px;
+}
+
+.trans-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.trans-info {
+  flex: 1;
+}
+
+.trans-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 2px;
+}
+
+.trans-time {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.trans-cost {
+  font-size: 14px;
+  color: #000;
+}
+
+.receipt-btn a {
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
+}
+
+
+.receipt-btn {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: #000;
+}
+
+.receipt-btn.yellow {
+  background: #ffc107;
+  color: #333;
+}
+
+.mtnreceipt-btn{
+  background: #ffc107;
+  color: #333;
+}
+
+.receipt-btn.red {
+  background: #dc3545;
+}
+
+.receipt-btn.green {
+  background: #28a745;
+}
+
+.receipt-btn.blue {
+  background: #00bcd4;
+}
+
+
+
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid #ddd;
+  z-index: 1000;
+}
+
+
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #9a00f4;
+}
+
+.nav-item img {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 5px;
+}
+
+
+
+
+/* =========================
+   LOADING ANIMATION
+========================= */
+/* loading screen */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(24, 85, 183, 0.337);
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+#loading-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden; 
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.loader-logo {
+  width: auto;
+  height: 70px;
+  border-radius: 50%;
+}
+
+/* Loading bar container */
+.loading-bar-container {
+  width: 220px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Actual bar that fills up */
+.loading-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #1855b7;
+  transition: width 0.2s linear;
+}

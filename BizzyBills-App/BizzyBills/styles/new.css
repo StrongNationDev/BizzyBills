@@ -1,0 +1,419 @@
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+:root {
+  --bg-color: #f5e9ff;
+  --text-color: #000;
+  --card-bg: #fff;
+  --card-text: #000;
+  --primary-gradient: linear-gradient(135deg, #6e00ff, #d600ff);
+  --icon-filter: brightness(0);
+  --nav-bg: #fff;
+}
+
+body.dark-mode {
+  --bg-color: #000;
+  --text-color: #fff;
+  --card-bg: #1a1a1a;
+  --card-text: #fff;
+  --icon-filter: brightness(10);
+  --nav-bg: #1a1a1a;
+}
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* =========================
+   TOP SECTION
+========================= */
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: -70px;
+}
+
+.welcome-text p {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.welcome-text strong {
+  font-size: 1rem;
+}
+
+.theme-toggle,
+.bell-icon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  filter: var(--icon-filter);
+}
+.dark-bell {
+  display: none;
+}
+
+body.dark-mode .dark-bell {
+  display: inline;
+}
+
+body.dark-mode .light-bell {
+  display: none;
+}
+
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: red;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 5px;
+  display: none;
+}
+
+/* =========================
+   WALLET CARD
+========================= */
+.wallet-card {
+  background: var(--primary-gradient);
+  color: white;
+  border-radius: 16px;
+  padding: 15px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.wallet-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.safety {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.eye-icon {
+  width: 24px;
+  height: 14px;
+  cursor: pointer;
+}
+
+#balance-amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0;
+  margin-top: 15px;
+}
+
+.add-money-btn {
+  background: white;
+  color: #6e00ff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 170px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 20px 0 10px 5px;
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.service-card {
+  background: var(--card-bg);
+  color: var(--card-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 15px 5px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.service-card:hover {
+  transform: scale(1.03);
+}
+
+.service-card img {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 6px;
+}
+
+.service-card p {
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* =========================
+   TRANSACTIONS
+========================= */
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.view-all {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #6e00ff;
+  font-weight: bold;
+}
+
+.transactions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--nav-bg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.nav-item img {
+  width: 22px;
+  height: 22px;
+  filter: var(--icon-filter);
+}
+
+/* =========================
+   LOADING OVERLAY
+========================= */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.loader-logo {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+
+
+
+/* =========================
+   TRANSACTIONS (Light/Dark Compatible)
+========================= */
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg); /* ✅ Uses theme variable */
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--card-text); /* ✅ Uses theme variable */
+  cursor: default;
+}
+
+.transaction-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.transaction-icon img {
+  width: 26px;
+  height: 26px;
+  /* filter: var(--icon-filter); */
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-label {
+  font-weight: 600;
+}
+
+.transaction-date {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-color); /* ✅ Matches theme text color */
+  opacity: 0.7;
+}
+
+.transaction-right {
+  text-align: right;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  color: var(--card-text);
+}
+
+.transaction-status {
+  font-weight: 600;
+  font-size: 11px;
+  color: #3ba55d;
+}
+.transaction-status.failed {
+  color: red;
+}
+.transaction-status.success {
+  color: #3ba55d;
+}
+
+
+
+
+
+
+
+
+/* =========================
+   LOADING ANIMATION
+========================= */
+/* loading screen */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(24, 85, 183, 0.337);
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+#loading-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden; 
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.loader-logo {
+  width: auto;
+  height: 70px;
+  border-radius: 50%;
+}
+
+/* Loading bar container */
+.loading-bar-container {
+  width: 220px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Actual bar that fills up */
+.loading-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #1855b7;
+  transition: width 0.2s linear;
+}

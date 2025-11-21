@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>BizzyBills Dashboard</title>
+  <link rel="stylesheet" href="./styles/new.css" />
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- Top Section -->
+    <div class="top-section">
+      <div class="profile-header">
+        <img src="icons/User.png" alt="Profile" class="profile-pic" />
+        <div class="welcome-text">
+          <p>HELLO,</p>
+          <strong id="user-name">Loading</strong>
+        </div>
+
+        <!-- Theme Toggle -->
+        <img src="icons/sun.png" alt="Toggle Theme" id="theme-toggle" class="theme-toggle" />
+
+        <!-- Notifications -->
+        <a href="notifications.html" class="notification-wrapper">
+          <div class="bell-wrapper">
+            <img src="icons/light-bell.png" alt="Notifications" class="bell-icon light-bell" />
+            <img src="icons/dark-bell.png" alt="Notifications" class="bell-icon dark-bell" />
+          </div>
+          <span class="notification-badge" id="notification-badge"></span>
+        </a>
+      </div>
+
+      <!-- Wallet Card -->
+      <div class="wallet-card">
+        <div class="wallet-info">
+          <img src="icons/safety.png" alt="safety" class="safety"/>
+          <span class="wallet-label">Wallet Balance</span>
+          <img src="icons/eye.png" alt="Toggle Visibility" id="toggle-visibility" class="eye-icon" />
+        </div>
+        <h1 id="balance-amount">****</h1>
+        <button class="add-money-btn" onclick="window.location.href='funding.html'">+ Add Money</button>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+      <p class="section-title">Our Services</p>
+      <div class="service-list">
+
+        <a href="airtime.html" class="service-card" data-target="airtime.html">
+          <img src="icons/airtime.png" alt="Airtime" />
+          <p>Airtime</p>
+        </a>
+
+        <a href="data.html" class="service-card" data-target="data.html">
+          <img src="icons/data.png" alt="Data" />
+          <p>Data</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/cable.png" alt="TV" />
+          <p>TV</p>
+        </a>
+
+        <a href="processing.html" class="service-card" data-target="processing.html">
+          <img src="icons/electricity.png" alt="Electricity" />
+          <p>Electricity</p>
+        </a>
+
+        <a href="referral.html" class="service-card" data-target="referral.html">
+          <img src="icons/referral.png" alt="My Referral" />
+          <p>My Referral</p>
+        </a>
+
+        <a href="esim.html" class="service-card" data-target="esim.html">
+          <img src="icons/esim.png" alt="E-sim" />
+          <p>E-sim</p>
+        </a>
+
+        <a href="airtime-to-cash.html" class="service-card" data-target="airtime-to-cash.html">
+          <img src="icons/cash.png" alt="Airtime to Cash" />
+          <p>Airtime to Cash</p>
+        </a>
+
+        <a href="wallet-bonus.html" class="service-card" data-target="wallet-bonus.html">
+          <img src="icons/bonus.png" alt="Wallet Bonuses" />
+          <p>Wallet Bonuses</p>
+        </a>
+
+        <a href="more-services.html" class="service-card" data-target="more-services.html">
+          <img src="icons/more.png" alt="More" />
+          <p>More</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Transactions -->
+    <div class="transaction-header">
+      <p class="section-title">Recent Transactions</p>
+      <a href="history.html" class="view-all">See all >></a>
+    </div>
+      <!-- <article class="transaction" aria-label="Recent airtime transaction successful">
+        <div class="transaction-left">
+          <div class="transaction-icon">
+            <img src="icons/airtime.png" alt="" />
+          </div>
+          <div class="transaction-info">
+            <div class="transaction-label">Airtime</div>
+            <div class="transaction-date">Sept 11th, 10:7:08</div>
+          </div>
+        </div>
+        <div class="transaction-right">
+          <div class="transaction-amount">-N 5,000.00</div>
+          <div class="transaction-status">Successful</div>
+        </div>
+      </article> -->
+    <div class="transactions" id="lastrecenthistory"></div>
+
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="window.location.href='home.html'">
+        <img src="icons/home.png" alt="Home" />
+        <p>Home</p>
+      </div>
+      <div class="nav-item" onclick="window.location.href='pricing.html'">
+        <img src="icons/dark-price.png" alt="Price" />
+        <p>Price</p>
+      </div>
+      <div class="nav-item" onclick="window.location.href='contact.html'">
+        <img src="icons/dark-contact.png" alt="Contact" />
+        <p>Contact us</p>
+      </div>
+      <div class="nav-item" onclick="window.location.href='profile.html'">
+        <img src="icons/light-me.png" alt="Profile" />
+        <p>Profile</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Loading Overlay -->
+   <div id="loading-overlay">
+    <div class="loading-content">
+      <img src="icons/favicon.png" alt="Loading..." class="loader-logo" />
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Poll for elements (in case other scripts render DOM later)
+    let tries = 0;
+    const maxTries = 40; // ~4 seconds
+    const poll = setInterval(() => {
+      const balanceEl = document.getElementById('balance-amount');
+      const toggleEye = document.getElementById('toggle-visibility');
+
+      if (balanceEl && toggleEye) {
+        clearInterval(poll);
+        initBalanceToggle(balanceEl, toggleEye);
+      } else if (++tries >= maxTries) {
+        clearInterval(poll);
+        console.warn('Balance toggle: elements not found (balance-amount / toggle-visibility).');
+      }
+    }, 100);
+
+    function initBalanceToggle(balanceEl, toggleEye) {
+      let realBalance = null;             
+      let isHidden = localStorage.getItem('walletHidden') === 'true';
+
+      function extractBalanceText(s) {
+        if (!s) return null;
+        const t = String(s).trim();
+        if (!t || t === '****' || /loading/i.test(t)) return null;
+        return t;
+      }
+
+      const mo = new MutationObserver((mutations) => {
+        const newText = extractBalanceText(balanceEl.textContent);
+        if (newText) {
+          realBalance = newText;
+        }
+        if (isHidden) {
+          setTimeout(() => {
+            if (balanceEl.textContent !== '****') balanceEl.textContent = '****';
+          }, 0);
+        }
+      });
+
+      mo.observe(balanceEl, { childList: true, characterData: true, subtree: true });
+
+      function render() {
+        if (isHidden) {
+          balanceEl.textContent = '****';
+          toggleEye.src = 'icons/eye-closed.png';
+        } else {
+          balanceEl.textContent = realBalance || '₦0';
+          toggleEye.src = 'icons/eye.png';
+        }
+      }
+
+      toggleEye.style.cursor = 'pointer';
+      toggleEye.addEventListener('click', () => {
+        isHidden = !isHidden;
+        localStorage.setItem('walletHidden', isHidden);
+        render();
+      });
+
+      const initial = extractBalanceText(balanceEl.textContent);
+      if (initial) realBalance = initial;
+
+      render();
+
+    }
+  });
+})();
+</script>
+
+  <script src="messages.js"></script>
+  <script type="module" src="./scripts/profile.js"></script>
+  <script type="module" src="./scripts/user.js"></script>
+  <script type="module" src="./scripts/homehistory.js"></script>
+  <script type="module" src="./scripts/home.js"></script>
+<script src="./scripts/theme.js" type="module"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

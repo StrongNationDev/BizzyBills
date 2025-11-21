@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.emoji img {
+  width: auto;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+.welcome-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #000000;
+}
+
+.username {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+#password-input {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+#sign-in-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #3c00a0;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+#sign-in-btn:active {
+  transform: scale(0.98);
+}
+
+.sign-out {
+  font-size: 0.95rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.sign-out:hover {
+  text-decoration: underline;
+}
+
+/* Responsive for very small phones */
+@media (max-width: 360px) {
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  #password-input, #sign-in-btn {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+}
+
+
+
+
+
+/* ===== Modal Styles ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--modal-bg, #fff);
+  color: var(--modal-text, #333);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 80%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9);
+  transition: transform 0.25s ease-in-out;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+#modal-message {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+#modal-close-btn {
+  background: #4b0082;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+#modal-close-btn:hover {
+  background: #360061;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .modal-content {
+    background: #1e1e1e;
+    color: #fff;
+  }
+}
