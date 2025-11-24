@@ -34,14 +34,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   const DATA = {
     1: { // MTN
       SME: [
-        { id: 255, name: "MTN 1GB - ₦610", amount: 610 },
-        { id: 256, name: "MTN 2GB - ₦1100", amount: 1100 },
-        { id: 259, name: "MTN 10GB - ₦6200", amount: 6200 },
-        { id: 321, name: "MTN 500MB - ₦308", amount: 308 },
+        { id: 375, name: "MTN AWOOF - 1 Day - 1GB - ₦500", amount: 500 },
+        { id: 378, name: "MTN AWOOF - 2 Day - 1.5GB - ₦630", amount: 630 },
+        { id: 390, name: "MTN AWOOF - 30 Day - 1.8GB - ₦1590", amount: 1590 },
+        { id: 377, name: "MTN AWOOF - 2 Day - 2.0GB - ₦790", amount: 790 },
+        { id: 376, name: "MTN AWOOF - 2 Day - 2.5GB - ₦950", amount: 950 },
+        { id: 379, name: "MTN AWOOF - 1 Day - 2.5GB - ₦790", amount: 790 },
       ],
-      CORPORATE: [],
-      CORPORATE_GIFTING: [
-        { id: 372, name: "MTN 1.4GB - ₦595", amount: 595 },
+      // MTN_AWOOF: [
+      //   { id: 375, name: "MTN AWOOF 1GB - ₦500", amount: 610 },
+      // ],
+      CORPORATE: [
+        { id: 389, name: "7 Days 500MB - ₦530", amount: 530 },
+        { id: 381, name: "7 Days 1.0GB - ₦830", amount: 830 },
+        { id: 384, name: "7 Days 1.2GB - ₦785", amount: 785 },
+        { id: 385, name: "7 Days 1.5GB - ₦1060", amount: 1060 },
+        { id: 382, name: "30 Days 2.0GB - ₦1545", amount: 1545 },
+        { id: 383, name: "30 Days 2.7GB - ₦2040", amount: 2040 },
+        { id: 387, name: "7 Days 3.0GB - ₦1545", amount: 1545 },
+        { id: 386, name: "7 Days 6.0GB - ₦2540", amount: 2540 },
+      ],
+      // CORPORATE_GIFTING: [
+      //   { id: 372, name: "MTN 1.4GB - ₦595", amount: 595 },
+      // ],
+      SPECIAL_PLAN: [
+        { id: 442, name: "MTN SPECIAL PLAN - 7 Days 1.0GB - ₦550", amount: 550 },
+        { id: 467, name: "MTN SPECIAL PLAN - 30 Days 1.0GB - ₦570", amount: 570 },
+        { id: 449, name: "MTN SPECIAL PLAN - 30 Days 5.0GB - ₦2050", amount: 2050 },
       ],
     },
 
@@ -50,8 +69,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         { id: 305, name: "Airtel 1GB - ₦1092.5", amount: 1092.5 }
       ],
       CORPORATE: [],
-      CORPORATE_GIFTING: [
-        { id: 395, name: "Airtel 2GB - ₦1520", amount: 1520 }
+      // CORPORATE_GIFTING: [
+      //   { id: 395, name: "Airtel 2GB - ₦1520", amount: 1520 }
+      // ],
+      AIRTEL_GIFTING: [
+        { id: 393, name: "AIRTEL GIFTING - 7 Days 500MB - ₦550", amount: 550 },
+        { id: 394, name: "AIRTEL GIFTING - 7 Days 1.0GB - ₦850", amount: 850 },
+        { id: 395, name: "AIRTEL GIFTING - 30 Days 2.0GB - ₦1550", amount: 1550 },
+        { id: 396, name: "AIRTEL GIFTING - 30 Days 3.0GB - ₦2060", amount: 2060 },
+        { id: 397, name: "AIRTEL GIFTING - 30 Days 4.0GB - ₦2540", amount: 2540 },
+        { id: 399, name: "AIRTEL GIFTING - 7 Days 6.0GB - ₦4750", amount: 4750 },
+        { id: 398, name: "AIRTEL GIFTING - 30 Days 10.0GB - ₦4000", amount: 4000 },
+        { id: 462, name: "AIRTEL GIFTING - 7 Days 6.0GB - ₦3020", amount: 3020 },
+        { id: 463, name: "AIRTEL GIFTING - 7 Days 18.0GB - ₦4950", amount: 4950 },
+        { id: 464, name: "AIRTEL GIFTING - 30 Days 18.0GB - ₦5930", amount: 5930 },
+        { id: 465, name: "AIRTEL GIFTING - 30 Days 25.0GB - ₦7900", amount: 7900 },
       ],
     },
 

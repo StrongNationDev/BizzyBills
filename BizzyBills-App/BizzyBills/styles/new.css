@@ -151,6 +151,20 @@ body.dark-mode .light-bell {
   margin-top: 15px;
 }
 
+#wallet-bonuses {
+  font-size: 0.85rem;
+  margin: 0;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+.lowerpart {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 5px;
+}
+
 .add-money-btn {
   background: white;
   color: #6e00ff;
@@ -162,6 +176,7 @@ body.dark-mode .light-bell {
   font-size: 0.9rem;
   margin-left: 170px;
 }
+
 
 /* =========================
    SERVICES

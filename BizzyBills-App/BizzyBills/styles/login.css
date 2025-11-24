@@ -23,7 +23,7 @@ body {
 }
 
 .top-section {
-    background: linear-gradient(135deg, #5c2ed8, #01c1f6);
+    /* background: linear-gradient(135deg, #5c2ed8, #01c1f6); */
     padding: 40px 0 20px 0;
     text-align: center;
     border-bottom-left-radius: 50px 20px;
