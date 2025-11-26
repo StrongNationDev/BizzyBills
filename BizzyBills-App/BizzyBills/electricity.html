@@ -3,41 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>Buy Electricity</title>
-  <link rel="stylesheet" href="./styles/electricity.css">
-  <link rel="stylesheet" href="./styles/dark-mode.css" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/data.css">
 </head>
-<body class="electricity-body">
-  <div class="top-section">
-    <a href="home.html"><button class="back-btn">← Back</button></a>
-    <img src="./image/topbg.png" alt="top background" class="top-img">
-    <h2 class="top-title">Buy Electricity Recharging</h2>
-  </div>
+<style>
+/* ===== SELECT DROPDOWN ===== */
+.dropdown select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
 
-  <div class="form-section">
+/* ===== PROVIDER MODAL ===== */
+.provider-list {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-    <label for="provider-dropdown">Service Provider</label>
+/* ===== MODAL BOX ===== */
+.provider-list .list-header,
+.provider-list .search-box,
+.provider-list .providers {
+  background: #fff;
+}
 
-    <div class="dropdown" id="provider-dropdown" tabindex="0">
-      <span id="selected-provider">Choose a Dico Name</span>
-      <span class="arrow">▾</span>
+.provider-list > div,
+.provider-list > input,
+.provider-list > ul {
+  width: 90%;
+  max-width: 400px;
+}
+
+/* ===== PROVIDER CONTAINER ===== */
+.providers {
+  max-height: 350px;
+  overflow-y: auto;
+  border-radius: 0 0 12px 12px;
+}
+
+/* ===== PROVIDER ITEM ===== */
+.providers li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.providers li:hover {
+  background: #f5f5f5;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+  padding: 10px;
+  border: none;
+  width: 90%;
+  max-width: 400px;
+  outline: none;
+}
+
+/* ===== HEADER ===== */
+.list-header {
+  width: 90%;
+  max-width: 400px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  border-radius: 12px 12px 0 0;
+}
+
+</style>
+<body>
+
+  <div class="container">
+
+    <!-- ===== Top Section ===== -->
+    <div class="top-section">
+      <a href="home.html">
+        <button class="back-btn">← Back</button>
+      </a>
+      <h2 class="page-title">Buy Electricity</h2>
     </div>
 
-    <input type="text" placeholder="Meter Number" class="input-field" id="meterNumber">
+    <!-- ===== Form Section ===== -->
+    <div class="form">
 
-    <div class="dropdown" id="metertype" tabindex="0">
-        <span id="metertype">Choose Meter Type</span>
-        <span class="arrow">▾</span>
+      <label>Service Provider</label>
+      <div class="dropdown">
+        <select id="provider-dropdown">
+          <option selected disabled>Choose Disco Name</option>
+        </select>
       </div>
-    <input type="text" placeholder="Enter amount" class="input-field" id="AmountToPay">
 
-    <input type="text" placeholder="Customer phone" class="input-field" id="customerNumber">
+      <label>Meter Type</label>
+      <div class="dropdown">
+        <select id="metertype">
+          <option selected disabled>Choose Meter Type</option>
+          <option value="prepaid">Prepaid</option>
+          <option value="postpaid">Postpaid</option>
+        </select>
+      </div>
 
-    <button class="pay-btn" id="continuetopay">Pay</button>
+      <label>Meter Number</label>
+      <input type="text" id="meterNumber" placeholder="Enter meter number">
+
+      <label>Amount</label>
+      <input type="text" id="AmountToPay" placeholder="Enter amount">
+
+      <label>Customer Phone</label>
+      <input type="text" id="customerNumber" placeholder="Enter phone number">
+
+      <button class="pay-button" id="continuetopay">Validate</button>
+    </div>
+
   </div>
 
+  <!-- ================= MODALS (UNCHANGED + FULLY COMPATIBLE) ================= -->
 
-  <!-- Provider List Displaying Modal -->
+  <!-- Provider List Modal -->
   <div class="provider-list" id="provider-list-modal" style="display:none;">
     <div class="list-header">
       <button class="back-icon" id="close-provider-list">←</button>
@@ -46,9 +139,76 @@
 
     <input type="text" placeholder="Search" class="search-box" id="provider-search">
 
-    <ul class="providers" id="provider-items">
-      <!-- Providers will be generated here by JS-->
-    </ul>
+    <ul class="providers" id="provider-items"></ul>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <h4>You are about to buy Electricity</h4>
+      <p>Order Details</p>
+      <p>Meter Provider: <span id="meterNumber"></span></p>
+      <p>Meter Number: <span id="meterNumber"></span></p>
+      <p>Meter Type: <span id="meterNumber"></span></p>
+      <p>Customer Phone: <span id="cPhone"></span></p>
+      <p>Amount: ₦<span id="mAmount"></span></p>
+      <p>Cashback: ₦0</p>
+      <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+      <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- PIN Modal -->
+  <div id="pinModal" class="modal">
+    <div class="modal-content pin-box">
+      <h4>Enter Transaction PIN</h4>
+
+      <div class="pin-display">
+        <span class="pin-dot" id="d1"></span>
+        <span class="pin-dot" id="d2"></span>
+        <span class="pin-dot" id="d3"></span>
+        <span class="pin-dot" id="d4"></span>
+      </div>
+
+      <div class="keypad">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+
+        <button class="key clear">Clear</button>
+        <button class="key">0</button>
+        <button class="key confirm-pin-btn">Confirm Order</button>
+      </div>
+
+      <button id="closePin" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <h4 id="resultTitle"></h4>
+      <p id="resultMessage"></p>
+      <button id="closeResult" class="modal-btn confirm">Close</button>
+    </div>
+  </div>
+
+  <!-- Insufficient Balance Modal -->
+  <div id="insufficientModal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button onclick="document.getElementById('insufficientModal').style.display='none'">
+        OK
+      </button>
+    </div>
   </div>
 
   <script type="module" src="./scripts/electricity.js"></script>

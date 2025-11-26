@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Recharge Cable TV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Your original CSS -->
-  <link rel="stylesheet" href="./styles/cable.css">
+  <!-- ONLY data.css is needed -->
   <link rel="stylesheet" href="./styles/data.css">
 </head>
 
@@ -19,44 +19,43 @@
         <button class="back-btn">← Back</button>
       </a>
 
-      <!-- <img src="./image/topbg.png" alt="Top Banner" class="top-bg"> -->
-
       <h2 class="page-title">Recharge Cable TV</h2>
     </div>
 
     <!-- ===== Form Section ===== -->
     <div class="form">
 
-      <label>Fill in Your Cable Details</label>
-
-      <!-- Provider Dropdown (Styled by your JS) -->
-      <div class="dropdown" id="provider-dropdown" tabindex="0">
+      <label>Service Provider</label>
+      <div class="dropdown">
         <select id="provider-select">
-          <option value="">Choose a Cable Name</option>
+          <option value="" disabled selected>Choose a Cable Name</option>
         </select>
       </div>
 
-      <!-- IUC Number -->
       <label>IUC Number</label>
-      <input type="text"
-        placeholder="Smart Card number / IUC number" id="iuc-number-input">
+      <input
+        type="text"
+        id="iuc-number-input"
+        placeholder="Smart Card number / IUC number"
+      >
 
-      <!-- Plan Dropdown -->
       <label>Choose Cable Plan</label>
-      <div class="dropdown" id="cableplan-dropdown" tabindex="0">
+      <div class="dropdown">
         <select id="plan-select">
-          <option value="">Choose a Cable Plan</option>
+          <option value="" disabled selected>Choose a Cable Plan</option>
         </select>
       </div>
 
-      <!-- Pay Button -->
       <button class="pay-button" id="verify-details-btn">
         Verify Details
       </button>
     </div>
+
   </div>
 
-  <!-- ===== Provider Modal ===== -->
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- Provider Modal -->
   <div class="modal" id="provider-list-modal">
     <div class="modal-content">
       <h4>Select Cable Provider</h4>
@@ -67,7 +66,7 @@
     </div>
   </div>
 
-  <!-- ===== Plan Modal ===== -->
+  <!-- Plan Modal -->
   <div class="modal" id="plan-list-modal">
     <div class="modal-content">
       <h4>Select Cable Plan</h4>
@@ -78,8 +77,75 @@
     </div>
   </div>
 
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <h4>You are about to recharge Cable TV</h4>
+      <p>Order Details</p>
+      <p>IUC: <span id="mPhone"></span></p>
+      <p>Amount: ₦<span id="mAmount"></span></p>
+      <p>Cashback: ₦0</p>
+      <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+      <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- PIN Modal -->
+  <div id="pinModal" class="modal">
+    <div class="modal-content pin-box">
+      <h4>Enter Transaction PIN</h4>
+
+      <div class="pin-display">
+        <span class="pin-dot" id="d1"></span>
+        <span class="pin-dot" id="d2"></span>
+        <span class="pin-dot" id="d3"></span>
+        <span class="pin-dot" id="d4"></span>
+      </div>
+
+      <div class="keypad">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+
+        <button class="key clear">Clear</button>
+        <button class="key">0</button>
+        <button class="key confirm-pin-btn">Confirm Order</button>
+      </div>
+
+      <button id="closePin" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <h4 id="resultTitle"></h4>
+      <p id="resultMessage"></p>
+      <button id="closeResult" class="modal-btn confirm">Close</button>
+    </div>
+  </div>
+
+  <!-- Insufficient Balance Modal -->
+  <div id="insufficientModal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button onclick="document.getElementById('insufficientModal').style.display='none'">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script type="module" src="./scripts/cable.js"></script>
-  <script src="./scripts/theme.js" type="module"></script>
+  <script type="module" src="./scripts/theme.js"></script>
 
 </body>
 </html>

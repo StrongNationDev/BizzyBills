@@ -1,201 +1,348 @@
-// cable.js
-import { supabase, getCurrentUser } from './user.js';
+/* =========================
+   API CONFIG
+========================= */
+const API_KEY = "T9QhhQcygRxyE4qqOjcuNH7STj0mLmnELw13y9fc";
+const API_BASE = "https://mypay.ng/api/cable";
 
-// ---------------- Cable Data ----------------
-const providers = [
-  { id: 1, name: "GOTV" },
-  { id: 2, name: "DSTV" },
-  { id: 3, name: "STARTIME" },
+/* =========================
+   PROVIDERS
+========================= */
+const cableProviders = [
+  { id: 2, name: "GOTV" },
+  { id: 3, name: "STARTIMES" },
+  { id: 4, name: "SHOWMAX" },
+  { id: 5, name: "DSTV" }
 ];
 
-const cablePlans = {
-  GOTV: [
-    { id: 52, name: "GoTv Smallie - Yearly", amount: 15100 },
-    { id: 51, name: "GoTv Max", amount: 8650 },
-    { id: 50, name: "Gotv Joilli", amount: 5800 },
-    { id: 49, name: "Gotv Smallie - Quarterly", amount: 5150 },
-    { id: 48, name: "Gotv Jinja", amount: 4000 },
-    { id: 47, name: "Gotv Smallie Monthly", amount: 2000 },
-    { id: 97, name: "Gotv Super- Monthly", amount: 9850 },
-  ],
-  DSTV: [
-    { id: 94, name: "Compact + Extraview", amount: 21000 },
-    { id: 93, name: "Padi + Extraview", amount: 8750 },
-    { id: 92, name: "Yanga + Extraview", amount: 10300 },
-    { id: 91, name: "Confam + Extraview", amount: 14600 },
-    { id: 86, name: "Padi", amount: 4500 },
-    { id: 85, name: "Confam", amount: 9450 },
-    { id: 84, name: "Premium", amount: 37600 },
-    { id: 83, name: "Compact plus", amount: 25500 },
-    { id: 82, name: "Compact", amount: 16000 },
-    { id: 81, name: "Yanga", amount: 5250 },
-    { id: 88, name: "Asia", amount: 12700 },
-    { id: 89, name: "Premium + Extra view", amount: 42600 },
-  ],
-  STARTIME: [
-    { id: 68, name: "Super Antenna - 30 Days", amount: 8950 },
-    { id: 67, name: "Classic Antenna - 30 Days", amount: 5650 },
-    { id: 65, name: "Basic Antenna - 30 Days", amount: 3850 },
-    { id: 64, name: "Super Antenna - 7 days", amount: 3100 },
-    { id: 63, name: "Nova Dish - 30 Days", amount: 2000 },
-    { id: 62, name: "Classic Antenna - 7 Days", amount: 2000 },
-    { id: 61, name: "Smart Dish - 1 month", amount: 4350 },
-    { id: 60, name: "Basic Antenna- 7days", amount: 1350 },
-    { id: 59, name: "Nova Dish - 7days", amount: 750 },
-    { id: 58, name: "Nova Antenna - 7days", amount: 700 },
-  ],
-};
+/* =========================
+   CABLE PLANS
+========================= */
+const cablePlans = [
+  // GOTV
+  { id: 1, provider: 2, name: "GOtv Max", amount: 7200 },
+  { id: 2, provider: 2, name: "GOtv Jinja Bouquet", amount: 3300 },
+  { id: 3, provider: 2, name: "GOtv Jolli Bouquet", amount: 4850 },
+  { id: 4, provider: 2, name: "GOtv Supa", amount: 9600 },
+  { id: 5, provider: 2, name: "GOtv Supa Plus", amount: 15700 },
+  { id: 6, provider: 2, name: "GOtv Smallie", amount: 1575 },
 
-// ---------------- DOM Elements ----------------
-const providerDropdown = document.getElementById("provider-dropdown");
-const selectedProviderSpan = document.getElementById("selected-provider");
-const providerListModal = document.getElementById("provider-list-modal");
+  // STARTIMES
+  { id: 19, provider: 3, name: "Startime Super (Antenna) - Monthly", amount: 8000 },
+  { id: 20, provider: 3, name: "Startime Super (Antenna) - Weekly", amount: 2700 },
+  { id: 21, provider: 3, name: "Startime Smart (Dish) - Monthly", amount: 2800 },
+  { id: 22, provider: 3, name: "Startime Classic (Dish) - Weekly", amount: 2100 },
+  { id: 23, provider: 3, name: "Startime Classic (Dish) - Monthly", amount: 6200 },
+  { id: 24, provider: 3, name: "Startime Sport Plus (Dish) - Monthly", amount: 1200 },
+  { id: 25, provider: 3, name: "Startime Smart (Dish) - Weekly", amount: 900 },
+  { id: 26, provider: 3, name: "Startime Basic (Antenna) - Weekly", amount: 1100 },
+  { id: 27, provider: 3, name: "Startime Basic (Antenna) - Monthly", amount: 3300 },
+  { id: 28, provider: 3, name: "Startime Classic (Antenna) - Weekly", amount: 1700 },
+  { id: 29, provider: 3, name: "Startime Classic (Antenna) - Monthly", amount: 5000 },
+  { id: 30, provider: 3, name: "Startime Chinese (Dish)", amount: 16000 },
+  { id: 31, provider: 3, name: "Startime Super (Dish) - Monthly", amount: 8200 },
+  { id: 32, provider: 3, name: "Startime Super (Dish) - Weekly", amount: 2800 },
+  { id: 33, provider: 3, name: "Startime Basic (Dish) - Monthly", amount: 4200 },
+  { id: 34, provider: 3, name: "Startime Basic (Dish) - Weekly", amount: 1400 },
+  { id: 35, provider: 3, name: "Startime Nova (Antenna) - Weekly", amount: 500 },
+  { id: 36, provider: 3, name: "Startime Nova (Antenna) - Monthly", amount: 1700 },
+  { id: 37, provider: 3, name: "Startime Nova (Dish) - Monthly", amount: 1700 },
+  { id: 38, provider: 3, name: "Startime Nova (Dish) - Weekly", amount: 600 },
+
+  // SHOWMAX
+  { id: 39, provider: 4, name: "Showmax for Mobile", amount: 1200 },
+  { id: 40, provider: 4, name: "Showmax", amount: 2900 },
+  { id: 41, provider: 4, name: "Showmax Pro for Mobile", amount: 3200 },
+  { id: 42, provider: 4, name: "Showmax Pro", amount: 6300 },
+
+  // DSTV
+  { id: 44, provider: 5, name: "DStv Compact", amount: 15700 },
+  { id: 46, provider: 5, name: "DStv Compact Plus", amount: 25000 },
+  { id: 47, provider: 5, name: "DStv Premium", amount: 37000 },
+  { id: 48, provider: 5, name: "DStv Yanga Bouquet", amount: 5100 },
+  { id: 49, provider: 5, name: "DStv Comfan Bouquet", amount: 9300 }
+];
+
+/* =========================
+   DOM ELEMENTS
+========================= */
+const providerSelect = document.getElementById("provider-select");
+const planSelect = document.getElementById("plan-select");
+
+const providerModal = document.getElementById("provider-list-modal");
+const planModal = document.getElementById("plan-list-modal");
+
 const providerItems = document.getElementById("provider-items");
-const closeProviderListBtn = document.getElementById("close-provider-list");
-const providerSearch = document.getElementById("provider-search");
-
-const cablePlanDropdown = document.getElementById("cableplan-dropdown");
-const cablePlanSpan = document.getElementById("selected-cableplan");
-const planListModal = document.getElementById("plan-list-modal");
 const planItems = document.getElementById("plan-items");
-const closePlanListBtn = document.getElementById("close-plan-list");
+
+const providerSearch = document.getElementById("provider-search");
 const planSearch = document.getElementById("plan-search");
 
-const verifyBtn = document.getElementById("verify-details-btn");
-const iucInput = document.getElementById("amount-input");
+const closeProviderBtn = document.getElementById("close-provider-list");
+const closePlanBtn = document.getElementById("close-plan-list");
 
+const verifyBtn = document.getElementById("verify-details-btn");
+
+const confirmModal = document.getElementById("confirmModal");
+const pinModal = document.getElementById("pinModal");
+const resultModal = document.getElementById("resultModal");
+
+const confirmOrderBtn = document.getElementById("confirmOrder");
+const cancelOrderBtn = document.getElementById("cancelOrder");
+
+const closePinBtn = document.getElementById("closePin");
+const closeResultBtn = document.getElementById("closeResult");
+
+/* =========================
+   GLOBAL STATE
+========================= */
 let selectedProvider = null;
 let selectedPlan = null;
+let pin = "";
 
-// ---------------- Provider Selection ----------------
-providerDropdown.addEventListener("click", () => {
-  providerListModal.style.display = "block";
-  renderProviders(providers);
+/* =========================
+   OPEN PROVIDER MODAL
+========================= */
+providerSelect.addEventListener("click", () => {
+  providerModal.style.display = "flex";
+  renderProviders();
 });
 
-closeProviderListBtn.addEventListener("click", () => {
-  providerListModal.style.display = "none";
-});
+closeProviderBtn.onclick = () => {
+  providerModal.style.display = "none";
+};
 
-providerSearch.addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
-  const filtered = providers.filter(p => p.name.toLowerCase().includes(value));
-  renderProviders(filtered);
-});
-
-function renderProviders(list) {
+/* =========================
+   RENDER PROVIDERS
+========================= */
+function renderProviders() {
   providerItems.innerHTML = "";
-  list.forEach(provider => {
+  cableProviders.forEach(p => {
     const li = document.createElement("li");
-    li.textContent = provider.name;
-    li.onclick = () => {
-      selectedProvider = provider;
-      selectedProviderSpan.textContent = provider.name;
-      providerListModal.style.display = "none";
-      saveSelection("provider", provider);
-    };
+    li.textContent = p.name;
+    li.onclick = () => selectProvider(p);
     providerItems.appendChild(li);
   });
 }
 
-// ---------------- Plan Selection ----------------
-cablePlanDropdown.addEventListener("click", () => {
+function selectProvider(provider) {
+  selectedProvider = provider;
+  providerSelect.innerHTML = `<option selected>${provider.name}</option>`;
+  providerModal.style.display = "none";
+
+  selectedPlan = null;
+  planSelect.innerHTML = `<option selected disabled>Choose a Cable Plan</option>`;
+}
+
+/* =========================
+   PROVIDER SEARCH
+========================= */
+providerSearch.addEventListener("input", () => {
+  const term = providerSearch.value.toLowerCase();
+  [...providerItems.children].forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(term)
+      ? "block"
+      : "none";
+  });
+});
+
+/* =========================
+   OPEN PLAN MODAL
+========================= */
+planSelect.addEventListener("click", () => {
   if (!selectedProvider) {
     alert("Please select a provider first");
     return;
   }
-  planListModal.style.display = "block";
-  renderPlans(cablePlans[selectedProvider.name]);
+
+  planModal.style.display = "flex";
+  renderPlans();
 });
 
-closePlanListBtn.addEventListener("click", () => {
-  planListModal.style.display = "none";
-});
+closePlanBtn.onclick = () => {
+  planModal.style.display = "none";
+};
 
-planSearch.addEventListener("input", (e) => {
-  if (!selectedProvider) return;
-  const value = e.target.value.toLowerCase();
-  const filtered = cablePlans[selectedProvider.name].filter(
-    p => p.name.toLowerCase().includes(value)
-  );
-  renderPlans(filtered);
-});
-
-function renderPlans(list) {
+/* =========================
+   RENDER PLANS
+========================= */
+function renderPlans() {
   planItems.innerHTML = "";
-  list.forEach(plan => {
+
+  const filteredPlans = cablePlans.filter(
+    p => p.provider === selectedProvider.id
+  );
+
+  filteredPlans.forEach(p => {
     const li = document.createElement("li");
-    li.textContent = `${plan.name} = ₦${plan.amount}`;
-    li.onclick = () => {
-      selectedPlan = plan;
-      cablePlanSpan.textContent = `${plan.name} = ₦${plan.amount}`;
-      planListModal.style.display = "none";
-      saveSelection("plan", plan);
-    };
+    li.textContent = `${p.name} - ₦${p.amount.toLocaleString()}`;
+    li.onclick = () => selectPlan(p);
     planItems.appendChild(li);
   });
 }
 
-// ---------------- Verify Details ----------------
+function selectPlan(plan) {
+  selectedPlan = plan;
+  planSelect.innerHTML = `<option selected>${plan.name}</option>`;
+  planModal.style.display = "none";
+}
+
+/* =========================
+   PLAN SEARCH
+========================= */
+planSearch.addEventListener("input", () => {
+  const term = planSearch.value.toLowerCase();
+  [...planItems.children].forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(term)
+      ? "block"
+      : "none";
+  });
+});
+
+/* =========================
+   VERIFY IUC
+========================= */
 verifyBtn.addEventListener("click", async () => {
-  const iuc = iucInput.value.trim();
+  const iuc = document.getElementById("iuc-number-input").value.trim();
+
   if (!selectedProvider || !selectedPlan || !iuc) {
-    alert("Please fill in all details");
+    alert("Fill all fields");
     return;
   }
 
-  // Show overlay
-  const overlay = document.createElement("div");
-  overlay.style.position = "fixed";
-  overlay.style.top = "0";
-  overlay.style.left = "0";
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.background = "rgba(0,0,0,0.6)";
-  overlay.style.backdropFilter = "blur(5px)";
-  overlay.style.display = "flex";
-  overlay.style.justifyContent = "center";
-  overlay.style.alignItems = "center";
-  overlay.style.flexDirection = "column";
-  overlay.style.color = "white";
-  overlay.style.fontSize = "20px";
-  const progress = document.createElement("div");
-  overlay.appendChild(progress);
-  document.body.appendChild(overlay);
-
-  let percent = 0;
-  const interval = setInterval(() => {
-    percent += 5;
-    progress.textContent = `Verifying... ${percent}%`;
-    if (percent >= 100) {
-      clearInterval(interval);
-      if (iuc.length < 5) {
-        progress.textContent = "❌ Incorrect details, please check and try again";
-        setTimeout(() => document.body.removeChild(overlay), 2000);
-      } else {
-        progress.textContent = "✅ Verification successful";
-        saveSelection("iuc", { iuc });
-        setTimeout(() => {
-          document.body.removeChild(overlay);
-          window.location.href = "cableconfirm.html";
-        //   window.location.href = "./Confirm-Detail";
-        }, 1500);
+  try {
+    const res = await fetch(
+      `https://mypay.ng/api/cable/cable-validation?iuc=${iuc}&cable=${selectedProvider.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`
+        }
       }
+    );
+
+    const data = await res.json();
+
+    if (data.status !== "success") {
+      alert("IUC Verification Failed");
+      return;
     }
-  }, 100);
+
+    document.getElementById("mPhone").textContent = iuc;
+    document.getElementById("mAmount").textContent =
+      selectedPlan.amount.toLocaleString();
+
+    confirmModal.style.display = "flex";
+  } catch (err) {
+    console.error(err);
+    alert("Verification error");
+  }
 });
 
-// ---------------- Save Selection ----------------
-async function saveSelection(type, data) {
-  const user = await getCurrentUser();
-  if (!user) return;
+/* =========================
+   CONFIRMATION MODAL
+========================= */
+confirmOrderBtn.onclick = () => {
+  confirmModal.style.display = "none";
+  pinModal.style.display = "flex";
+};
 
-  await supabase.from("cable_selections").insert([
-    {
-      user_id: user.id,
-      type,
-      data,
-      created_at: new Date(),
-    },
-  ]);
+cancelOrderBtn.onclick = () => {
+  confirmModal.style.display = "none";
+};
+
+/* =========================
+   PIN KEYPAD
+========================= */
+document.querySelectorAll(".key").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    if (btn.classList.contains("clear")) {
+      pin = "";
+    } else if (btn.classList.contains("confirm-pin-btn")) {
+      await processPayment();
+      return;
+    } else {
+      if (pin.length < 4) pin += btn.textContent;
+    }
+
+    updatePinDots();
+  });
+});
+
+function updatePinDots() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`d${i}`).style.background =
+      pin.length >= i ? "#000" : "#ddd";
+  }
+}
+
+closePinBtn.onclick = () => {
+  pin = "";
+  updatePinDots();
+  pinModal.style.display = "none";
+};
+
+/* =========================
+   PROCESS PAYMENT
+========================= */
+async function processPayment() {
+  const iuc = document.getElementById("iuc-number-input").value.trim();
+
+  try {
+    const res = await fetch("https://mypay.ng/api/cable", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cable: selectedProvider.id,
+        iuc,
+        cable_plan: selectedPlan.id,
+        bypass: false
+      })
+    });
+
+    const data = await res.json();
+
+    pinModal.style.display = "none";
+    resultModal.style.display = "flex";
+
+    if (data.status === "success") {
+      document.getElementById("resultTitle").textContent = "Success";
+      document.getElementById("resultMessage").textContent = data.message;
+    } else {
+      document.getElementById("resultTitle").textContent = "Failed";
+      document.getElementById("resultMessage").textContent = data.message;
+    }
+  } catch (err) {
+    pinModal.style.display = "none";
+    resultModal.style.display = "flex";
+    document.getElementById("resultTitle").textContent = "Error";
+    document.getElementById("resultMessage").textContent =
+      "Transaction failed";
+  }
+}
+
+closeResultBtn.onclick = () => {
+  resultModal.style.display = "none";
+};
+
+
+
+
+
+/* =========================
+   FORCE DEMO VALIDATION (CABLE)
+========================= */
+function forceCableValidation() {
+  document.getElementById("mPhone").textContent = "01831092587";
+  document.getElementById("mAmount").textContent = "4850";
+
+  // Open confirmation modal
+  confirmModal.style.display = "flex";
+
+  // Auto-open PIN modal after 1 second (optional)
+  setTimeout(() => {
+    confirmModal.style.display = "none";
+    pinModal.style.display = "flex";
+  }, 1000);
 }
