@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="./styles/data.css"/>
+  <title>Buy Exam PIN</title>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== TOP SECTION ===== -->
+  <div class="top-section">
+    <!-- <button class="back-btn" onclick="history.back(home.exam.html)">Back</button> -->
+     <button class="back-btn" onclick="window.location.href='home.html'">Back</button>
+
+    <h2 class="page-title">Buy Exam PIN</h2>
+  </div>
+
+  <!-- ===== FORM SECTION ===== -->
+  <div class="form">
+
+    <!-- Exam Type -->
+    <label>Select Exam Type</label>
+    <div class="dropdown">
+      <select id="examType">
+        <option value="">-- Select Exam --</option>
+        <option value="3550">WAEC - ₦3550</option>
+        <option value="1550">NECO - ₦1550</option>
+      </select>
+    </div>
+
+    <!-- Quantity -->
+    <label>Quantity</label>
+    <input type="text" id="quantity" placeholder="Enter Quantity"/>
+
+    <!-- Amount -->
+    <label>Amount</label>
+    <input type="text" id="amount" disabled placeholder="₦0.00"/>
+
+    <!-- Pay Button -->
+    <button class="pay-button" id="payBtn">Proceed to Pay</button>
+
+  </div>
+</div>
+
+<!-- ===== CONFIRMATION MODAL ===== -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <h4>You are about to buy Exam PIN</h4>
+    <p>Order Details</p>
+    <p>Exam: <span id="mPhone"></span></p>
+    <p>Amount: ₦<span id="mAmount"></span></p>
+    <p>Cashback: ₦0</p>
+
+    <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+    <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ===== PIN MODAL ===== -->
+<div id="pinModal" class="modal">
+  <div class="modal-content pin-box">
+    <h4>Enter Transaction PIN</h4>
+
+    <div class="pin-display">
+      <span class="pin-dot" id="d1"></span>
+      <span class="pin-dot" id="d2"></span>
+      <span class="pin-dot" id="d3"></span>
+      <span class="pin-dot" id="d4"></span>
+    </div>
+
+    <div class="keypad">
+      <button class="key">1</button>
+      <button class="key">2</button>
+      <button class="key">3</button>
+
+      <button class="key">4</button>
+      <button class="key">5</button>
+      <button class="key">6</button>
+
+      <button class="key">7</button>
+      <button class="key">8</button>
+      <button class="key">9</button>
+
+      <button class="key clear">Clear</button>
+      <button class="key">0</button>
+      <button class="key confirm-pin-btn">Confirm Order</button>
+    </div>
+
+    <button id="closePin" class="modal-btn cancel">Cancel</button>
+  </div>
+</div>
+
+<!-- ===== RESULT MODAL ===== -->
+<div id="resultModal" class="modal">
+  <div class="modal-content">
+    <h4 id="resultTitle"></h4>
+    <p id="resultMessage"></p>
+    <button id="closeResult" class="modal-btn confirm">Close</button>
+  </div>
+</div>
+
+<!-- ===== INSUFFICIENT MODAL ===== -->
+<div id="insufficientModal">
+  <div class="modal-content">
+    <p id="modalMessage"></p>
+    <button onclick="document.getElementById('insufficientModal').style.display='none'">OK</button>
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT LOGIC ===== -->
+<script>
+const examType = document.getElementById("examType");
+const quantity = document.getElementById("quantity");
+const amount = document.getElementById("amount");
+const payBtn = document.getElementById("payBtn");
+
+const confirmModal = document.getElementById("confirmModal");
+const pinModal = document.getElementById("pinModal");
+const resultModal = document.getElementById("resultModal");
+
+const mPhone = document.getElementById("mPhone");
+const mAmount = document.getElementById("mAmount");
+
+let userPin = "";
+const correctPin = "1234"; // demo pin
+
+// Auto Calculate Amount
+function calculateAmount() {
+  const price = Number(examType.value);
+  const qty = Number(quantity.value);
+
+  if (price && qty) {
+    amount.value = "₦" + (price * qty).toLocaleString();
+  } else {
+    amount.value = "";
+  }
+}
+
+examType.addEventListener("change", calculateAmount);
+quantity.addEventListener("input", calculateAmount);
+
+// Proceed Button
+payBtn.addEventListener("click", () => {
+  if (!examType.value || !quantity.value) {
+    showInsufficient("Please select exam and enter quantity.");
+    return;
+  }
+
+  mPhone.innerText = examType.options[examType.selectedIndex].text;
+  mAmount.innerText = (examType.value * quantity.value).toLocaleString();
+
+  confirmModal.style.display = "flex";
+});
+
+// Cancel Order
+document.getElementById("cancelOrder").onclick = () => {
+  confirmModal.style.display = "none";
+};
+
+// Confirm Order
+document.getElementById("confirmOrder").onclick = () => {
+  confirmModal.style.display = "none";
+  pinModal.style.display = "flex";
+};
+
+// PIN Entry
+document.querySelectorAll(".key").forEach(key => {
+  key.addEventListener("click", () => {
+    if (key.classList.contains("clear")) {
+      userPin = "";
+    } else if (key.classList.contains("confirm-pin-btn")) {
+      verifyPin();
+      return;
+    } else {
+      if (userPin.length < 4) {
+        userPin += key.innerText;
+      }
+    }
+    updateDots();
+  });
+});
+
+function updateDots() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById("d" + i).classList.remove("filled");
+  }
+  for (let i = 0; i < userPin.length; i++) {
+    document.getElementById("d" + (i + 1)).classList.add("filled");
+  }
+}
+
+function verifyPin() {
+  pinModal.style.display = "none";
+  if (userPin === correctPin) {
+    showResult("Success", "Exam PIN purchase successful!");
+  } else {
+    showResult("Failed", "Invalid Transaction PIN");
+  }
+  userPin = "";
+  updateDots();
+}
+
+// Close Pin
+document.getElementById("closePin").onclick = () => {
+  pinModal.style.display = "none";
+  userPin = "";
+  updateDots();
+};
+
+// Result Modal
+function showResult(title, message) {
+  resultModal.style.display = "flex";
+  document.getElementById("resultTitle").innerText = title;
+  document.getElementById("resultMessage").innerText = message;
+}
+
+document.getElementById("closeResult").onclick = () => {
+  resultModal.style.display = "none";
+};
+
+function showInsufficient(text) {
+  document.getElementById("modalMessage").innerText = text;
+  document.getElementById("insufficientModal").style.display = "flex";
+}
+</script>
+
+</body>
+</html>

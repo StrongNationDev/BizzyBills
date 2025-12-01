@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/data.css" />
+  <title>Bulk SMS</title>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ===== TOP SECTION ===== -->
+    <div class="top-section">
+      <button class="back-btn" onclick="history.back()">Back</button>
+      <div class="page-title">Send Bulk SMS</div>
+    </div>
+
+    <!-- ===== FORM SECTION ===== -->
+    <div class="form">
+
+      <label>Subject</label>
+      <input type="text" placeholder="Enter the subject" id="subject" />
+
+      <label>Sender</label>
+      <input type="text" placeholder="Enter the sender's name" id="sender" />
+
+      <label>Bulk Phone Numbers</label>
+      <input type="text" placeholder="Enter phone numbers separated by commas" id="numbers" />
+
+      <label>Message</label>
+      <input type="text" placeholder="Enter your message" id="message" />
+
+      <label>Amount</label>
+      <input type="text" value="₦ 0.00" id="amount" readonly />
+
+      <button class="pay-button" id="payBtn">Proceed to Pay</button>
+    </div>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <h4>You are about to buy Airtime</h4>
+      <p>Order Details</p>
+      <p>Phone: <span id="mPhone"></span></p>
+      <p>Amount: ₦<span id="mAmount"></span></p>
+      <p>Cashback: ₦0</p>
+
+      <button id="confirmOrder" class="modal-btn confirm">Confirm PIN</button>
+      <button id="cancelOrder" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- PIN Modal -->
+  <div id="pinModal" class="modal">
+    <div class="modal-content pin-box">
+      <h4>Enter Transaction PIN</h4>
+
+      <div class="pin-display">
+        <span class="pin-dot" id="d1"></span>
+        <span class="pin-dot" id="d2"></span>
+        <span class="pin-dot" id="d3"></span>
+        <span class="pin-dot" id="d4"></span>
+      </div>
+
+      <div class="keypad">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+
+        <button class="key clear">Clear</button>
+        <button class="key">0</button>
+        <button class="key confirm-pin-btn">Confirm Order</button>
+      </div>
+
+      <button id="closePin" class="modal-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <h4 id="resultTitle"></h4>
+      <p id="resultMessage"></p>
+      <button id="closeResult" class="modal-btn confirm">Close</button>
+    </div>
+  </div>
+
+  <!-- Insufficient Balance Modal -->
+  <div id="insufficientModal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button onclick="document.getElementById('insufficientModal').style.display='none'">OK</button>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const payBtn = document.getElementById("payBtn");
+    const confirmModal = document.getElementById("confirmModal");
+    const pinModal = document.getElementById("pinModal");
+
+    const cancelOrder = document.getElementById("cancelOrder");
+    const confirmOrder = document.getElementById("confirmOrder");
+    const closePin = document.getElementById("closePin");
+
+    const numbers = document.getElementById("numbers");
+    const amount = document.getElementById("amount");
+
+    payBtn.addEventListener("click", () => {
+      document.getElementById("mPhone").textContent = numbers.value || "N/A";
+      document.getElementById("mAmount").textContent = amount.value.replace("₦", "");
+      confirmModal.style.display = "flex";
+    });
+
+    cancelOrder.addEventListener("click", () => {
+      confirmModal.style.display = "none";
+    });
+
+    confirmOrder.addEventListener("click", () => {
+      confirmModal.style.display = "none";
+      pinModal.style.display = "flex";
+    });
+
+    closePin.addEventListener("click", () => {
+      pinModal.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
