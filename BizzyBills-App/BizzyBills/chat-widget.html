@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+    #chat-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #6c63ff;
+    color: white;
+    font-size: 22px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    z-index: 99999;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    user-select: none;
+    }
+
+    #chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 420px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    z-index: 99999;
+    }
+
+    #chat-header {
+    background: linear-gradient(90deg, #6c63ff, #28c4d8);
+    color: white;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-radius: 15px 15px 0 0;
+    }
+
+    #chat-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    font-size: 14px;
+    }
+
+    #chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    }
+
+    #chat-footer input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    }
+
+    #chat-footer button {
+    margin-left: 8px;
+    background: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    }
+
+    .bot-msg {
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    width: fit-content;
+    }
+
+    .user-msg {
+    background: #6c63ff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    margin-left: auto;
+    width: fit-content;
+    }
+    </style>
+
+<body>
+    <!-- ===== Floating Chat Button ===== -->
+<div id="chat-fab">💬</div>
+
+<!-- ===== Chat Window ===== -->
+<div id="chat-box">
+  <div id="chat-header">
+    <span>Chat Support</span>
+    <button id="close-chat">×</button>
+  </div>
+
+  <div id="chat-body">
+    <div class="bot-msg">Hello! 👋 How can I help you today?</div>
+  </div>
+
+  <div id="chat-footer">
+    <input type="text" id="chat-input" placeholder="Type your message..." />
+    <button id="send-chat">➤</button>
+  </div>
+</div>
+<script>
+const fab = document.getElementById("chat-fab");
+const box = document.getElementById("chat-box");
+const closeBtn = document.getElementById("close-chat");
+const sendBtn = document.getElementById("send-chat");
+const input = document.getElementById("chat-input");
+const body = document.getElementById("chat-body");
+
+/* OPEN & CLOSE */
+fab.onclick = () => box.style.display = "flex";
+closeBtn.onclick = () => box.style.display = "none";
+
+/* SEND MESSAGE */
+sendBtn.onclick = sendMessage;
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const userDiv = document.createElement("div");
+  userDiv.className = "user-msg";
+  userDiv.textContent = msg;
+  body.appendChild(userDiv);
+
+  input.value = "";
+  body.scrollTop = body.scrollHeight;
+
+  setTimeout(() => {
+    const botDiv = document.createElement("div");
+    botDiv.className = "bot-msg";
+    botDiv.textContent = "Thanks! An agent will reply shortly.";
+    body.appendChild(botDiv);
+    body.scrollTop = body.scrollHeight;
+  }, 600);
+}
+
+/* DRAGGING FUNCTION */
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+fab.addEventListener("touchstart", e => {
+  dragging = true;
+  offsetX = e.touches[0].clientX - fab.offsetLeft;
+  offsetY = e.touches[0].clientY - fab.offsetTop;
+});
+
+document.addEventListener("touchmove", e => {
+  if (!dragging) return;
+  fab.style.left = e.touches[0].clientX - offsetX + "px";
+  fab.style.top = e.touches[0].clientY - offsetY + "px";
+});
+
+document.addEventListener("touchend", () => dragging = false);
+</script>
+
+</body>
+</html>

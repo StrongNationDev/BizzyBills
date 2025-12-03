@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Virtual Account</title>
   <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-  <link rel="stylesheet" href="./styles/fund.css">
+  <link rel="stylesheet" href="./styles/fun.css">
   <link rel="stylesheet" href="./styles/dark-mode.css" />
 
 </head>
@@ -14,7 +14,6 @@
 
   <div class="top-section">
     <a href="home.html"><button class="back-btn">← Back</button></a>
-    <img src="./image/topbg.png" alt="top background" class="top-img">
     <h2 class="top-title">My Virtual Account</h2>
   </div>
 
@@ -36,7 +35,7 @@
         <span class="account-name">Loading</span>
         <span class="account-number">Loading</span>
         <div class="charges">
-          <p>₦50 Charge on funding</p>
+          <p>₦30 Charge on funding</p>
         </div>
       </div>
     </div>
@@ -53,20 +52,32 @@
       </div>
     </div>
   </div>
-  <script src="messages.js"></script>
+
+  <!-- Custom Alert -->
+  <div id="custom-alert" class="alert-hidden">
+    <div class="alert-box">
+      <p id="alert-message"></p>
+      <button id="alert-ok-btn">OK</button>
+    </div>
+  </div>
+
   <script>
-    // "Copy Detail" button copies account name and number
-    document.getElementById('copyDetailBtn').onclick = function() {
-      const name = document.querySelector('.account-name').textContent;
-      const number = document.querySelector('.account-number').textContent;
-      const full = `${name}\n${number}`;
-      navigator.clipboard.writeText(full);
-      this.textContent = "Copied!";
-      setTimeout(() => { this.textContent = "Copy Detail"; }, 1600);
-    };
+    function showAlert(message) {
+      const alertBox = document.getElementById("custom-alert");
+      const msgEl = document.getElementById("alert-message");
+      const okBtn = document.getElementById("alert-ok-btn");
+
+      msgEl.textContent = message;
+      alertBox.classList.remove("alert-hidden");
+
+      okBtn.onclick = () => {
+        alertBox.classList.add("alert-hidden");
+      };
+    }
   </script>
+
+
   <script type="module" src="./scripts/fund.js"></script>
-  <script type="module" src="./scripts/account.js"></script>
     <script src="./scripts/theme.js" type="module"></script>
 </body>
 </html>
